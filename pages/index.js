@@ -38,7 +38,6 @@ export default function Home() {
         <InternationalNews></InternationalNews>
         <Footer></Footer>
       </main>
-
     </>
   )
 }
