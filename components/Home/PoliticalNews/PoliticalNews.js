@@ -80,12 +80,10 @@ const PoliticalNews = () => {
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
-
                                     image={singleNews.img}
                                     className="rounded-none h-[250px]"
                                 />
                                 <CardContent
-
                                     className="px-0 mx-4"
                                 >
                                     <Typography
