@@ -85,7 +85,7 @@ const PoliticalNews = () => {
                                 />
                                 <CardContent
                                     sx={{
-                                        px: 0, mx: 4
+                                        px: 0, mx: 2
                                     }}>
                                     <Typography
                                         sx={{ fontWeight: 500 }}
@@ -211,7 +211,7 @@ const PoliticalNews = () => {
                     </Grid>
                 </Grid>
             </Box>
-        </div >
+        </div>
     );
 };
 
