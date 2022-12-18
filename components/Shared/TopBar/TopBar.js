@@ -36,7 +36,7 @@ const TopBar = () => {
   };
 
   return (
-    <AppBar position="">
+    <AppBar>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />

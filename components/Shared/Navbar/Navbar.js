@@ -1,7 +1,8 @@
 
-import PropTypes from 'prop-types';
+import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
@@ -10,13 +11,11 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import { useState } from 'react';
 import { Container } from '@mui/system';
 import Link from 'next/link';
+import { useState } from 'react';
 
 const drawerWidth = 240;
 const navItems = ['Wolrd', 'Politics', 'Trending', 'Economy', 'Business', 'Politics', 'Sports', 'Education', 'Youth', 'Tech Startup', 'Feature'];
@@ -50,7 +49,7 @@ function Navbar(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex'}}>
       <CssBaseline />
       <AppBar component="nav" sx={{
         backgroundColor: '#fff',

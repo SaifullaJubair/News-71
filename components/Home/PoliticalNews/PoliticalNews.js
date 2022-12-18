@@ -76,57 +76,59 @@ const PoliticalNews = () => {
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} lg={4} md={6} sm={6}>
-                        <Card className="  h-[490px]">
+                        <Card sx={{ height: '490px' }}>
                             <CardActionArea>
                                 <CardMedia
+                                    sx={{ height: '250px' }}
                                     component="img"
                                     image={singleNews.img}
-                                    className="rounded-none h-[250px]"
                                 />
                                 <CardContent
-                                    className="px-0 mx-4"
-                                >
+                                    sx={{
+                                        px: 0, mx: 4
+                                    }}>
                                     <Typography
+                                        sx={{ fontWeight: 500 }}
                                         gutterBottom
                                         variant="p"
                                         component="div"
-                                        className="font-semibold"
+
                                     >
                                         {singleNews.countryName}
                                     </Typography>
                                     <Typography
+                                        sx={{ fontWeight: 700, fontSize: '24px' }}
                                         gutterBottom
                                         variant="h2"
                                         component="div"
-                                        className="font-bold text-2xl"
                                     >
                                         {singleNews.heading}
                                     </Typography>
                                     <div>
                                         <Typography
+                                            sx={{ fontSize: '16px', display: 'inline', fontWeight: 500 }}
                                             gutterBottom
                                             variant="p"
                                             component="p"
-                                            className="font-medium text-base inline-block"
                                         >
                                             {singleNews.authorName}
                                         </Typography>
                                         <Typography
+                                            sx={{ fontSize: '16px', display: 'inline', fontWeight: 500 }}
                                             gutterBottom
                                             variant="p"
                                             component="p"
                                             color='text.secondary'
-                                            className="font-medium text-base inline-block"
                                         >
                                             -  {singleNews.date}
                                         </Typography>
                                     </div>
                                     <Typography
+                                        sx={{ fontWeight: 500, pt: 2 }}
                                         gutterBottom
                                         variant="p"
                                         component="p"
                                         color='text.secondary'
-                                        className="font-medium text-base"
                                     >
                                         {singleNews.details}
                                     </Typography>
@@ -135,23 +137,24 @@ const PoliticalNews = () => {
                         </Card>
                     </Grid>
                     {/*  second column */}
-                    <Grid item xs={12} lg={4} md={6} sm={6} className='h-full flex flex-col gap-5'>
+                    <Grid sx={{ display: 'flex', flexDirection: 'column', gap: '20px', height: 'full' }} item xs={12} lg={4} md={6} sm={6} >
                         {
                             fourNews.map(news =>
-                                <Card classNAme='h-[108px] py-0'>
-                                    <CardActionArea className='flex h-[100%] p-0'>
+                                <Card sx={{ height: '108px', py: 0 }}>
+                                    <CardActionArea sx={{ display: 'flex', height: '108px', p: 0 }}>
                                         <CardMedia
                                             component="img"
                                             image={news.img}
-                                            className='p-0 h-[108px] w-[40%]'
+                                            sx={{ p: 0, height: '108px', width: '40%' }}
                                             alt="img"
                                         />
-                                        <CardContent className="p-0 ml-4">
+                                        <CardContent sx={{ p: 0, ml: '16px' }}>
                                             <Typography
                                                 gutterBottom
                                                 variant="h2"
                                                 component="h2"
-                                                className="font-bold text-lg">
+                                                sx={{ fontWeight: 600, fontSize: '18px', lineHeight: '28px' }}
+                                            >
                                                 {news.heading}
                                             </Typography>
                                             <Typography
@@ -159,6 +162,7 @@ const PoliticalNews = () => {
                                                 variant="p"
                                                 component="p"
                                                 color='text.secondary'
+                                                sx={{ fontWeight: 500, display: 'inline', fontSize: '16px', lineHeight: '24px' }}
                                                 className="font-medium text-base inline-block"
                                             >
                                                 {singleNews.date}
@@ -169,23 +173,24 @@ const PoliticalNews = () => {
                             )
                         }
                     </Grid>
-                    <Grid item xs={12} lg={4} md={6} sm={6} className='h-full flex flex-col gap-5'>
+                    <Grid sx={{ display: 'flex', flexDirection: 'column', gap: '20px', height: 'full' }} item xs={12} lg={4} md={6} sm={6}  >
                         {
                             fourNews.map(news =>
-                                <Card classNAme='h-[108px] py-0'>
-                                    <CardActionArea className='flex h-[100%] p-0'>
+                                <Card sx={{ height: '108px', py: 0 }}>
+                                    <CardActionArea sx={{ display: 'flex', height: '108px', p: 0 }}>
                                         <CardMedia
                                             component="img"
                                             image={news.img}
-                                            className='p-0 h-[108px] w-[40%]'
+                                            sx={{ p: 0, height: '108px', width: '40%' }}
                                             alt="img"
                                         />
-                                        <CardContent className="p-0 ml-4">
+                                        <CardContent sx={{ p: 0, ml: '16px' }}>
                                             <Typography
                                                 gutterBottom
                                                 variant="h2"
                                                 component="h2"
-                                                className="font-bold text-lg">
+                                                sx={{ fontWeight: 600, fontSize: '18px', lineHeight: '28px' }}
+                                            >
                                                 {news.heading}
                                             </Typography>
                                             <Typography
@@ -193,6 +198,7 @@ const PoliticalNews = () => {
                                                 variant="p"
                                                 component="p"
                                                 color='text.secondary'
+                                                sx={{ fontWeight: 500, display: 'inline', fontSize: '16px', lineHeight: '24px' }}
                                                 className="font-medium text-base inline-block"
                                             >
                                                 {singleNews.date}
@@ -205,7 +211,7 @@ const PoliticalNews = () => {
                     </Grid>
                 </Grid>
             </Box>
-        </div>
+        </div >
     );
 };
 
