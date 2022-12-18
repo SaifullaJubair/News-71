@@ -1,9 +1,8 @@
 
 const TechNews = () => {
+
     return (
-        <div>
-                    Tech news            
-        </div>
+        <div>  Tech news</div>
     );
 };
 
