@@ -10,7 +10,6 @@ import SportsNews from '../components/Home/SportsNews/SportsNews'
 import TechNews from '../components/Home/TechNews/TechNews'
 import TrendingNews from '../components/Home/TrendingNews/TrendingNews'
 import Footer from '../components/Shared/Footer/Footer'
-import Navbar from '../components/Shared/Navbar/Navbar'
 import TopBar from '../components/Shared/TopBar/TopBar'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -26,7 +25,7 @@ export default function Home() {
       </Head>
       <main className='max-w-[1440px] w-[95%] mx-auto'>
         <TopBar></TopBar>
-        <Navbar></Navbar>
+        {/* <Navbar></Navbar> */}
         <TrendingNews></TrendingNews>
         <LatestNews></LatestNews>
         <PoliticalNews></PoliticalNews>
