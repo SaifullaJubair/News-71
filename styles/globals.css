@@ -108,3 +108,10 @@ a {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* alluser page */
+.alluser .title {
+  color: red;
+}
+
+/*  */

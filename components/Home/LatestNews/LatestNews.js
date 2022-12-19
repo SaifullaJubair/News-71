@@ -21,7 +21,7 @@ const LatestNews = () => {
         }
     };
     return (
-        <div className="mx-4  ">
+        <div className="container mx-auto  ">
             <h1 className="text-3xl font-semibold my-4">Latest News</h1>
             <Carousel responsive={responsive}>
                 <div className="max-w-lg p-4 shadow-md dark:bg-gray-900 dark:text-gray-100 ">

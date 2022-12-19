@@ -17,12 +17,12 @@ import Link from 'next/link';
 const SportsNews = () => {
     const theme = useTheme();
     return (
-        <div className='lg:w-10/12 m-auto  bg-red-4000 rounded flex flex-col justify-center '>
-            <h2 className="px-4  text-black font-bold text-xl my-4">Sports</h2>
+        <div className='bg-red-4000 rounded flex flex-col justify-center '>
+            <h2 className="  text-black font-bold text-xl my-4">Sports</h2>
 
             <div className='grid lg:grid-cols-3 border-t-2'>
                 {/* left side  */}
-                <div className='rounded-lg.   border-gray-200 m-2 p-2 col-span-2'>
+                <div className='rounded-lg   border-gray-200 my-2 py-2 col-span-2'>
                     <div>
                         <img className='w-full rounded my-2' src="https://gumlet.assettype.com/bdnews24%2F2022-12%2Fb587d1e2-eb56-466a-98a7-00106e6e7a2d%2FIMG_20221216_WA0000.jpg?" alt="" />
                     </div>

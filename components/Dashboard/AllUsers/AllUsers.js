@@ -2,8 +2,8 @@ import React from 'react';
 
 const AllUsers = () => {
     return (
-        <div>
-            AllUsers
+        <div className='alluser'>
+            <h2 className='title'>AllUsers 2</h2>
         </div>
     );
 };

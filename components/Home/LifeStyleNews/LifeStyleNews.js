@@ -1,6 +1,8 @@
 import Link from "next/link";
 
 const LifeStyleNews = () => {
+
+
     return (
         <div className="my-10 font-poppins ">
             <div className="container mx-auto px-4 ">

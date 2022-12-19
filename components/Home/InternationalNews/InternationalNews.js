@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const InternationalNews = () => {
     return (
-        <div className=" p-6  ">
+        <div className=" ">
             <h2 className="text-xl font-bold mb-5"> International News</h2>
             <div className="flex justify-center">
                 <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-1  ">

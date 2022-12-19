@@ -5,12 +5,13 @@ import EntertainmentNews from '../components/Home/EntertainmentNews/Entertainmen
 import InternationalNews from '../components/Home/InternationalNews/InternationalNews'
 import LatestNews from '../components/Home/LatestNews/LatestNews'
 import LifeStyleNews from '../components/Home/LifeStyleNews/LifeStyleNews'
+import Marquee from '../components/Home/Marquee/Marquee'
 import PoliticalNews from '../components/Home/PoliticalNews/PoliticalNews'
 import SportsNews from '../components/Home/SportsNews/SportsNews'
 import TechNews from '../components/Home/TechNews/TechNews'
 import TrendingNews from '../components/Home/TrendingNews/TrendingNews'
 import Footer from '../components/Shared/Footer/Footer'
-import TopBar from '../components/Shared/TopBar/TopBar'
+import Navbar from '../components/Shared/Navbar/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,8 +25,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className='max-w-[1440px] w-[95%] mx-auto'>
-        <TopBar></TopBar>
-        {/* <Navbar></Navbar> */}
+        {/* <TopBar></TopBar> */}
+        <Navbar></Navbar>
+        <Marquee></Marquee>
         <TrendingNews></TrendingNews>
         <LatestNews></LatestNews>
         <PoliticalNews></PoliticalNews>
