@@ -2,7 +2,7 @@
 const AddNews = () => {
     return (
         <div>
-            Addnews            
+            Add News here:
         </div>
     );
 };
