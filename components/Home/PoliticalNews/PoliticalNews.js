@@ -136,6 +136,7 @@ const PoliticalNews = () => {
                             </CardActionArea>
                         </Card>
                     </Grid>
+                
                     {/*  second column */}
                     <Grid sx={{ display: 'flex', flexDirection: 'column', gap: '20px', height: 'full' }} item xs={12} lg={4} md={6} sm={6} >
                         {
