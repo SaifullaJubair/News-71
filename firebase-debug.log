@@ -1,0 +1,38 @@
+[debug] [2022-12-20T15:44:12.189Z] ----------------------------------------------------------------------
+[debug] [2022-12-20T15:44:12.191Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\asus\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2022-12-20T15:44:12.191Z] CLI Version:   11.15.0
+[debug] [2022-12-20T15:44:12.191Z] Platform:      win32
+[debug] [2022-12-20T15:44:12.191Z] Node Version:  v16.15.1
+[debug] [2022-12-20T15:44:12.198Z] Time:          Tue Dec 20 2022 21:44:12 GMT+0600 (Bangladesh Standard Time)
+[debug] [2022-12-20T15:44:12.199Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-12-20T15:44:12.203Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2022-12-20T15:44:12.295Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-12-20T15:44:12.296Z] > authorizing via signed-in user (gmneamul@gmail.com)
+[debug] [2022-12-20T15:44:12.296Z] [iam] checking project news-71-f8a9f for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-12-20T15:44:12.297Z] > refreshing access token with scopes: []
+[debug] [2022-12-20T15:44:12.297Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2022-12-20T15:44:12.297Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-12-20T15:44:16.190Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2022-12-20T15:44:16.191Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2022-12-20T15:44:16.500Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2022-12-20T15:44:16.501Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-12-20T15:44:16.511Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/news-71-f8a9f:testIamPermissions [none]
+[debug] [2022-12-20T15:44:16.511Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/news-71-f8a9f:testIamPermissions x-goog-quota-user=projects/news-71-f8a9f
+[debug] [2022-12-20T15:44:16.511Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/news-71-f8a9f:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-12-20T15:44:25.879Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/news-71-f8a9f:testIamPermissions 200
+[debug] [2022-12-20T15:44:25.879Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/news-71-f8a9f:testIamPermissions {}
+[debug] [2022-12-20T15:44:25.880Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project news-71-f8a9f:
+
+  firebase.projects.get
+  firebasehosting.sites.update
+[debug] [2022-12-20T15:44:25.881Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/news-71-f8a9f [none]
+[debug] [2022-12-20T15:44:29.088Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/news-71-f8a9f 403
+[debug] [2022-12-20T15:44:29.088Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/news-71-f8a9f {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2022-12-20T15:44:29.089Z] HTTP Error: 403, The caller does not have permission
+[debug] [2022-12-20T15:44:30.376Z] FirebaseError: HTTP Error: 403, The caller does not have permission
+    at responseToError (C:\Users\asus\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\asus\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:288:77)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[error] 
+[error] Error: Failed to get Firebase project news-71-f8a9f. Please make sure the project exists and your account has permission to access it.

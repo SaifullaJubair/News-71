@@ -1,5 +1,6 @@
 
 const AllNews = () => {
+   
     return (
         <div>
             AllNews            

@@ -1,9 +1,117 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import { Button, Label, TextInput } from 'flowbite-react';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { FaBeer, FcGoogle } from "react-icons/fc";
+import { FaFacebookF} from "react-icons/fa";
+import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
+    const [error, setError] = useState("");
+    const [userEmail, setUserEmail] = useState("");
+    const { providerLogin, logOut ,   forgotPassword,} = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider();
+
+    const handleGoogleSignIn = () => {
+        providerLogin(googleProvider)
+          .then((result) => {
+            const user = result.user;
+            console.log(user);
+            // jwt token 
+            // const currentUser = {
+            //   email: user.email
+            // }
+            // console.log(currentUser);
+            // setError("");
+            // // get jwt toket 
+            // fetch('https://b6-a11-service-review-server-side.vercel.app/jwt', {
+            //   method: "POST",
+            //   headers: {
+            //     'content-type': 'application/json'
+            //   },
+            //   body: JSON.stringify(currentUser)
+            // })
+            //   .then(res => res.json())
+            //   .then(data => {
+            //     console.log(data)
+            //     localStorage.setItem('token', data.token)
+            //     navigate(from, { replace: true });
+            //   })
+            //end jwt token
+          })
+          .catch((error) => console.log(error));
+      };
+
+      const { signIn } = useContext(AuthContext);
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+    
+        signIn(email, password)
+          .then((result) => {
+            const user = result.user;
+                console.log(result)
+            const currentUser = {
+              email: user.email
+            }
+            console.log(currentUser);
+           
+            setError("");
+            alert('login success')
+            // get jwt toket 
+            // fetch('https://b6-a11-service-review-server-side.vercel.app/jwt', {
+            //   method: "POST",
+            //   headers: {
+            //     'content-type': 'application/json'
+            //   },
+            //   body: JSON.stringify(currentUser)
+            // })
+            //   .then(res => res.json())
+            //   .then(data => {
+            //     console.log(data)
+            //     localStorage.setItem('token', data.token)
+            //   })
+            // navigate(from, { replace: true });
+          })
+          .catch((e) => {
+            console.error(e);
+    
+            console.error(e.message);
+    
+            setError(e.message);
+          });
+      };
+
+      const handleEmailBlur = (event) => {
+        const form = event.target;
+        const email = form.value;
+        setUserEmail(email);
+        console.log(email);
+      };
+    
+      const handleForgotPassword = (event) => {
+        event.preventDefault();
+    
+        console.log(userEmail);
+    
+        forgotPassword(userEmail)
+          .then(() => {
+            setError('')
+            // toast("reset mail sent. Check Your mail box", {
+            //   position: toast.POSITION.TOP_CENTER,} );
+            alert('sent reset link')
+    
+          })
+          .catch((error) => {
+            setError(error.message);
+          });
+        ;
+      };
+
+
+
     return (
         <div>
             <div className="w-full justify-around lg:flex my-auto">
@@ -14,7 +122,7 @@ const Login = () => {
 
                 <div className=" bg-red-5 md:px-10 px-4 py-4 my-8 lg:w-1/2">
                     <h1 className="text-black text-5xl text-center font-bold mb-5 ">Login</h1>
-                    <form className="flex flex-col gap-4">
+                    <form onSubmit={handleSubmit}  className="flex flex-col gap-4">
                         <div>
                             <div className="mb-2 block">
                                 <Label htmlFor="email2" value="Your email" />
@@ -26,6 +134,7 @@ const Login = () => {
                                 required
                                 shadow
                                 name="email"
+                                onBlur={handleEmailBlur}
 
                             />
                         </div>
@@ -43,7 +152,7 @@ const Login = () => {
                             />
                         </div>
                         {/* Error show  */}
-                        <p className="text-red-500">error</p>
+                        <p className="text-red-500">{error}</p>
 
                         {/* {loading ? (
            <p>Loading...</p>
@@ -59,7 +168,7 @@ const Login = () => {
                     <p className="my-4">
                         Forgot Password{" "}
                         <button
-
+                            onClick={handleForgotPassword}
                             className=" underline text-blue-600"
                         >
                             reset
@@ -67,9 +176,9 @@ const Login = () => {
                     </p>
                     <p>
                         Don't have an account?{" "}
-                        <button className="text-blue-500 underline" to="/signup">
+                        <Link className="text-blue-500 underline" href="/register">
                             Register
-                        </button>
+                        </Link>
                     </p>
                     <div className="flex justify-between  py-8">
                         <div className="flex w-full">
@@ -79,13 +188,20 @@ const Login = () => {
                                     Or continue with
                                 </div>
                                 <div className="grid h-20 card  rounded-box place-items-center">
-                                    <div>
+                                    <div className='flex gap-4'>
                                         <Button
-
+                                           onClick={handleGoogleSignIn}
                                             gradientDuoTone="purpleToBlue"
                                             className="btn btn-white text-3xl"
                                         >
                                             <FcGoogle className="mr-4 text-xl " /> Google
+                                        </Button>
+                                        <Button
+                                           onClick={handleGoogleSignIn}
+                                            gradientDuoTone="purpleToBlue"
+                                            className="btn btn-white text-3xl"
+                                        >
+                                            <FaFacebookF className="mr-4 text-xl " /> Facebook
                                         </Button>
 
                                     </div>
