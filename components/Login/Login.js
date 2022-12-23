@@ -3,129 +3,131 @@ import { Button, Label, TextInput } from 'flowbite-react';
 import Link from 'next/link';
 import React, { useContext, useState } from 'react';
 import { FaBeer, FcGoogle } from "react-icons/fc";
-import { FaFacebookF} from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa";
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
     const [error, setError] = useState("");
     const [userEmail, setUserEmail] = useState("");
-    const { providerLogin, logOut ,   forgotPassword,} = useContext(AuthContext);
+    const { providerLogin, logOut, forgotPassword, } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
 
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
-          .then((result) => {
-            const user = result.user;
-            console.log(user);
-            // jwt token 
-            // const currentUser = {
-            //   email: user.email
-            // }
-            // console.log(currentUser);
-            // setError("");
-            // // get jwt toket 
-            // fetch('https://b6-a11-service-review-server-side.vercel.app/jwt', {
-            //   method: "POST",
-            //   headers: {
-            //     'content-type': 'application/json'
-            //   },
-            //   body: JSON.stringify(currentUser)
-            // })
-            //   .then(res => res.json())
-            //   .then(data => {
-            //     console.log(data)
-            //     localStorage.setItem('token', data.token)
-            //     navigate(from, { replace: true });
-            //   })
-            //end jwt token
-          })
-          .catch((error) => console.log(error));
-      };
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                // jwt token 
+                // const currentUser = {
+                //   email: user.email
+                // }
+                // console.log(currentUser);
+                // setError("");
+                // // get jwt toket 
+                // fetch('https://b6-a11-service-review-server-side.vercel.app/jwt', {
+                //   method: "POST",
+                //   headers: {
+                //     'content-type': 'application/json'
+                //   },
+                //   body: JSON.stringify(currentUser)
+                // })
+                //   .then(res => res.json())
+                //   .then(data => {
+                //     console.log(data)
+                //     localStorage.setItem('token', data.token)
+                //     navigate(from, { replace: true });
+                //   })
+                //end jwt token
+            })
+            .catch((error) => console.log(error));
+    };
 
-      const { signIn } = useContext(AuthContext);
-      const handleSubmit = (event) => {
+    const { signIn } = useContext(AuthContext);
+    const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-    
-        signIn(email, password)
-          .then((result) => {
-            const user = result.user;
-                console.log(result)
-            const currentUser = {
-              email: user.email
-            }
-            console.log(currentUser);
-           
-            setError("");
-            toast("login success", {
-                position: toast.POSITION.TOP_CENTER,} );
-            // alert('login success')
-            // get jwt toket 
-            // fetch('https://b6-a11-service-review-server-side.vercel.app/jwt', {
-            //   method: "POST",
-            //   headers: {
-            //     'content-type': 'application/json'
-            //   },
-            //   body: JSON.stringify(currentUser)
-            // })
-            //   .then(res => res.json())
-            //   .then(data => {
-            //     console.log(data)
-            //     localStorage.setItem('token', data.token)
-            //   })
-            // navigate(from, { replace: true });
-          })
-          .catch((e) => {
-            console.error(e);
-    
-            console.error(e.message);
-    
-            setError(e.message);
-          });
-      };
 
-      const handleEmailBlur = (event) => {
+        signIn(email, password)
+            .then((result) => {
+                const user = result.user;
+                console.log(result)
+                const currentUser = {
+                    email: user.email
+                }
+                console.log(currentUser);
+
+                setError("");
+                toast("login success", {
+                    position: toast.POSITION.TOP_CENTER,
+                });
+                // alert('login success')
+                // get jwt toket 
+                // fetch('https://b6-a11-service-review-server-side.vercel.app/jwt', {
+                //   method: "POST",
+                //   headers: {
+                //     'content-type': 'application/json'
+                //   },
+                //   body: JSON.stringify(currentUser)
+                // })
+                //   .then(res => res.json())
+                //   .then(data => {
+                //     console.log(data)
+                //     localStorage.setItem('token', data.token)
+                //   })
+                // navigate(from, { replace: true });
+            })
+            .catch((e) => {
+                console.error(e);
+
+                console.error(e.message);
+
+                setError(e.message);
+            });
+    };
+
+    const handleEmailBlur = (event) => {
         const form = event.target;
         const email = form.value;
         setUserEmail(email);
         console.log(email);
-      };
-    
-      const handleForgotPassword = (event) => {
+    };
+
+    const handleForgotPassword = (event) => {
         event.preventDefault();
-    
+
         console.log(userEmail);
-    
+
         forgotPassword(userEmail)
-          .then(() => {
-            setError('')
-            toast("reset mail sent. Check Your mail box", {
-              position: toast.POSITION.TOP_CENTER,} );
-            // alert('sent reset link')
-    
-          })
-          .catch((error) => {
-            setError(error.message);
-          });
+            .then(() => {
+                setError('')
+                toast("reset mail sent. Check Your mail box", {
+                    position: toast.POSITION.TOP_CENTER,
+                });
+                // alert('sent reset link')
+
+            })
+            .catch((error) => {
+                setError(error.message);
+            });
         ;
-      };
+    };
 
 
 
     return (
-        <div className=''>
-             <h2 className='text-center text-3xl '>Welcome To Login Page</h2>
+        <div className='mt-20'>
+            <h2 className='text-center text-3xl '>Welcome To Login Page</h2>
             <div className="w-full justify-around lg:flex my-auto">
                 <div className=" text-xl text-center font-bold m-auto ">
-                   
+
                     <img className="w-full " src="https://i.ibb.co/njKWbpV/hello-login.gif" alt="" />
                 </div>
 
                 <div className=" bg-red-5 md:px-10 px-4 py-4 my-8 lg:w-1/2">
                     <h1 className="text-black text-5xl text-center font-bold mb-5 ">Login</h1>
-                    <form onSubmit={handleSubmit}  className="flex flex-col gap-4">
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                         <div>
                             <div className="mb-2 block">
                                 <Label htmlFor="email2" value="Your email" />
@@ -193,14 +195,14 @@ const Login = () => {
                                 <div className="grid h-20 card  rounded-box place-items-center ">
                                     <div className='flex gap-4 w-full'>
                                         <Button
-                                           onClick={handleGoogleSignIn}
+                                            onClick={handleGoogleSignIn}
                                             gradientDuoTone="purpleToBlue"
                                             className="btn btn-white text-3xl w-full"
                                         >
                                             <FcGoogle className="mr-4 text-xl " /> Google
                                         </Button>
                                         <Button
-                                           onClick={handleGoogleSignIn}
+                                            onClick={handleGoogleSignIn}
                                             gradientDuoTone="purpleToBlue"
                                             className="btn btn-white text-3xl w-full"
                                         >

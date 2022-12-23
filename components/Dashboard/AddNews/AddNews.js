@@ -78,12 +78,12 @@ const AddNews = () => {
                         .then(res => res.json())
                         .then(data => {
                             console.log(data)
-                                form.reset('')
+                            form.reset('')
                             // toast("added successful", {
                             //     position: toast.POSITION.TOP_CENTER
                             // })
                             // navigate('/dashboard/myallproduct')
-                                alert('add success full')
+                            alert('add success full')
                         })
 
                 }
@@ -102,7 +102,7 @@ const AddNews = () => {
 
 
     return (
-        <div className="w-11/12 mx-auto ">
+        <div className="w-11/12 mx-auto pt-10">
             <div className=' w-10/12 text-yellow-300 mx-auto my-4 text-3xl font-bold m-auto text-left'>
                 <h1 className="text-center py-4">Add a article very carefully</h1>
                 <form onSubmit={handleAddItem} className="flex mx-4 lg:w-full m-auto flex-col gap-4 shadow-lg p-8 rounded">
@@ -281,7 +281,7 @@ const AddNews = () => {
                         />
                     </div> */}
                     <div>
-                        <select name='categoryId' defaultValue={'All'}  className="select text-black font-normal  w-full hmax-w-xs rounded my-2">
+                        <select name='categoryId' defaultValue={'All'} className="select text-black font-normal  w-full hmax-w-xs rounded my-2">
                             <option disabled selected>Type of news</option>
                             {
                                 categories?.map(category =>
