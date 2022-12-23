@@ -59,7 +59,9 @@ const Login = () => {
             console.log(currentUser);
            
             setError("");
-            alert('login success')
+            toast("login success", {
+                position: toast.POSITION.TOP_CENTER,} );
+            // alert('login success')
             // get jwt toket 
             // fetch('https://b6-a11-service-review-server-side.vercel.app/jwt', {
             //   method: "POST",
@@ -99,9 +101,9 @@ const Login = () => {
         forgotPassword(userEmail)
           .then(() => {
             setError('')
-            // toast("reset mail sent. Check Your mail box", {
-            //   position: toast.POSITION.TOP_CENTER,} );
-            alert('sent reset link')
+            toast("reset mail sent. Check Your mail box", {
+              position: toast.POSITION.TOP_CENTER,} );
+            // alert('sent reset link')
     
           })
           .catch((error) => {
@@ -113,10 +115,11 @@ const Login = () => {
 
 
     return (
-        <div>
+        <div className=''>
+             <h2 className='text-center text-3xl '>Welcome To Login Page</h2>
             <div className="w-full justify-around lg:flex my-auto">
                 <div className=" text-xl text-center font-bold m-auto ">
-                    <h2>Welcome To Login Page</h2>
+                   
                     <img className="w-full " src="https://i.ibb.co/njKWbpV/hello-login.gif" alt="" />
                 </div>
 
@@ -161,7 +164,7 @@ const Login = () => {
               Log in
             </Button>
           )} */}
-                        <Button className="lg:w-1/2 lg:mx-auto text-center " type="submit">
+                        <Button className=" lg:mx-auto text-center w-full " type="submit">
                             Log in
                         </Button>
                     </form>
@@ -187,19 +190,19 @@ const Login = () => {
                                 <div className="divider text-xl font-bold text-black">
                                     Or continue with
                                 </div>
-                                <div className="grid h-20 card  rounded-box place-items-center">
-                                    <div className='flex gap-4'>
+                                <div className="grid h-20 card  rounded-box place-items-center ">
+                                    <div className='flex gap-4 w-full'>
                                         <Button
                                            onClick={handleGoogleSignIn}
                                             gradientDuoTone="purpleToBlue"
-                                            className="btn btn-white text-3xl"
+                                            className="btn btn-white text-3xl w-full"
                                         >
                                             <FcGoogle className="mr-4 text-xl " /> Google
                                         </Button>
                                         <Button
                                            onClick={handleGoogleSignIn}
                                             gradientDuoTone="purpleToBlue"
-                                            className="btn btn-white text-3xl"
+                                            className="btn btn-white text-3xl w-full"
                                         >
                                             <FaFacebookF className="mr-4 text-xl " /> Facebook
                                         </Button>
