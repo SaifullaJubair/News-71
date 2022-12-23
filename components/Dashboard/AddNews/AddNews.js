@@ -77,6 +77,7 @@ const AddNews = () => {
                         .then(res => res.json())
                         .then(data => {
                             console.log(data)
+                            form.reset()
 
                             // toast("added successful", {
                             //     position: toast.POSITION.TOP_CENTER

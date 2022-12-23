@@ -7,72 +7,29 @@ import {
     Typography
 } from "@mui/material";
 import { Box } from "@mui/system";
+import { useEffect, useState } from "react";
 
 const PoliticalNews = () => {
 
-    const news = [
-        {
-            id: '1',
-            heading: 'Immortality or the dawn of a new era?',
-            img: 'https://static.vecteezy.com/system/resources/thumbnails/006/299/370/original/world-breaking-news-digital-earth-hud-rotating-globe-rotating-free-video.jpg',
-            countryName: 'Global',
-            details: "Lizards are a widespread group of squamate reptiles, with over 6, 000 species, ranging across all continents except Antarctica...",
-            authorName: 'Muhammad Mehadi',
-            date: 'June 28, 2022'
-        },
-        {
-            id: '2',
-            heading: 'Immortality or the dawn of a new era?',
-            img: 'https://static.vecteezy.com/system/resources/thumbnails/006/299/370/original/world-breaking-news-digital-earth-hud-rotating-globe-rotating-free-video.jpg',
-            countryName: 'Global',
-            details: "Lizards are a widespread group of squamate reptiles, with over 6, 000 species, ranging across all continents except Antarctica...",
-            authorName: 'Muhammad Mehadi',
-            date: 'Dec 28, 2022'
-        },
-        {
-            id: '3',
-            heading: 'Immortality or the dawn of a new era?',
-            img: 'https://static.vecteezy.com/system/resources/thumbnails/006/299/370/original/world-breaking-news-digital-earth-hud-rotating-globe-rotating-free-video.jpg',
-            countryName: 'Global',
-            details: "Lizards are a widespread group of squamate reptiles, with over 6, 000 species, ranging across all continents except Antarctica...",
-            authorName: 'Muhammad Mehadi',
-            date: 'July 28, 2022'
-        },
-        {
-            id: '4',
-            heading: 'Immortality or the dawns of a new era?',
-            img: 'https://static.vecteezy.com/system/resources/thumbnails/006/299/370/original/world-breaking-news-digital-earth-hud-rotating-globe-rotating-free-video.jpg',
-            countryName: 'Global',
-            details: "Lizards are a widespread group of squamate reptiles, with over 6, 000 species, ranging across all continents except Antarctica...",
-            authorName: 'Muhammad Mehadi',
-            date: 'March 28, 2022'
-        },
-        {
-            id: '5',
-            heading: 'Immortality or the dawn of a new era?',
-            img: 'https://static.vecteezy.com/system/resources/thumbnails/006/299/370/original/world-breaking-news-digital-earth-hud-rotating-globe-rotating-free-video.jpg',
-            countryName: 'Global',
-            details: "Lizards are a widespread group of squamate reptiles, with over 6, 000 species, ranging across all continents except Antarctica...",
-            authorName: 'Muhammad Mehadi',
-            date: 'Feb 28, 2022'
-        },
-    ]
-    const singleNews = news[0]
-    console.log(singleNews)
-    const fourNews = news.slice(1, 5)
-
-
-
-    // const [newses, setNewses] = useState(null);
-    // useEffect(() => {
-    //     fetch("https://jsonplaceholder.typicode.com/posts")
-    //         .then((res) => res.json())
-    //         .then((data) => setNewses(data));
-    // }, []);
+    const [singleNews, setSingleNews] = useState(null);
+    const [nextFourNews, setNextFourNews] = useState(null);
+    const [lastFourNews, setLastFourNews] = useState(null);
+    const [newses, setNewses] = useState(null);
+    useEffect(() => {
+        fetch("http://localhost:5000/news/Political?length=9")
+            .then((res) => res.json())
+            .then(data => {
+                console.log(data);
+                setNewses(data);
+                setSingleNews(data[0])
+                setNextFourNews(data.slice(1, 5))
+                setLastFourNews(data.slice(5, 9))
+            });
+    }, []);
 
     return (
         <div className=" py-10">
-            <Typography className="font-bold text-lg mb-10">POLITICAl NEWS</Typography>
+            <Typography className="font-bold text-lg mb-10">POLITICAL NEWS</Typography>
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} lg={4} md={6} sm={6}>
@@ -81,7 +38,7 @@ const PoliticalNews = () => {
                                 <CardMedia
                                     sx={{ height: '250px' }}
                                     component="img"
-                                    image={singleNews.img}
+                                    image={singleNews?.img}
                                 />
                                 <CardContent
                                     sx={{
@@ -94,7 +51,7 @@ const PoliticalNews = () => {
                                         component="div"
 
                                     >
-                                        {singleNews.countryName}
+                                        {singleNews?.location}
                                     </Typography>
                                     <Typography
                                         sx={{ fontWeight: 700, fontSize: '24px' }}
@@ -102,7 +59,8 @@ const PoliticalNews = () => {
                                         variant="h2"
                                         component="div"
                                     >
-                                        {singleNews.heading}
+
+                                        {singleNews?.heading?.length > 50 ? `${singleNews?.heading.slice(0, 47)}...` : singleNews?.heading}
                                     </Typography>
                                     <div>
                                         <Typography
@@ -111,7 +69,7 @@ const PoliticalNews = () => {
                                             variant="p"
                                             component="p"
                                         >
-                                            {singleNews.authorName}
+                                            {singleNews?.authorName}
                                         </Typography>
                                         <Typography
                                             sx={{ fontSize: '16px', display: 'inline', fontWeight: 500 }}
@@ -120,7 +78,7 @@ const PoliticalNews = () => {
                                             component="p"
                                             color='text.secondary'
                                         >
-                                            -  {singleNews.date}
+                                            -  {singleNews?.createdAt}
                                         </Typography>
                                     </div>
                                     <Typography
@@ -130,22 +88,24 @@ const PoliticalNews = () => {
                                         component="p"
                                         color='text.secondary'
                                     >
-                                        {singleNews.details}
+                                        {
+                                            singleNews?.details?.length > 110 ? `${singleNews?.details.slice(0, 100)}...` : singleNews?.details
+                                        }
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
                         </Card>
                     </Grid>
-                
+
                     {/*  second column */}
                     <Grid sx={{ display: 'flex', flexDirection: 'column', gap: '20px', height: 'full' }} item xs={12} lg={4} md={6} sm={6} >
                         {
-                            fourNews.map(news =>
+                            nextFourNews?.map(news =>
                                 <Card sx={{ height: '108px', py: 0 }}>
                                     <CardActionArea sx={{ display: 'flex', height: '108px', p: 0 }}>
                                         <CardMedia
                                             component="img"
-                                            image={news.img}
+                                            image={news?.img}
                                             sx={{ p: 0, height: '108px', width: '40%' }}
                                             alt="img"
                                         />
@@ -156,7 +116,9 @@ const PoliticalNews = () => {
                                                 component="h2"
                                                 sx={{ fontWeight: 600, fontSize: '18px', lineHeight: '28px' }}
                                             >
-                                                {news.heading}
+                                                {
+                                                    news?.heading?.length > 43 ?
+                                                        `${news?.heading.slice(0, 40)}...` : news?.heading}
                                             </Typography>
                                             <Typography
                                                 gutterBottom
@@ -166,7 +128,7 @@ const PoliticalNews = () => {
                                                 sx={{ fontWeight: 500, display: 'inline', fontSize: '16px', lineHeight: '24px' }}
                                                 className="font-medium text-base inline-block"
                                             >
-                                                {singleNews.date}
+                                                {singleNews?.createdAt}
                                             </Typography>
                                         </CardContent>
                                     </CardActionArea>
@@ -176,12 +138,12 @@ const PoliticalNews = () => {
                     </Grid>
                     <Grid sx={{ display: 'flex', flexDirection: 'column', gap: '20px', height: 'full' }} item xs={12} lg={4} md={6} sm={6}  >
                         {
-                            fourNews.map(news =>
+                            lastFourNews?.map(news =>
                                 <Card sx={{ height: '108px', py: 0 }}>
                                     <CardActionArea sx={{ display: 'flex', height: '108px', p: 0 }}>
                                         <CardMedia
                                             component="img"
-                                            image={news.img}
+                                            image={news?.img}
                                             sx={{ p: 0, height: '108px', width: '40%' }}
                                             alt="img"
                                         />
@@ -192,7 +154,9 @@ const PoliticalNews = () => {
                                                 component="h2"
                                                 sx={{ fontWeight: 600, fontSize: '18px', lineHeight: '28px' }}
                                             >
-                                                {news.heading}
+                                               {
+                                                    news?.heading?.length > 43 ?
+                                                        `${news?.heading.slice(0, 40)}...` : news?.heading}
                                             </Typography>
                                             <Typography
                                                 gutterBottom
@@ -202,7 +166,7 @@ const PoliticalNews = () => {
                                                 sx={{ fontWeight: 500, display: 'inline', fontSize: '16px', lineHeight: '24px' }}
                                                 className="font-medium text-base inline-block"
                                             >
-                                                {singleNews.date}
+                                                {singleNews?.createdAt}
                                             </Typography>
                                         </CardContent>
                                     </CardActionArea>
