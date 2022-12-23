@@ -18,7 +18,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 const drawerWidth = 240;
-const navItems = ['Wolrd', 'Politics', 'Trending', 'Economy', 'Business', 'Politics', 'Sports', 'Education', 'Youth', 'Tech Startup', 'Feature'];
+const navItems = ['Politics', 'Trending', 'Business', 'Politics', 'Sports', 'Education', 'Tech'];
+const userNav = ['login', 'register'];
 
 function Navbar(props) {
   const { window } = props;
@@ -43,18 +44,31 @@ function Navbar(props) {
           </ListItem>
         ))}
       </List>
+      <List>
+        {userNav.map((item) => (
+          <ListItem key={item} disablePadding>
+            <ListItemButton sx={{ textAlign: 'center', fontFamily: 'poppins' }}>
+             
+                <Link href={`/${item}`} key={item} sx={{  textAlign: 'center',color: '#000', fontFamily: 'poppins', fontWeight: 700 }}>
+                  {item}
+                </Link>
+       
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
     </Box>
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex', marginBottom: '70px' }}>
+    <Box sx={{ display: 'flex', marginBottom: '70px',display:'flex',justifyContent:'center',alignItems:'center',py:2 }}>
       <CssBaseline />
       <AppBar component="nav" sx={{
         backgroundColor: '#fff',
         boxShadow: 'none',
-       
+
       }} >
         <Toolbar>
           <IconButton
@@ -86,6 +100,16 @@ function Navbar(props) {
                   {item}
                 </Button>
               ))}
+              {userNav.map((item) => (
+                <Button sx={{ color: '#000' }}>
+                  <Link href={`/${item}`} key={item} sx={{ color: '#000', fontFamily: 'poppins', fontWeight: 700 }}>
+                    {item}
+                  </Link>
+                </Button>
+              ))}
+              <Box>
+                <Typography>Login</Typography>
+              </Box>
             </Box>
           </Container>
         </Toolbar>

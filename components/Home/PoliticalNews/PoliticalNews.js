@@ -33,10 +33,10 @@ const PoliticalNews = () => {
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} lg={4} md={6} sm={6}>
-                        <Card sx={{ height: '490px' }}>
+                        <Card sx={{}}>
                             <CardActionArea>
                                 <CardMedia
-                                    sx={{ height: '250px' }}
+                                    sx={{ height: '246px' }}
                                     component="img"
                                     image={singleNews?.img}
                                 />
@@ -98,7 +98,7 @@ const PoliticalNews = () => {
                     </Grid>
 
                     {/*  second column */}
-                    <Grid sx={{ display: 'flex', flexDirection: 'column', gap: '20px', height: 'full' }} item xs={12} lg={4} md={6} sm={6} >
+                    <Grid sx={{ display: 'flex', flexDirection: 'column', gap: '20px', height: 'full' }} item xs={12} lg={4} md={6} sm={6}  >
                         {
                             nextFourNews?.map(news =>
                                 <Card sx={{ height: '108px', py: 0 }}>
@@ -106,10 +106,13 @@ const PoliticalNews = () => {
                                         <CardMedia
                                             component="img"
                                             image={news?.img}
-                                            sx={{ p: 0, height: '108px', width: '40%' }}
+
+                                            sx={{
+                                                p: 0, height: '108px', width: '40%'
+                                            }}
                                             alt="img"
                                         />
-                                        <CardContent sx={{ p: 0, ml: '16px' }}>
+                                        <CardContent sx={{ p: 0, ml: '16px' }} xs={{ py: 2 }}>
                                             <Typography
                                                 gutterBottom
                                                 variant="h2"
@@ -136,6 +139,7 @@ const PoliticalNews = () => {
                             )
                         }
                     </Grid>
+                    {/* third column */}
                     <Grid sx={{ display: 'flex', flexDirection: 'column', gap: '20px', height: 'full' }} item xs={12} lg={4} md={6} sm={6}  >
                         {
                             lastFourNews?.map(news =>
@@ -154,7 +158,7 @@ const PoliticalNews = () => {
                                                 component="h2"
                                                 sx={{ fontWeight: 600, fontSize: '18px', lineHeight: '28px' }}
                                             >
-                                               {
+                                                {
                                                     news?.heading?.length > 43 ?
                                                         `${news?.heading.slice(0, 40)}...` : news?.heading}
                                             </Typography>
