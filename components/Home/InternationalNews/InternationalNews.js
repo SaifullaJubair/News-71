@@ -1,95 +1,156 @@
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import { useState } from "react";
 
 const InternationalNews = () => {
+    const [russia, setRussia] = useState([])
+    const [beijing, setBeijing] = useState([])
+    const [ukraine, setUkraine] = useState([])
+    const [japan, setJapan] = useState([])
+    console.log(ukraine)
+    const { data: internationals = [], } = useQuery({
+        queryKey: ['internationals'],
+
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/news/International?length=12`);
+            const data = await res.json();
+            let r = []
+            let u = []
+            let j = []
+            let b = []
+            data.map(news => {
+                if (news.location === 'Russia') {
+                    r.push(news)
+                }
+                if (news.location === 'Ukerine') {
+                    u.push(news)
+                }
+                if (news.location === 'Japan') {
+                    j.push(news)
+                }
+                if (news.location === 'Beijing') {
+                    b.push(news)
+                }
+            })
+            setRussia(r)
+            setJapan(j)
+            setBeijing(b)
+            setUkraine(u)
+
+            return data;
+        }
+    })
+
+    console.log(internationals)
+
     return (
         <div className=" ">
             <h2 className="text-xl font-bold mb-5"> International News</h2>
             <div className="flex justify-center">
                 <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-1  ">
-                    <div className="my-3">
-                        <h2 className="text-lg font-semibold "><span className="underline decoration-rose-800 underline-offset-8 decoration-2">Jap</span>an</h2>
+                    <div>
+                        <h2 className="text-lg font-semibold ">{'Ukraine'}</h2>
+                        {
+                            ukraine.map(inter => <div className="my-3">
 
-                        <div className="mt-3 ">
-                            <Link href={'/'}>
+                                <div className="mt-3 ">
+                                    {/* <Link href={'/'}>
 
-                                <img className="rounded flex justify-center items-center w-96" src="https://gumlet.assettype.com/bdnews24%2F2022-08%2F45c97ce9-91d9-4a8f-8eeb-5da0c397be79%2Fawami_league_party_office_220618_0015.jpg?" alt="" />
-                                <h2 className="border-b-2 border-gray-400 pb-3  text-xl font-semibold my-2 mx-1 ">123..Boat rebel candidates 'getting pardon'</h2>
+                                <img className="rounded flex justify-center items-center w-96" src={inter.img} alt="" />
+                                <h2 className="border-b-2 border-gray-400 pb-3  text-xl font-semibold my-2 mx-1 ">{inter.heading?.slice(0,50)}...</h2>
 
-                            </Link>
+                            </Link> */}
+                                    <img className="rounded flex justify-center items-center h-32 w-96" src={inter.img} alt="" />
 
-                            <Link href={'/'} className=''>
-                                <h2 className="border-b-2 pb-3 border-gray-400 text-xl font-semibold my-2  mx-1">Boat rebel candidates 'getting pardon'</h2>
+                                    <Link href={'/'} className=''>
+                                        <h2 className="border-b-2 pb-3 border-gray-400 text-xl font-semibold my-2  mx-1">{inter.heading?.slice(0, 50)}...</h2>
 
-                            </Link>
-                            <Link href={'/'} className=''>
-                                <h2 className="border-b-2 pb-3 border-gray-400 text-xl font-semibold my-2 max- mx-1">Boat rebel candidates 'getting pardon'</h2>
+                                    </Link>
 
-                            </Link>
-                            <button className="px-4 text-center py-2 bg-blue-700 rounded-md max-w-96 mx-1">More +</button>
-                        </div>
+                                </div>
+                            </div>)
+                        }
+
+                        <button className="px-4 text-center py-2 bg-blue-700 rounded-md max-w-96 mx-1">More +</button>
+
                     </div>
-                    <div className="my-3">
-                        <h2 className="text-lg font-semibold "><span className="underline decoration-rose-800 underline-offset-8 decoration-2">Ind</span>ia</h2>
+                    <div>
+                        <h2 className="text-lg font-semibold ">{'Russia'}</h2>
+                        {
+                            russia.map(inter => <div className="my-3">
 
-                        <div className="mt-3">
-                            <Link href={'/'}>
+                                <div className="mt-3 ">
+                                    {/* <Link href={'/'}>
 
-                                <img className="rounded flex justify-center items-center w-96" src="https://gumlet.assettype.com/bdnews24%2F2022-08%2F45c97ce9-91d9-4a8f-8eeb-5da0c397be79%2Fawami_league_party_office_220618_0015.jpg?" alt="" />
-                                <h2 className="border-b-2 border-gray-400 pb-3  text-xl font-semibold my-2 mx-1 ">Boat rebel candidates 'getting pardon'</h2>
+                                <img className="rounded flex justify-center items-center w-96" src={inter.img} alt="" />
+                                <h2 className="border-b-2 border-gray-400 pb-3  text-xl font-semibold my-2 mx-1 ">{inter.heading?.slice(0,50)}...</h2>
 
-                            </Link>
-                            <Link href={'/'} className=''>
-                                <h2 className="border-b-2 pb-3 border-gray-400 text-xl font-semibold my-2 max-w-96 mx-1">Boat rebel candidates 'getting pardon'</h2>
+                            </Link> */}
+                                    <img className="rounded flex justify-center items-center h-32 w-96" src={inter.img} alt="" />
 
-                            </Link>
-                            <Link href={'/'} className=''>
-                                <h2 className="border-b-2 pb-3 border-gray-400 text-xl font-semibold my-2 max- mx-1">Boat rebel candidates 'getting pardon'</h2>
+                                    <Link href={'/'} className=''>
+                                        <h2 className="border-b-2 pb-3 border-gray-400 text-xl font-semibold my-2  mx-1">{inter.heading?.slice(0, 50)}...</h2>
 
-                            </Link>
-                            <button className="px-4 text-center py-2 bg-blue-700 rounded-md max-w-96 mx-1">More +</button>
-                        </div>
+                                    </Link>
+
+                                </div>
+                            </div>)
+                        }
+
+                        <button className="px-4 text-center py-2 bg-blue-700 rounded-md max-w-96 mx-1">More +</button>
+
                     </div>
-                    <div className="my-3">
-                        <h2 className="text-lg font-semibold "><span className="underline decoration-rose-800 underline-offset-8 decoration-2">Ca</span>nada</h2>
+                    <div>
+                        <h2 className="text-lg font-semibold ">{'Beijing'}</h2>
+                        {
+                            beijing.map(inter => <div className="my-3">
 
-                        <div className="mt-3">
-                            <Link href={'/'}>
+                                <div className="mt-3 ">
+                                    {/* <Link href={'/'}>
 
-                                <img className="rounded flex justify-center items-center w-96" src="https://gumlet.assettype.com/bdnews24%2F2022-08%2F45c97ce9-91d9-4a8f-8eeb-5da0c397be79%2Fawami_league_party_office_220618_0015.jpg?" alt="" />
-                                <h2 className="border-b-2 border-gray-400 pb-3  text-xl font-semibold my-2 mx-1 ">Boat rebel candidates 'getting pardon'</h2>
+                                <img className="rounded flex justify-center items-center w-96" src={inter.img} alt="" />
+                                <h2 className="border-b-2 border-gray-400 pb-3  text-xl font-semibold my-2 mx-1 ">{inter.heading?.slice(0,50)}...</h2>
 
-                            </Link>
-                            <Link href={'/'} className=''>
-                                <h2 className="border-b-2 pb-3 border-gray-400 text-xl font-semibold my-2 max-w-96 mx-1">Boat rebel candidates 'getting pardon'</h2>
+                            </Link> */}
+                                    <img className="rounded flex justify-center items-center h-32 w-96" src={inter.img} alt="" />
 
-                            </Link>
-                            <Link href={'/'} className=''>
-                                <h2 className="border-b-2 pb-3 border-gray-400 text-xl font-semibold my-2 max- mx-1">Boat rebel candidates 'getting pardon'</h2>
+                                    <Link href={'/'} className=''>
+                                        <h2 className="border-b-2 pb-3 border-gray-400 text-xl font-semibold my-2  mx-1">{inter.heading?.slice(0, 50)}...</h2>
 
-                            </Link>
-                            <button className="px-4 text-center py-2 bg-blue-700 rounded-md max-w-96 mx-1">More +</button>
-                        </div>
+                                    </Link>
+
+                                </div>
+                            </div>)
+                        }
+
+                        <button className="px-4 text-center py-2 bg-blue-700 rounded-md max-w-96 mx-1">More +</button>
+
                     </div>
-                    <div className="my-3">
-                        <h2 className="text-lg font-semibold "><span className="underline decoration-rose-800 underline-offset-8 decoration-2">Ameri</span>ca</h2>
+                    <div>
+                        <h2 className="text-lg font-semibold ">{'Japan'}</h2>
+                        {
+                            japan.map(inter => <div className="my-3">
 
-                        <div className="mt-3">
-                            <Link href={'/'}>
+                                <div className="mt-3 ">
+                                    {/* <Link href={'/'}>
 
-                                <img className="rounded flex justify-center items-center w-96" src="https://gumlet.assettype.com/bdnews24%2F2022-08%2F45c97ce9-91d9-4a8f-8eeb-5da0c397be79%2Fawami_league_party_office_220618_0015.jpg?" alt="" />
-                                <h2 className="border-b-2 border-gray-400 pb-3  text-xl font-semibold my-2 mx-1 ">Boat rebel candidates 'getting pardon'</h2>
+                                <img className="rounded flex justify-center items-center w-96" src={inter.img} alt="" />
+                                <h2 className="border-b-2 border-gray-400 pb-3  text-xl font-semibold my-2 mx-1 ">{inter.heading?.slice(0,50)}...</h2>
 
-                            </Link>
-                            <Link href={'/'} className=''>
-                                <h2 className="border-b-2 pb-3 border-gray-400 text-xl font-semibold my-2 max-w-96 mx-1">Boat rebel candidates 'getting pardon'</h2>
+                            </Link> */}
+                                    <img className="rounded flex justify-center items-center h-32 w-96" src={inter.img} alt="" />
 
-                            </Link>
-                            <Link href={'/'} className=''>
-                                <h2 className="border-b-2 pb-3 border-gray-400 text-xl font-semibold my-2 max- mx-1">Boat rebel candidates 'getting pardon'</h2>
+                                    <Link href={'/'} className=''>
+                                        <h2 className="border-b-2 pb-3 border-gray-400 text-xl font-semibold my-2  mx-1">{inter.heading?.slice(0, 50)}...</h2>
 
-                            </Link>
-                            <button className="px-4 text-center py-2 bg-blue-700 rounded-md max-w-96 mx-1">More +</button>
-                        </div>
+                                    </Link>
+
+                                </div>
+                            </div>)
+                        }
+
+                        <button className="px-4 text-center py-2 bg-blue-700 rounded-md max-w-96 mx-1">More +</button>
+
                     </div>
 
 

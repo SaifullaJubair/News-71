@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Button, Label, TextInput } from "flowbite-react";
+import { fromNumber } from "long";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
@@ -24,7 +25,7 @@ const AddNews = () => {
         queryKey: ['addNews'],
 
         queryFn: async () => {
-            const res = await fetch(`http://192.168.1.103:5000/users/email?email=${user?.email}`);
+            const res = await fetch(`http://localhost:5000/users/email?email=${user?.email}`);
             const data = await res.json();
 
             return data;
@@ -77,12 +78,12 @@ const AddNews = () => {
                         .then(res => res.json())
                         .then(data => {
                             console.log(data)
-
+                                form.reset('')
                             // toast("added successful", {
                             //     position: toast.POSITION.TOP_CENTER
                             // })
                             // navigate('/dashboard/myallproduct')
-
+                                alert('add success full')
                         })
 
                 }
