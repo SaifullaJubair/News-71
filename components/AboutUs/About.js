@@ -5,7 +5,7 @@ const About = () => {
     return (
         <div className=' '>
             <div className="">
-                {/* <Carousel slideInterval={5000}>
+                <Carousel slideInterval={5000}>
                     <img
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyuyncEG_WhNdwiAevmgN9WD0nmb4UZ6b9-A&usqp=CAU"
                         alt="..."
@@ -26,7 +26,7 @@ const About = () => {
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYCzsdHo7IrfkWHvg2Fy7lNawVXhjKExa90g&usqp=CAU"
                         alt="..."
                     />
-                </Carousel> */}
+                </Carousel>
 
                 <div className=' my-4'>
                     <h1 className='font-bold my-2'>About News-71</h1>
@@ -43,7 +43,7 @@ const About = () => {
                     <h1 className='font-bold my-2'> our target</h1>
                     <p>We want to make useful and more functionalities a newspaper so that a uses can use easily. also We will ensure that a user gets the maximum benefit.
 
-                    
+
                         It’s certainly exciting to think about all the different options that could be explored in a story. But where to begin?
 
                         Every writer works in a different way. Some writers work straight through from beginning to end. Others work in pieces they arrange later, while others work from sentence to sentence.

@@ -102,7 +102,7 @@ const AddNews = () => {
 
 
     return (
-        <div className="w-11/12 mx-auto pt-10">
+        <div className="pt-10 max-w-[1440px] w-[95%] mx-auto">
             <div className=' w-10/12 text-yellow-300 mx-auto my-4 text-3xl font-bold m-auto text-left'>
                 <h1 className="text-center py-4">Add a article very carefully</h1>
                 <form onSubmit={handleAddItem} className="flex mx-4 lg:w-full m-auto flex-col gap-4 shadow-lg p-8 rounded">

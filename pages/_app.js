@@ -23,16 +23,13 @@ export default function App({ Component, pageProps }) {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <Navbar></Navbar>
-     <div className='bg-red-500'>
-     <Component  {...pageProps}  />
-     </div>
-  
+        <Component  {...pageProps} />
         <ToastContainer />
         <Footer></Footer>
-        </AuthProvider>
-      
+      </AuthProvider>
+
     </QueryClientProvider>
-    
+
 
 
   )
