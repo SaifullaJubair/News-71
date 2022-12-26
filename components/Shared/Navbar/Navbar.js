@@ -19,7 +19,7 @@ import { useState } from 'react';
 
 const drawerWidth = 240;
 const navItems = ['Politics', 'Trending', 'Business', 'Politics', 'Sports', 'Education', 'Tech'];
-const userNav = ['login', 'register'];
+const userNav = ['login', 'register', 'dashboard/addnews'];
 
 function Navbar(props) {
   const { window } = props;
@@ -48,11 +48,11 @@ function Navbar(props) {
         {userNav.map((item) => (
           <ListItem key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center', fontFamily: 'poppins' }}>
-             
-                <Link href={`/${item}`} key={item} sx={{  textAlign: 'center',color: '#000', fontFamily: 'poppins', fontWeight: 700 }}>
-                  {item}
-                </Link>
-       
+
+              <Link href={`/${item}`} key={item} sx={{ textAlign: 'center', color: '#000', fontFamily: 'poppins', fontWeight: 700 }}>
+                {item}
+              </Link>
+
             </ListItemButton>
           </ListItem>
         ))}
@@ -63,7 +63,7 @@ function Navbar(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex', marginBottom: '70px',display:'flex',justifyContent:'center',alignItems:'center',py:2 }}>
+    <Box sx={{ display: 'flex', marginBottom: '40px', }}>
       <CssBaseline />
       <AppBar component="nav" sx={{
         backgroundColor: '#fff',
