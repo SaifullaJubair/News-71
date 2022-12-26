@@ -2,7 +2,8 @@
 const TrendingNews = () => {
     return (
         <div>
-            Treanding News
+            <p>gggggvujvujvujvujvujvuj</p>
+         
         </div>
     );
 };

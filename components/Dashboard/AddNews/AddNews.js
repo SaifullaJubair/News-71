@@ -301,7 +301,7 @@ const AddNews = () => {
                     </Button>)
                 } */}
                     <Button className='mb-8' type="submit">
-                        Add product
+                        Add News
                     </Button>
                 </form>
             </div>
