@@ -110,7 +110,7 @@ const ContactUs = () => {
             </span>
           </Button> :
          <Button className='z-10' type="submit">
-         Submit
+         Submit 
      </Button>
            }
         </form>

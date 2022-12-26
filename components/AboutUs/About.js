@@ -3,9 +3,9 @@ import React from 'react';
 
 const About = () => {
     return (
-        <div className=' '>
-            <div className="">
-                {/* <Carousel slideInterval={5000}>
+        <div className='  max-w-[1440px] w-[95%] mx-auto min-h-screen'>
+            <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
+                <Carousel slideInterval={5000}>
                     <img
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyuyncEG_WhNdwiAevmgN9WD0nmb4UZ6b9-A&usqp=CAU"
                         alt="..."
@@ -26,7 +26,7 @@ const About = () => {
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYCzsdHo7IrfkWHvg2Fy7lNawVXhjKExa90g&usqp=CAU"
                         alt="..."
                     />
-                </Carousel> */}
+                </Carousel>
 
                 <div className=' my-4'>
                     <h1 className='font-bold my-2'>About News-71</h1>
@@ -44,60 +44,7 @@ const About = () => {
                     <p>We want to make useful and more functionalities a newspaper so that a uses can use easily. also We will ensure that a user gets the maximum benefit.
 
                     
-                        It’s certainly exciting to think about all the different options that could be explored in a story. But where to begin?
-
-                        Every writer works in a different way. Some writers work straight through from beginning to end. Others work in pieces they arrange later, while others work from sentence to sentence.
-
-                        Whether you’re writing a novel, novella, short story, or flash fiction, don’t be afraid to try out different voices, and styles. Experiment with different story writing techniques, story ideas, and story structures. Keep what works for you and discard the rest. Your material and process will guide you to your own set of rules.It’s certainly exciting to think about all the different options that could be explored in a story. But where to begin?
-
-                        Every writer works in a different way. Some writers work straight through from beginning to end. Others work in pieces they arrange later, while others work from sentence to sentence.
-
-                        Whether you’re writing a novel, novella, short story, or flash fiction, don’t be afraid to try out different voices, and styles. Experiment with different story writing techniques, story ideas, and story structures. Keep what works for you and discard the rest. Your material and process will guide you to your own set of rules.v
-                        It’s certainly exciting to think about all the different options that could be explored in a story. But where to begin?
-
-                        Every writer works in a different way. Some writers work straight through from beginning to end. Others work in pieces they arrange later, while others work from sentence to sentence.
-
-                        Whether you’re writing a novel, novella, short story, or flash fiction, don’t be afraid to try out different voices, and styles. Experiment with different story writing techniques, story ideas, and story structures. Keep what works for you and discard the rest. Your material and process will guide you to your own set of rules.It’s certainly exciting to think about all the different options that could be explored in a story. But where to begin?
-
-                        Every writer works in a different way. Some writers work straight through from beginning to end. Others work in pieces they arrange later, while others work from sentence to sentence.
-
-                        Whether you’re writing a novel, novella, short story, or flash fiction, don’t be afraid to try out different voices, and styles. Experiment with different story writing techniques, story ideas, and story structures. Keep what works for you and discard the rest. Your material and process will guide you to your own set of rules.It’s certainly exciting to think about all the different options that could be explored in a story. But where to begin?
-
-                        Every writer works in a different way. Some writers work straight through from beginning to end. Others work in pieces they arrange later, while others work from sentence to sentence.
-
-                        Whether you’re writing a novel, novella, short story, or flash fiction, don’t be afraid to try out different voices, and styles. Experiment with different story writing techniques, story ideas, and story structures. Keep what works for you and discard the rest. Your material and process will guide you to your own set of rules.It’s certainly exciting to think about all the different options that could be explored in a story. But where to begin?
-
-                        Every writer works in a different way. Some writers work straight through from beginning to end. Others work in pieces they arrange later, while others work from sentence to sentence.
-
-                        Whether you’re writing a novel, novella, short story, or flash fiction, don’t be afraid to try out different voices, and styles. Experiment with different story writing techniques, story ideas, and story structures. Keep what works for you and discard the rest. Your material and process will guide you to your own set of rules.It’s certainly exciting to think about all the different options that could be explored in a story. But where to begin?
-
-                        Every writer works in a different way. Some writers work straight through from beginning to end. Others work in pieces they arrange later, while others work from sentence to sentence.
-
-                        Whether you’re writing a novel, novella, short story, or flash fiction, don’t be afraid to try out different voices, and styles. Experiment with different story writing techniques, story ideas, and story structures. Keep what works for you and discard the rest. Your material and process will guide you to your own set of rules.It’s certainly exciting to think about all the different options that could be explored in a story. But where to begin?
-
-                        Every writer works in a different way. Some writers work straight through from beginning to end. Others work in pieces they arrange later, while others work from sentence to sentence.
-
-                        Whether you’re writing a novel, novella, short story, or flash fiction, don’t be afraid to try out different voices, and styles. Experiment with different story writing techniques, story ideas, and story structures. Keep what works for you and discard the rest. Your material and process will guide you to your own set of rules.It’s certainly exciting to think about all the different options that could be explored in a story. But where to begin?
-
-                        Every writer works in a different way. Some writers work straight through from beginning to end. Others work in pieces they arrange later, while others work from sentence to sentence.
-
-                        Whether you’re writing a novel, novella, short story, or flash fiction, don’t be afraid to try out different voices, and styles. Experiment with different story writing techniques, story ideas, and story structures. Keep what works for you and discard the rest. Your material and process will guide you to your own set of rules.It’s certainly exciting to think about all the different options that could be explored in a story. But where to begin?
-
-                        Every writer works in a different way. Some writers work straight through from beginning to end. Others work in pieces they arrange later, while others work from sentence to sentence.
-
-                        Whether you’re writing a novel, novella, short story, or flash fiction, don’t be afraid to try out different voices, and styles. Experiment with different story writing techniques, story ideas, and story structures. Keep what works for you and discard the rest. Your material and process will guide you to your own set of rules.It’s certainly exciting to think about all the different options that could be explored in a story. But where to begin?
-
-                        Every writer works in a different way. Some writers work straight through from beginning to end. Others work in pieces they arrange later, while others work from sentence to sentence.
-
-                        Whether you’re writing a novel, novella, short story, or flash fiction, don’t be afraid to try out different voices, and styles. Experiment with different story writing techniques, story ideas, and story structures. Keep what works for you and discard the rest. Your material and process will guide you to your own set of rules.It’s certainly exciting to think about all the different options that could be explored in a story. But where to begin?
-
-                        Every writer works in a different way. Some writers work straight through from beginning to end. Others work in pieces they arrange later, while others work from sentence to sentence.
-
-                        Whether you’re writing a novel, novella, short story, or flash fiction, don’t be afraid to try out different voices, and styles. Experiment with different story writing techniques, story ideas, and story structures. Keep what works for you and discard the rest. Your material and process will guide you to your own set of rules.It’s certainly exciting to think about all the different options that could be explored in a story. But where to begin?
-
-                        Every writer works in a different way. Some writers work straight through from beginning to end. Others work in pieces they arrange later, while others work from sentence to sentence.
-
-                        Whether you’re writing a novel, novella, short story, or flash fiction, don’t be afraid to try out different voices, and styles. Experiment with different story writing techniques, story ideas, and story structures. Keep what works for you and discard the rest. Your material and process will guide you to your own set of rules.
+                      
 
                     </p>
 

@@ -46,7 +46,7 @@ const SportsNews = () => {
 
     const theme = useTheme();
     return (
-        <div className='shadow-md shadow-slate-500 rounded flex flex-col justify-center '>
+        <div className=' rounded flex flex-col justify-center '>
             <h2 className="  text-black font-bold text-xl my-4">Sports</h2>
 
             <div className='grid lg:grid-cols-3 gap-4'>
@@ -91,11 +91,11 @@ const SportsNews = () => {
                 <div className=' shadow-lg'>
                     <div className='flex flex-col justify-center items-center'>
                         {
-                            sports.map(sport => <Link href={'/'} className='rounded-lg   border-2  m-2 p-2 lg:p-0 lg:flex justify-between gap-2'>
+                            sports.map(sport => <Link href={'/'} className='rounded-lg     m-2 p-2 lg:p-0 lg:flex justify-between gap-2'>
                                 <div>
-                                    <img className='lg:w-72 rounded my-2 ' src={sport.img} alt="" />
+                                    <img className='lg:w-11/12 h-full rounded my-2 ' src={sport.img} alt="" />
                                 </div>
-                                <div className='flex flex-col justify-center'>
+                                <div className='flex flex-col justify-center py-4'>
                                     <h2 className='text-xl font-bold'>
                                         {sport.heading}
                                     </h2>
