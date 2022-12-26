@@ -32,7 +32,7 @@ const ContactUs = () => {
 
      
     return (
-        <div  className='w-8/12  mx-auto' id='contact'>
+        <div  className='max-w-[900px] w-10/12 mx-auto' id='contact'>
         <p className='text-center text-2xl font-bold '>Contract with Us.</p>
       
         <form ref={form}  onSubmit={sendEmail} className="flex flex-col gap-4">

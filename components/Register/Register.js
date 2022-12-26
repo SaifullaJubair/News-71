@@ -2,11 +2,13 @@ import { GoogleAuthProvider } from "firebase/auth";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import Link from "next/link";
 import { useContext, useState } from "react";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 // import { FaBeer, FcGoogle } from "react-icons/fc";
 const Register = () => {
 
-const {logout ,  updateUserProfile, providerLogin, createUser } = useContext(AuthContext)
+const {logout ,  updateUserProfile, providerLogin, createUser , user } = useContext(AuthContext)
+
 const [error, setError] = useState("");
 const [loading, setLoading] = useState(false)
 const [loginUserEmail, setLoginUserEmail] = useState('')
@@ -103,60 +105,68 @@ const termsAndCondition = (event) => {
       body: formData,
     })
       .then(res => res.json())
-      .then(data => {
-        console.log(data)
+      .then(imgData => {
+        console.log(imgData)
         createUser(email, password)
           .then((result) => {
-            console.log(result)
             console.log(result.user)
-            const currentUser = { displayName: name, photoURL: data?.data?.display_url }
+            // console.log(result.user)
+            const currentUser = { displayName: name, photoURL: imgData.data.url            }
+
             updateUserProfile(currentUser)
-            
-            // const users =  { name, email, password, account, createdAt: new Date().toISOString(), photoURL: data?.data?.display_url };
+            .then(result => {
+                // const users =  { name, email, password, createdAt: new Date().toISOString(), photoURL: data?.data?.display_url };
+                console.log(result)
+                fetch('http://localhost:5000/adduser', {
+                    method: 'POST',
+                    headers: {
+                      "content-type": "application/json"
+                    },
+                    body: JSON.stringify(insertUser)
+                  })
+                    .then(res => res.json())
+                    .then(data =>  {
+                      
+                      console.log(data)
+                      setCreateUserEmail(email)
+                     
+                     
+                    })
+                     // code start data store to mongodb 
+                  //   .then(() => {
+                  //     toast("registration successful", {
+                  //         position: toast.POSITION.TOP_CENTER,} );
+                  //     // alert('registration successful')
+                  //   })
+                    .catch(err => console.log(err))
+                  const user = result.user;
+                  console.log(user)
+                  setLoading(false)
+                  setError("");
+                  if (user.email) {
+                    console.log(user)
+                   
+                    toast("Registration successful", {
+                      position: toast.POSITION.TOP_CENTER
+                      
+                    })
+                    // navigate(from, { replace: true });
+                    setLoading(false)
+                  }
+      
+            } )
+            .catch(err=>console.log(err))
 
-            // fetch('https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users', {
-            //   method: 'POST',
-            //   headers: {
-            //     "content-type": "application/json"
-            //   },
-            //   body: JSON.stringify(users)
-            // })
-            //   .then(res => res.json())
-            //   .then(data =>  {
-                
-            //     console.log(data)
-            //     setCreateUserEmail(email)
-               
-               
-            //   })
-              .then(() => {
-                toast("registration successful", {
-                    position: toast.POSITION.TOP_CENTER,} );
-                // alert('registration successful')
-                // navigate('/home')
-              })
-              .catch(err => console.log('this err' ,err))
-            const user = result.user;
+            // code start data store to mongodb 
             console.log(user)
-            setLoading(false)
-            setError("");
-            if (user.email) {
-              console.log(user)
-             
-            //   toast("Registration successful", {
-            //     position: toast.POSITION.TOP_CENTER
-                
-            //   })
-              // navigate(from, { replace: true });
-              setLoading(false)
-            }
+          const insertUser = {name: user.displayName , email: user.email, img: user.photoURL} 
 
+           
           })
           .catch((e) => {
             console.log(e);
             setError(e.message);
             setLoading(false)
-            // setLoading(false)
           });
       })
       .catch(err => console.log(err))
