@@ -46,10 +46,10 @@ const InternationalNews = () => {
     return (
         <div className=" ">
             <h2 className="text-xl font-bold mb-5"> International News</h2>
-            <div className="flex justify-center">
-                <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-1  ">
-                    <div>
-                        <h2 className="text-lg font-semibold ">{'Ukraine'}</h2>
+            <div className="flex justify-center g">
+                <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-4  ">
+                    <div className="shadow-md shadow-slate-500">
+                        <h2 className="text-lg font-semibold ml-3 ">{'Ukraine'}</h2>
                         {
                             ukraine.map(inter => <div className="my-3">
 
@@ -60,10 +60,10 @@ const InternationalNews = () => {
                                 <h2 className="border-b-2 border-gray-400 pb-3  text-xl font-semibold my-2 mx-1 ">{inter.heading?.slice(0,50)}...</h2>
 
                             </Link> */}
-                                    <img className="rounded flex justify-center items-center h-32 w-96" src={inter.img} alt="" />
+                                    <img className="rounded flex justify-center items-center   h-60 w-96" src={inter.img} alt="" />
 
                                     <Link href={'/'} className=''>
-                                        <h2 className="border-b-2 pb-3 border-gray-400 text-xl font-semibold my-2  mx-1">{inter.heading?.slice(0, 50)}...</h2>
+                                        <h2 className="border-b-2 pb-2 border-gray-400 text-xl font-semibold my-2  mx-1 p">{inter.heading?.slice(0, 50)}...</h2>
 
                                     </Link>
 
@@ -74,8 +74,8 @@ const InternationalNews = () => {
                         <button className="px-4 text-center py-2 bg-blue-700 rounded-md max-w-96 mx-1">More +</button>
 
                     </div>
-                    <div>
-                        <h2 className="text-lg font-semibold ">{'Russia'}</h2>
+                    <div className="shadow-md shadow-slate-500">
+                        <h2 className="text-lg font-semibold ml-3 ">{'Russia'}</h2>
                         {
                             russia.map(inter => <div className="my-3">
 
@@ -86,10 +86,10 @@ const InternationalNews = () => {
                                 <h2 className="border-b-2 border-gray-400 pb-3  text-xl font-semibold my-2 mx-1 ">{inter.heading?.slice(0,50)}...</h2>
 
                             </Link> */}
-                                    <img className="rounded flex justify-center items-center h-32 w-96" src={inter.img} alt="" />
+                                    <img className="rounded flex justify-center items-center   h-60 w-96" src={inter.img} alt="" />
 
                                     <Link href={'/'} className=''>
-                                        <h2 className="border-b-2 pb-3 border-gray-400 text-xl font-semibold my-2  mx-1">{inter.heading?.slice(0, 50)}...</h2>
+                                        <h2 className="border-b-2 pb-2 border-gray-400 text-xl font-semibold my-2  mx-1">{inter.heading?.slice(0, 50)}...</h2>
 
                                     </Link>
 
@@ -100,8 +100,8 @@ const InternationalNews = () => {
                         <button className="px-4 text-center py-2 bg-blue-700 rounded-md max-w-96 mx-1">More +</button>
 
                     </div>
-                    <div>
-                        <h2 className="text-lg font-semibold ">{'Beijing'}</h2>
+                    <div className="shadow-md shadow-slate-500">
+                        <h2 className="text-lg font-semibold ml-3  ">{'Beijing'}</h2>
                         {
                             beijing.map(inter => <div className="my-3">
 
@@ -112,10 +112,10 @@ const InternationalNews = () => {
                                 <h2 className="border-b-2 border-gray-400 pb-3  text-xl font-semibold my-2 mx-1 ">{inter.heading?.slice(0,50)}...</h2>
 
                             </Link> */}
-                                    <img className="rounded flex justify-center items-center h-32 w-96" src={inter.img} alt="" />
+                                    <img className="rounded flex justify-center items-center   h-60 w-96" src={inter.img} alt="" />
 
                                     <Link href={'/'} className=''>
-                                        <h2 className="border-b-2 pb-3 border-gray-400 text-xl font-semibold my-2  mx-1">{inter.heading?.slice(0, 50)}...</h2>
+                                        <h2 className="border-b-2 pb-2 border-gray-400 text-xl font-semibold my-2  mx-1">{inter.heading?.slice(0, 50)}...</h2>
 
                                     </Link>
 
@@ -126,8 +126,8 @@ const InternationalNews = () => {
                         <button className="px-4 text-center py-2 bg-blue-700 rounded-md max-w-96 mx-1">More +</button>
 
                     </div>
-                    <div>
-                        <h2 className="text-lg font-semibold ">{'Japan'}</h2>
+                    <div className="shadow-md shadow-slate-500">
+                        <h2 className="text-lg font-semibold ml-3 ">{'Japan'}</h2>
                         {
                             japan.map(inter => <div className="my-3">
 
@@ -138,7 +138,7 @@ const InternationalNews = () => {
                                 <h2 className="border-b-2 border-gray-400 pb-3  text-xl font-semibold my-2 mx-1 ">{inter.heading?.slice(0,50)}...</h2>
 
                             </Link> */}
-                                    <img className="rounded flex justify-center items-center h-32 w-96" src={inter.img} alt="" />
+                                    <img className="rounded flex justify-center items-center   h-60 w-96" src={inter.img} alt="" />
 
                                     <Link href={'/'} className=''>
                                         <h2 className="border-b-2 pb-3 border-gray-400 text-xl font-semibold my-2  mx-1">{inter.heading?.slice(0, 50)}...</h2>
@@ -149,7 +149,7 @@ const InternationalNews = () => {
                             </div>)
                         }
 
-                        <button className="px-4 text-center py-2 bg-blue-700 rounded-md max-w-96 mx-1">More +</button>
+                        <button className="px-4 text-center py-2 mb-2 bg-blue-700 rounded-md max-w-96 mx-1">More +</button>
 
                     </div>
 

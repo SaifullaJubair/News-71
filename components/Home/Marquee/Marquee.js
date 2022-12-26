@@ -2,7 +2,8 @@
 const Marquee = () => {
     return (
         <div>
-            <marquee behavior="" direction="">Breaking news</marquee>
+       <marquee behavior="" direction=""> breaking news </marquee>
+          
         </div>
     );
 };
