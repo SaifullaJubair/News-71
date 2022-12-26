@@ -1,7 +1,7 @@
 import React from 'react';
-import About from '../components/AboutUs/about';
+import About from '../components/About/About';
 
-const aboutus = () => {
+const about = () => {
     return (
         <div>
             <About></About>
@@ -9,4 +9,4 @@ const aboutus = () => {
     );
 };
 
-export default aboutus;
+export default about;
