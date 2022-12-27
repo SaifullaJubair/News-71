@@ -1,7 +1,5 @@
-import { Button } from "@mui/material";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaFacebook, IconName } from "react-icons/fa";
 
 const EducationNews = () => {
     const [newes, setNews] = useState(null);
@@ -21,7 +19,7 @@ const EducationNews = () => {
             <div className="grid gap-6 row-gap-5 mb-8 lg:grid-cols-4 sm:row-gap-6 sm:grid-cols-2">
                 {
                     newes?.map(news =>
-                        <Link href={`/news/${news._id}`}>
+                        <Link href={`/news/view/${news._id}`}>
                             <div key={news?._id}
                             >
 
