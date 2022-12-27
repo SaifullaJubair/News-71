@@ -120,8 +120,6 @@ const AllUsers = () => {
                                     <Button size="xs" color="failure" onClick={() => showModal(user)}>
                                         <FaTrash className='mr-2'></FaTrash> Delete
                                     </Button>
-
-
                                 </Table.Cell>
                             </Table.Row>)
                     }

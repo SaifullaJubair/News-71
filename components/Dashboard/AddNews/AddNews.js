@@ -1,13 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
 import { Button, Label, TextInput } from "flowbite-react";
-import { fromNumber } from "long";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+import { useEffect, useState } from "react";
 
 const AddNews = () => {
-
-    const { user, logout, updateUserProfile, providerLogin, createUser } =
-        useContext(AuthContext);
+ 
     const [error, setError] = useState("");
     const [categories, setCategories] = useState(null);
 
@@ -20,17 +15,7 @@ const AddNews = () => {
             .then(data => setCategories(data))
 
     }, [])
-
-    const { data: addNews = [], } = useQuery({
-        queryKey: ['addNews'],
-
-        queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users/email?email=${user?.email}`);
-            const data = await res.json();
-
-            return data;
-        }
-    })
+ 
 
     const handleAddItem = (event) => {
         event.preventDefault()
