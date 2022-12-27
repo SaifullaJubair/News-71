@@ -1,167 +1,173 @@
 import { GoogleAuthProvider } from "firebase/auth";
-import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import React, { useContext, useState, } from "react";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 // import { FaBeer, FcGoogle } from "react-icons/fc";
 const Register = () => {
 
-const {logout ,  updateUserProfile, providerLogin, createUser } = useContext(AuthContext)
-const [error, setError] = useState("");
-const [loading, setLoading] = useState(false)
-const [loginUserEmail, setLoginUserEmail] = useState('')
-const googleProvider = new GoogleAuthProvider();
-const [createUserEmail, setCreateUserEmail] = useState('')
-const [termsAccepted, setTermsAccepted] = useState(false);
+    const { logout, updateUserProfile, providerLogin, createUser, user } = useContext(AuthContext)
 
-const termsAndCondition = (event) => {
-    setTermsAccepted(event.target.checked);
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false)
+    const [loginUserEmail, setLoginUserEmail] = useState('')
+    const googleProvider = new GoogleAuthProvider();
+    const [createUserEmail, setCreateUserEmail] = useState('')
+    const [termsAccepted, setTermsAccepted] = useState(false);
 
-  };
+    const termsAndCondition = (event) => {
+        setTermsAccepted(event.target.checked);
 
+    };
+    const handleGoogleSignIn = () => {
+        providerLogin(googleProvider)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
 
-  const handleGoogleSignIn = () => {
-    providerLogin(googleProvider)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-
-        const currentUser = {
-          email: user.email
-        }
-        console.log(currentUser);
-        setError("");
-        // // get jwt toket 
-        // fetch('https://b6-a11-service-review-server-side.vercel.app/jwt', {
-        //   method: "POST",
-        //   headers: {
-        //     'content-type': 'application/json'
-        //   },
-        //   body: JSON.stringify(currentUser)
-        // })
-        //   .then(res => res.json())
-        //   .then(data => {
-        //     console.log(data)
-        //     localStorage.setItem('token', data.token)
-        //   })
-        // //end jwt token
-
+                const currentUser = {
+                    email: user.email
+                }
+                console.log(currentUser);
+                setError("");
+                // // get jwt toket 
+                // fetch('https://b6-a11-service-review-server-side.vercel.app/jwt', {
+                //   method: "POST",
+                //   headers: {
+                //     'content-type': 'application/json'
+                //   },
+                //   body: JSON.stringify(currentUser)
+                // })
+                //   .then(res => res.json())
+                //   .then(data => {
+                //     console.log(data)
+                //     localStorage.setItem('token', data.token)
+                //   })
+                // //end jwt token
 
 
-        // navigate(from, { replace: true });
-      })
-      .catch((error) => console.error(error, error.message));
-  };
 
-  const [passwordMatch, setPasswoedMatched] = useState()
+                // navigate(from, { replace: true });
+            })
+            .catch((error) => console.error(error, error.message));
+    };
 
-  const onchangeHande =  (event) => {
-    event.preventDefault();
-    const form = event.target;
-    console.log(event.target.value)
-    setPasswoedMatched(event.target.value)
-  }
-  const onchangeHande1 =  (event) => {
-    event.preventDefault();
-    const form = event.target;
-   const second = event.target.value
-    if (second  !== passwordMatch) {
-        setError(' Password not matched')
-        
-      }
-      else{
-        setError('')
-        return
-      }
-  }
+    const [passwordMatch, setPasswoedMatched] = useState()
 
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const password2 = form.password2.value;
-    const password = form.password.value;
-    const image = form.photo.files[0];
-    if (password !== password2) {
-      setError('password Password not matched')
-      return
+    const onchangeHande = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        console.log(event.target.value)
+        setPasswoedMatched(event.target.value)
     }
-    setLoading(true)
-    setError('')
+    const onchangeHande1 = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const second = event.target.value
+        if (second !== passwordMatch) {
+            setError(' Password not matched')
 
-    console.log(name, image, email, password, password2, );
+        }
+        else {
+            setError('')
+            return
+        }
+    }
 
-    const formData = new FormData()
-    formData.append('image', image)
 
-    const url = `https://api.imgbb.com/1/upload?key=2d5b1a5401d8ef6742d2329ac8957810`
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password2 = form.password2.value;
+        const password = form.password.value;
+        const image = form.photo.files[0];
+        if (password !== password2) {
+            setError('password Password not matched')
+            return
+        }
+        setLoading(true)
+        setError('')
 
-    fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-        createUser(email, password)
-          .then((result) => {
-            console.log(result)
-            console.log(result.user)
-            const currentUser = { displayName: name, photoURL: data?.data?.display_url }
-            updateUserProfile(currentUser)
-            
-            // const users =  { name, email, password, account, createdAt: new Date().toISOString(), photoURL: data?.data?.display_url };
+        console.log(name, image, email, password, password2,);
 
-            // fetch('https://computer-house-server-side-gmneamul1-gmailcom.vercel.app/users', {
-            //   method: 'POST',
-            //   headers: {
-            //     "content-type": "application/json"
-            //   },
-            //   body: JSON.stringify(users)
-            // })
-            //   .then(res => res.json())
-            //   .then(data =>  {
-                
-            //     console.log(data)
-            //     setCreateUserEmail(email)
-               
-               
-            //   })
-              .then(() => {
-                toast("registration successful", {
-                    position: toast.POSITION.TOP_CENTER,} );
-                // alert('registration successful')
-                // navigate('/home')
-              })
-              .catch(err => console.log('this err' ,err))
-            const user = result.user;
-            console.log(user)
-            setLoading(false)
-            setError("");
-            if (user.email) {
-              console.log(user)
-             
-            //   toast("Registration successful", {
-            //     position: toast.POSITION.TOP_CENTER
-                
-            //   })
-              // navigate(from, { replace: true });
-              setLoading(false)
-            }
+        const formData = new FormData()
+        formData.append('image', image)
 
-          })
-          .catch((e) => {
-            console.log(e);
-            setError(e.message);
-            setLoading(false)
-            // setLoading(false)
-          });
-      })
-      .catch(err => console.log(err))
+        const url = `https://api.imgbb.com/1/upload?key=2d5b1a5401d8ef6742d2329ac8957810`
 
-  };
+        fetch(url, {
+            method: "POST",
+            body: formData,
+        })
+            .then(res => res.json())
+            .then(imgData => {
+                console.log(imgData)
+                createUser(email, password)
+                    .then((result) => {
+                        console.log(result.user)
+                        // console.log(result.user)
+                        const currentUser = { displayName: name, photoURL: imgData.data.url }
+
+                        updateUserProfile(currentUser)
+                            .then(result => {
+                                // const users =  { name, email, password, createdAt: new Date().toISOString(), photoURL: data?.data?.display_url };
+                                console.log(result)
+                                fetch('http://localhost:5000/adduser', {
+                                    method: 'POST',
+                                    headers: {
+                                        "content-type": "application/json"
+                                    },
+                                    body: JSON.stringify(insertUser)
+                                })
+                                    .then(res => res.json())
+                                    .then(data => {
+
+                                        console.log(data)
+                                        setCreateUserEmail(email)
+                                        toast("Registration successful", {
+                                            position: toast.POSITION.TOP_CENTER
+
+                                        })
+
+
+                                    })
+                                    .catch(err => console.log(err))
+                                const user = result.user;
+                                console.log(user)
+                                setLoading(false)
+                                setError("");
+                                if (user.email) {
+                                    console.log(user)
+
+                                    toast("Registration successful", {
+                                        position: toast.POSITION.TOP_CENTER
+
+                                    })
+                                    // navigate(from, { replace: true });
+                                    setLoading(false)
+                                }
+
+                            })
+                            .catch(err => console.log(err))
+
+                        // code start data store to mongodb 
+                        console.log(user)
+                        const insertUser = { name: user.displayName, email: user.email, img: user.photoURL, role: 'user', createdAt: new Date().toISOString(), }
+
+
+                    })
+                    .catch((e) => {
+                        console.log(e);
+                        setError(e.message);
+                        setLoading(false)
+                    });
+            })
+            .catch(err => console.log(err))
+
+    };
 
 
     return (
@@ -176,9 +182,9 @@ const termsAndCondition = (event) => {
                 </div>
                 <div className=" bg-red-5 md:px-10 px-4 py-4 my-8 lg:w-4/5">
                     <h1 className="text-black text-5xl font-bold mb-5 text-center ">Sign Up</h1>
-                    <form 
-                    onSubmit={handleSubmit} 
-                    className="flex flex-col gap-4">
+                    <form
+                        onSubmit={handleSubmit}
+                        className="flex flex-col gap-4">
                         {/* name  */}
                         <div>
                             <div className="mb-2 block">
@@ -222,7 +228,7 @@ const termsAndCondition = (event) => {
                                 name="photo"
                             ></input>
                         </div>
-                       
+
 
                         {/* password 1  */}
                         <div>
@@ -249,7 +255,7 @@ const termsAndCondition = (event) => {
                                 type="password"
                                 required
                                 shadow
-                              
+
                                 name="password2"
                             />
                         </div>
@@ -257,8 +263,8 @@ const termsAndCondition = (event) => {
                         {/* Error show  */}
                         <p className="text-red-500">
                             {error}
-                            
-                            </p>
+
+                        </p>
                         {/* check box / mark  */}
                         <div className="flex items-center gap-2">
                             <Checkbox
@@ -294,12 +300,12 @@ const termsAndCondition = (event) => {
                                     </Button>
                                 )
                         } */}
-                         <Button className=" lg:mx-auto w-full" 
-                         
-                         disabled={!termsAccepted}
-                          type="submit">
-                                        Sign Up
-                                    </Button>
+                        <Button className=" lg:mx-auto w-full"
+
+                            disabled={!termsAccepted}
+                            type="submit">
+                            Sign Up
+                        </Button>
 
                         <div className="flex justify-between  py-8">
                             <div className="flex w-full">
@@ -317,17 +323,28 @@ const termsAndCondition = (event) => {
                                                 onClick={handleGoogleSignIn}
                                             >
                                                 {/* <FcGoogle className="mr-4 text-xl " /> */}
-                                                 Google
+                                                Google
                                             </Button>
                                             <Button
                                                 disabled={!termsAccepted}
                                                 gradientDuoTone="purpleToBlue"
                                                 className="btn btn-white text-3xl w-full "
-                                                // onClick={handleGoogleLogin}
+                                            // onClick={handleGoogleLogin}
                                             >
                                                 {/* <FcGoogle className="mr-4 text-xl " /> */}
-                                                 Facebook
+                                                Facebook
                                             </Button>
+
+
+
+
+
+
+
+
+
+
+
                                         </div>
                                     </div>
                                 </div>

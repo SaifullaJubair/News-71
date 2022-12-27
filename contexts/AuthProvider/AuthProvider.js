@@ -13,7 +13,7 @@ export const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
     // useState
-    const [user, setuser] = useState(null);
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     // Provider
@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
     // updateProfile
     const updateUserProfile = (profile) => {
         // console.log(profile)
-        setLoading(false);
+        setLoading(true);
         return updateProfile(auth.currentUser, profile);
     };
     //  create user
@@ -55,7 +55,7 @@ const AuthProvider = ({ children }) => {
     //  useEffect and unsubscribe
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setuser(currentUser);
+            setUser(currentUser);
             setLoading(false);
         });
         return () => {
