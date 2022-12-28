@@ -1,5 +1,6 @@
 import { Avatar, Button, Modal, Select, Table } from 'flowbite-react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
@@ -12,6 +13,8 @@ const AllNews = () => {
     const [editData, setEditData] = useState(null);
     const [categories, setCategories] = useState(null);
     const [searchData, setSearchData] = useState('Tech');
+    const router = useRouter()
+    console.log(router.asPath);
     useEffect(() => {
 
         fetch('http://localhost:5000/allcategories')

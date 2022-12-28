@@ -2,7 +2,6 @@ import React from 'react';
 import RightBar from '../../../components/RightBar/RightBar';
 import SinglePage from '../../../components/SinglePage/SinglePage';
 
-
 const singlePage = () => {
    return (
       <div className='mt-[150px] max-w-[1440px] w-[95%] mx-auto gap-8 grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 '>
