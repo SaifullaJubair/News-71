@@ -4,7 +4,7 @@ import Marquee from 'react-fast-marquee';
 
 const Marquee1 = () => {
     return (
-        <div className='flex mt-6'>
+        <div className='flex mt-8'>
             <div className='bg-blue-900 text-white font-bold px-4 flex justify-center items-center'>
                 <h2>Latest</h2>
             </div>

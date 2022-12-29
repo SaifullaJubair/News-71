@@ -52,7 +52,7 @@ const SportsNews = () => {
             <div className='grid lg:grid-cols-3 gap-4'>
                 {/* left side  */}
                 {
-                    sports1.map(sport1 => <div className='rounded-lg   shadow-2xl my- py-1 lg:col-span-2 md:col-span-0'>
+                    sports1.map(sport1 => <div className='rounded-lg  duration-300 hover:-translate-y-2  shadow-2xl my- py-1 lg:col-span-2 md:col-span-0'>
                         <div>
                             <img className='w-full rounded my-2 ml-2' src={sport1.img} alt="" />
                         </div>
