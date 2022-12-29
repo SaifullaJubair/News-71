@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import DashboardSideBar from '../../Shared/DashboardSideBar/DashboardSideBar';
+import Loader from '../../Shared/Loader/Loader';
 
 const AllNews = () => {
 
@@ -66,106 +68,114 @@ const AllNews = () => {
         setEditData(news)
     }
     return (
-        <div className='max-w-[1440px] w-[95%] mx-auto'>
-            <h2 className='title uppercase p-4 text-center mt-24 mb-10 bg-purple-300 text-black text-2xl font-semibold rounded'>All News </h2>
-            <form className='mb-10 flex gap-4 flex-wrap items-stretch justify-center' onSubmit={handleSearch}>
-                <div id="select w-[200px]">
+        <div className='max-w-[1440px] w-[95%] mx-auto flex gap-6 mt-[100px]'>
+            <DashboardSideBar></DashboardSideBar>
+            <div>
+            {
+                news ? <div className='flex-grow'> <h2 className='title uppercase py-4  text-center mb-10 bg-purple-300 text-black text-2xl font-semibold rounded'>All News </h2>
+                    <form className='mb-10 flex gap-4 flex-wrap items-stretch justify-center' onSubmit={handleSearch}>
+                        <div id="select w-[200px]">
 
-                    <Select
-                        id="categories"
-                        required={true}
-                        className='w-[200px]'
+                            <Select
+                                id="categories"
+                                required={true}
+                                className='w-[200px]'
 
-                        name="categoryInput"
-                    >
-                        {
-                            categories?.map(category =>
-                                <option value={category.name}>
-                                    {category.name}
-                                </option>
-                            )
-                        }
+                                name="categoryInput"
+                            >
+                                {
+                                    categories?.map(category => {
+                                        return category.name == 'Tech' ? <option value={category.name} selected>
+                                            {category.name}
+                                        </option> : <option value={category.name}>
+                                            {category.name}
+                                        </option>
+                                    }
+                                    )
+                                }
 
-                    </Select>
-                </div>
-                <Button className='' type='submit'>
-                    Search
-                </Button>
-            </form>
-            <Table striped={true}>
-                <Table.Head>
-                    <Table.HeadCell>
-                        #
-                    </Table.HeadCell>
-                    <Table.HeadCell>
-                        Image
-                    </Table.HeadCell>
-                    <Table.HeadCell>
-                        Heading
-                    </Table.HeadCell>
-                    <Table.HeadCell>
-                        Author Name
-                    </Table.HeadCell>
-                    <Table.HeadCell>
-                        Category
-                    </Table.HeadCell>
-                    <Table.HeadCell>
-                        Total Likes
-                    </Table.HeadCell>
-                    <Table.HeadCell>
-                        Total Dislikes
-                    </Table.HeadCell>
-                    <Table.HeadCell>
-                        Location
-                    </Table.HeadCell>
-                    <Table.HeadCell>
-                        Operations
-                    </Table.HeadCell>
-                </Table.Head>
-                <Table.Body className="divide-y">
-                    {
-                        news?.map((news, index) =>
-                            <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                    {index + 1}
-                                </Table.Cell>
-                                <Table.Cell>
-                                    <Avatar
-                                        img={news.img}
-                                    />
-                                </Table.Cell>
-                                <Table.Cell>
-                                    {news.heading}
-                                </Table.Cell>
-                                <Table.Cell>
-                                    {news.authorName}
-                                </Table.Cell>
-                                <Table.Cell>
-                                    {news.category_id}
-                                </Table.Cell>
-                                <Table.Cell>
-                                    {news.total_likes}
-                                </Table.Cell>
-                                <Table.Cell>
-                                    {news.total_dislikes}
-                                </Table.Cell>
-                                <Table.Cell>
-                                    {news.location}
-                                </Table.Cell>
-                                <Table.Cell className='flex gap-3 items-center justify-center my-auto' >
-                                    <Link href={`/news/edit/${news._id}`}>
-                                        <Button size="xs" className='my-auto' onClick={() => showEditModal(news)} >
-                                            <FaEdit className='mr-2'></FaEdit> Edit
-                                        </Button>
-                                    </Link>
-                                    <Button size="xs" className='my-auto' color="failure" onClick={() => showModal(news)}>
-                                        <FaTrash className='mr-2'></FaTrash> Delete
-                                    </Button>
-                                </Table.Cell>
-                            </Table.Row>)
-                    }
-                </Table.Body>
-            </Table>
+                            </Select>
+                        </div>
+                        <Button className='' type='submit'>
+                            Search
+                        </Button>
+                    </form>
+                    <Table striped={true} className='w-[95%] mx-auto scroll-mx-7'>
+                        <Table.Head>
+                            <Table.HeadCell>
+                                #
+                            </Table.HeadCell>
+                            <Table.HeadCell>
+                                Image
+                            </Table.HeadCell>
+                            <Table.HeadCell>
+                                Heading
+                            </Table.HeadCell>
+                            <Table.HeadCell>
+                                Author Name
+                            </Table.HeadCell>
+                            <Table.HeadCell>
+                                Category
+                            </Table.HeadCell>
+                            <Table.HeadCell>
+                                Total Likes
+                            </Table.HeadCell>
+                            <Table.HeadCell>
+                                Total Dislikes
+                            </Table.HeadCell>
+                            <Table.HeadCell>
+                                Location
+                            </Table.HeadCell>
+                            <Table.HeadCell>
+                                Operations
+                            </Table.HeadCell>
+                        </Table.Head>
+                        <Table.Body className="divide-y">
+                            {
+                                news?.map((news, index) =>
+                                    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                                        <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                                            {index + 1}
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            <Avatar
+                                                img={news.img}
+                                            />
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            {news.heading}
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            {news.authorName}
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            {news.category_id}
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            {news.total_likes}
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            {news.total_dislikes}
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            {news.location}
+                                        </Table.Cell>
+                                        <Table.Cell className='flex flex-wrap gap-3 items-center justify-center my-auto' >
+                                            <Link href={`/news/edit/${news._id}`}>
+                                                <Button size="xs" className='my-auto' onClick={() => showEditModal(news)} >
+                                                    <FaEdit className='mr-2'></FaEdit> Edit
+                                                </Button>
+                                            </Link>
+                                            <Button size="xs" className='my-auto' color="failure" onClick={() => showModal(news)}>
+                                                <FaTrash className='mr-2'></FaTrash> Delete
+                                            </Button>
+                                        </Table.Cell>
+                                    </Table.Row>)
+                            }
+                        </Table.Body>
+                    </Table> </div> : <Loader></Loader>
+            }
+            </div>
             {
                 deleteData !== null && <div>
                     <div>
