@@ -25,6 +25,5 @@ export default function App({ Component, pageProps }) {
       </AuthProvider>
 
       </QueryClientProvider>
-    </div>
   )
 }
