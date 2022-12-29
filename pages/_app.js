@@ -7,7 +7,8 @@ import {
   QueryClientProvider
 } from '@tanstack/react-query';
 import { ToastContainer } from 'react-toastify';
-import Footer from '../components/Shared/Navbar/Footer/Footer';
+import Footer from '../components/Shared/Footer/Footer';
+import TopBar from '../components/Shared/TopBar/TopBar';
 
 const queryClient = new QueryClient()
 
@@ -18,10 +19,10 @@ export default function App({ Component, pageProps }) {
 
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <Navbar></Navbar>
+       <TopBar></TopBar>
         <Component  {...pageProps} />
         <ToastContainer />
-        <Footer></Footer>
+      <Footer></Footer>
       </AuthProvider>
 
       </QueryClientProvider>

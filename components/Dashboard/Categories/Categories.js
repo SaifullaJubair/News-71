@@ -1,10 +1,10 @@
-import { Button, Modal, Select, Table, TextInput } from 'flowbite-react';
+import { Button, Modal, Table, TextInput } from 'flowbite-react';
 import React, { useEffect, useState } from 'react';
-import { FaEdit, FaMailBulk, FaTrash, FaUser } from 'react-icons/fa';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import DashboardSideBar from '../../Shared/DashboardSideBar/DashboardSideBar';
 const Categories = () => {
-    const [users, setUsers] = useState(null)
+    const [categories, setCategories] = useState(null)
     const [refetch, setRefetch] = useState(false)
     const [deleteData, setDeleteData] = useState(null)
     const [editData, setEditData] = useState(null)
@@ -13,8 +13,7 @@ const Categories = () => {
         fetch('http://localhost:5000/allcategories')
             .then(res => res.json())
             .then(data => {
-                console.log(data);
-                setUsers(data)
+                setCategories(data)
             })
     }, [refetch])
 
@@ -31,6 +30,31 @@ const Categories = () => {
     }
     const onEditClose = () => {
         setEditData(null)
+    }
+    const handleEdit = e => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.editCategoryName.value;
+        const data = {
+            _id: editData?._id,
+            name: name
+        }
+        fetch('http://localhost:5000/editcategory', {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                form.reset('')
+                toast("Edit successful", {
+                    position: toast.POSITION.TOP_CENTER
+                })
+                setEditData(null);
+                setRefetch(!refetch);
+            })
     }
 
     const handleAdd = (e) => {
@@ -73,13 +97,13 @@ const Categories = () => {
             })
     }
     return (
-        <div className='max-w-[1440px] w-[95%] mx-auto mt-[100px] gap-6 flex '>
+        <div className='max-w-[1440px] w-[95%] mx-auto mt-7 gap-6 flex '>
 
             <DashboardSideBar></DashboardSideBar>
 
             <div className='flex-grow'>
 
-                <h2 className='title uppercase p-10 text-center  mb-10 bg-purple-300 text-black text-2xl font-semibold'>Add News Category </h2>
+                <h2 className='title uppercase p-4 text-center  mb-10 bg-purple-300 text-black text-2xl font-semibold'>Add News Category </h2>
 
                 <form onSubmit={handleAdd} className="flex flex-wrap justify-center items-center mx-auto  gap-2">
 
@@ -93,14 +117,14 @@ const Categories = () => {
                         required={true}
                     />
 
-                    <Button gradientMonochrome="info" className=' h-[55px] text-xl font-bold' type='submit'>
+                    <Button gradientMonochrome="info" className=' h-[60px] text-xl font-bold' type='submit'>
                         Add Category
                     </Button>
 
                 </form>
 
 
-                <h2 className='title uppercase p-10 text-center mt-24 mb-10 bg-purple-300 text-black text-2xl font-semibold'>All Categories </h2>
+                <h2 className='title uppercase p-4 text-center mt-24 mb-10 bg-purple-300 text-black text-2xl font-semibold'>All Categories </h2>
 
                 <Table striped={true}>
                     <Table.Head>
@@ -117,23 +141,23 @@ const Categories = () => {
                     </Table.Head>
                     <Table.Body className="divide-y">
                         {
-                            users?.map((user, index) =>
+                            categories?.map((category, index) =>
                                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                                         {index + 1}
                                     </Table.Cell>
 
-                                    <Table.Cell>
-                                        {user?.name}
+                                    <Table.Cell className='font-bold'>
+                                        {category?.name}
                                     </Table.Cell>
 
                                     <Table.Cell className='flex gap-3' >
 
-                                        <Button size="xs" onClick={() => showEditModal(user)}>
+                                        <Button size="xs" onClick={() => showEditModal(category)}>
                                             <FaEdit className='mr-2'></FaEdit> Edit
                                         </Button>
 
-                                        <Button size="xs" color="failure" onClick={() => showModal(user)}>
+                                        <Button size="xs" color="failure" onClick={() => showModal(category)}>
                                             <FaTrash className='mr-2'></FaTrash> Delete
                                         </Button>
 
@@ -197,68 +221,28 @@ const Categories = () => {
                             >
                                 <Modal.Header />
                                 <Modal.Body>
-                                    <div >
+                                    <form onSubmit={handleEdit} >
                                         <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
                                             Are you sure you want to update this <span className='font-bold'>{editData?.name}</span> ?
                                         </h3>
                                         {/* name input field  */}
                                         <div>
                                             <div className="mb-2 block">
-                                                {/* <Label
-                                    htmlFor="name"
-                                    value="Your name"
-                                /> */}
                                             </div>
                                             <TextInput
-                                                id="name"
-                                                type="name"
-                                                value={editData?.name}
-                                                icon={FaUser}
-                                                readOnly
-                                            />
-                                        </div>
-                                        {/* email input field  */}
-                                        <div className='my-4'>
-                                            <div className="mb-2 block">
-                                                {/* <Label
-                                    htmlFor="email4"
-                                    value="Your email"
-                                /> */}
-                                            </div>
-                                            <TextInput
-                                                id="email4"
-                                                type="email"
-                                                icon={FaMailBulk}
-                                                value={editData?.email}
-                                                readOnly
-                                            />
-                                        </div>
-                                        <div id="select" className='my-4'>
-                                            <div className="mb-2 block">
-                                                {/* <Label
-                                    htmlFor="role"
-                                    value="Select your country"
-                                /> */}
-                                            </div>
-                                            <Select
-                                                id="role"
+                                                name='editCategoryName'
+                                                type="text"
+                                                defaultValue={editData?.name}
                                                 required={true}
-                                            >
-                                                <option>
-                                                    Admin
-                                                </option>
-                                                <option>
-                                                    User
-                                                </option>
 
-                                            </Select>
+                                            />
                                         </div>
-                                        {/* <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" /> */}
 
-                                        <div className="flex justify-center gap-4">
+
+                                        <div className="flex justify-center gap-4 mt-8">
                                             <Button
                                                 color="success"
-                                                onClick={() => handleMakeAdmin(editData)}
+                                                type='submit'
                                             >
                                                 Yes, I'm sure
                                             </Button>
@@ -269,7 +253,7 @@ const Categories = () => {
                                                 No, cancel
                                             </Button>
                                         </div>
-                                    </div>
+                                    </form>
                                 </Modal.Body>
                             </Modal>
                         </div>

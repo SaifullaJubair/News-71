@@ -80,7 +80,7 @@ const AddNews = () => {
                 <DashboardSideBar></DashboardSideBar>
             </div>
 
-            <div className=' rounded-sm text-3xl font-bold  text-left flex-grow bg-blue-700 text-white'>
+            <div className=' rounded-sm text-3xl font-bold  text-left flex-grow shadow text-black'>
                 <h1 className="text-center py-4">Add a article very carefully</h1>
                 <form onSubmit={handleAddItem} className="flex mx-4 m-auto flex-col gap-4  p-8 rounded">
                     <div>
@@ -88,11 +88,11 @@ const AddNews = () => {
                             <Label
                                 htmlFor="heading"
                                 value="Heading"
-                                className="font-semibold text-xl text-white"
+                                className="font-semibold text-xl "
                             />
                         </div>
                         <TextInput
-                            className="text-lg font-light"
+                            className="text-lg font-normal"
                             name="heading"
                             type="text"
                             placeholder="Type heading"
@@ -105,7 +105,7 @@ const AddNews = () => {
                             <Label
                                 htmlFor="details"
                                 value="Details"
-                                className="font-semibold text-xl text-white"
+                                className="font-semibold text-xl"
 
                             />
                         </div>
@@ -113,7 +113,7 @@ const AddNews = () => {
 
                             name="details"
                             type="text"
-                            className="text-lg font-light"
+                            className="text-lg font-normal"
                             placeholder='details'
                             required={true}
                             shadow={true}
@@ -125,7 +125,7 @@ const AddNews = () => {
                             <Label
                                 htmlFor="location"
                                 value="News location"
-                                className="font-semibold text-xl text-white"
+                                className="font-semibold text-xl"
                             />
                         </div>
                         <TextInput
@@ -135,7 +135,7 @@ const AddNews = () => {
                             placeholder="news location "
                             required={true}
                             shadow={true}
-                            className="text-lg font-light"
+                            className="text-lg font-normal"
                         />
                     </div>
                     <div>
@@ -143,10 +143,10 @@ const AddNews = () => {
                             <Label
                                 htmlFor=""
                                 value="Select Category"
-                                className="font-semibold text-xl text-white"
+                                className="font-semibold text-xl"
                             />
                         </div>
-                        <select name='categoryId' defaultValue='All' className="select text-black font-normal  w-full hmax-w-xs rounded my-2">
+                        <select required  name='categoryId' defaultValue='All' className="select text-black font-normal  w-full hmax-w-xs rounded my-2">
                             <option disabled selected>Type of news</option>
                             {
                                 categories?.map(category =>
