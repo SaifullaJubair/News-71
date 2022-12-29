@@ -18,7 +18,7 @@ const LifeStyleNews = () => {
     }, []);
 
     return (
-        <div className="my-10 font-poppins ">
+        <div className="my-10 font-Times ">
             <div className=" mx-auto ">
                 <h1 className="text-3xl font-bold">LifeStyle</h1>
             </div>
@@ -26,7 +26,7 @@ const LifeStyleNews = () => {
                 <div className="grid grid-cols-1 gap-4 mx-auto md:grid-cols-4">
                     {
                         nextFourNews?.map(news =>
-                            <div class=" w-full rounded overflow-hidden shadow-lg">
+                            <div class=" w-full rounded overflow-hidden duration-300 hover:-translate-y-2 shadow-lg">
                                 <img
                                     src={news?.img}
                                     className="w-full h-44"
@@ -45,9 +45,8 @@ const LifeStyleNews = () => {
 
 
 
-                    <Link href='#' className="col-span-2 row-span-2
-           md:col-start-1 md:row-start-1 shadow-md "  >
-                        <div class=" w-full rounded overflow-hidden ">
+                    <Link href='#' className="col-span-2 row-span-2 md:col-start-1 md:row-start-1 shadow-md "  >
+                        <div class=" w-full rounded overflow-hidden duration-300 hover:-translate-y-2 ">
                             <img
                                 src={singleNews?.img}
                                 className="w-full"

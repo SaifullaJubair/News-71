@@ -8,7 +8,7 @@ const LoginPage = () => {
     const { logout } = useContext(AuthContext)
     // console.log(user);
     return (
-        <div>
+        <div className='max-w-[1440px] w-[95%] mx-auto'>
             <Login></Login>
         </div>
     );
