@@ -1,11 +1,12 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import DashboardSideBar from "../../Shared/DashboardSideBar/DashboardSideBar";
+import Loader from "../../Shared/Loader/Loader";
 
 const AddNews = () => {
- 
-    const [error, setError] = useState("");
-    const [categories, setCategories] = useState(null);
 
+    const [categories, setCategories] = useState(null);
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -15,10 +16,11 @@ const AddNews = () => {
             .then(data => setCategories(data))
 
     }, [])
- 
+
 
     const handleAddItem = (event) => {
         event.preventDefault()
+        setLoading(true)
         const form = event.target;
         const category_id = form.categoryId.value;
         const total_likes = 0;
@@ -52,7 +54,6 @@ const AddNews = () => {
                         total_dislikes, total_likes, category_id, location, details, total_view, rating, createdAt: formatDate
                     }
 
-                    // console.log(addItem)
                     fetch('http://localhost:5000/addnews', {
                         method: 'POST',
                         headers: {
@@ -62,144 +63,32 @@ const AddNews = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data)
                             form.reset('')
-                            // toast("added successful", {
-                            //     position: toast.POSITION.TOP_CENTER
-                            // })
-                            // navigate('/dashboard/myallproduct')
-                            alert('add success full')
+                            toast("added successful", {
+                                position: toast.POSITION.TOP_CENTER
+                            })
                         })
-
                 }
-
-
             })
-
-        // console.log(types, image, title, description, color, mobile, location, condition, orginal_price, total, rating, price,)
-        if (loading) {
-            <p>loading</p>
-        }
-
+        setLoading(false)
     }
 
 
-
-
     return (
-        <div className="pt-10 max-w-[1440px] w-[95%] mx-auto">
-            <div className=' w-10/12 text-yellow-300 mx-auto my-4 text-3xl font-bold m-auto text-left'>
+        <div className="pt-10 max-w-[1440px] w-[95%] mx-auto flex gap-6">
+            <div>
+                <DashboardSideBar></DashboardSideBar>
+            </div>
+
+            <div className=' rounded-sm text-3xl font-bold  text-left flex-grow bg-blue-700 text-white'>
                 <h1 className="text-center py-4">Add a article very carefully</h1>
-                <form onSubmit={handleAddItem} className="flex mx-4 lg:w-full m-auto flex-col gap-4 shadow-lg p-8 rounded">
-
-                    {/* category_id  */}
-                    {/* <div>
-                        <div className="mb-2 block">
-                            <Label
-                                htmlFor="category_id"
-                                value="category_id"
-                            />
-                        </div>
-                        <TextInput
-                            id="category_id"
-                            name='category_id'
-                            type="text"
-                            placeholder=" type category_id "
-                            required={true}
-                            shadow={true}
-                        />
-                    </div> */}
-                    {/* total_likes  */}
-                    {/* <div>
-                        <div className="mb-2 block">
-                            <Label
-                                htmlFor="total_likes"
-                                value="total_likes"
-                            />
-                        </div>
-                        <TextInput
-                            id="total_likes"
-                            type="number"
-                            name='total_likes '
-                            placeholder="type total_likes "
-                            required={true}
-                            shadow={true}
-                        />
-                    </div> */}
-                    {/* total_dislikes  */}
-                    {/* <div>
-                        <div className="mb-2 block">
-                            <Label
-                                htmlFor="total_dislikes"
-                                value=" total_dislikes"
-                            />
-                        </div>
-                        <TextInput
-                            id=" total_dislikes"
-                            type="text"
-                            name='total_dislikes'
-                            placeholder="Type  total_dislikes "
-                            required={true}
-                            shadow={true}
-                        />
-                    </div> */}
-                    {/* location  */}
-
-                    {/* rating  */}
-                    {/* <div>
-                        <div className="mb-2 block">
-                            <Label
-                                htmlFor="rating"
-                                value="Item rating"
-                            />
-                        </div>
-                        <TextInput
-                            name="rating"
-                            type="text"
-                            placeholder="type rating "
-                            required={true}
-                            shadow={true}
-                        />
-                    </div> */}
-                    {/* location 1  */}
-                    {/* <div>
-                        <div className="mb-2 block">
-                            <Label
-                                htmlFor="location1"
-                                value="Your location1"
-                            />
-                        </div>
-                        <TextInput
-                            name="location1"
-                            type="text"
-                            placeholder="Type item Location1 "
-                            required={true}
-                            shadow={true}
-                        />
-                    </div> */}
-                    {/* tital view  */}
-                    {/* <div>
-                        <div className="mb-2 block">
-                            <Label
-                                htmlFor="total_view"
-                                value=" total_view"
-                            />
-                        </div>
-                        <TextInput
-                            name="total_view"
-                            type="text"
-                            placeholder=" total_view    "
-                            required={true}
-                            shadow={true}
-                        />
-                    </div> */}
-                    {/* title */}
+                <form onSubmit={handleAddItem} className="flex mx-4 m-auto flex-col gap-4  p-8 rounded">
                     <div>
                         <div className="mb-2 block">
                             <Label
                                 htmlFor="heading"
                                 value="Heading"
-                                className="font-semibold text-xl"
+                                className="font-semibold text-xl text-white"
                             />
                         </div>
                         <TextInput
@@ -211,13 +100,12 @@ const AddNews = () => {
                             shadow={true}
                         />
                     </div>
-                    {/* details */}
                     <div>
                         <div className="mb-2 block">
                             <Label
                                 htmlFor="details"
-                                value=" details"
-                                className="font-semibold text-xl"
+                                value="Details"
+                                className="font-semibold text-xl text-white"
 
                             />
                         </div>
@@ -237,7 +125,7 @@ const AddNews = () => {
                             <Label
                                 htmlFor="location"
                                 value="News location"
-                                className="font-semibold text-xl"
+                                className="font-semibold text-xl text-white"
                             />
                         </div>
                         <TextInput
@@ -250,27 +138,19 @@ const AddNews = () => {
                             className="text-lg font-light"
                         />
                     </div>
-                    {/* <div>
+                    <div>
                         <div className="mb-2 block">
                             <Label
-                                htmlFor="author"
-                                value="author"
+                                htmlFor=""
+                                value="Select Category"
+                                className="font-semibold text-xl text-white"
                             />
                         </div>
-                        <TextInput
-                            name='author'
-                            type="text"
-                            placeholder='type Your author'
-                            required={true}
-                            shadow={true}
-                        />
-                    </div> */}
-                    <div>
-                        <select name='categoryId' defaultValue={'All'} className="select text-black font-normal  w-full hmax-w-xs rounded my-2">
+                        <select name='categoryId' defaultValue='All' className="select text-black font-normal  w-full hmax-w-xs rounded my-2">
                             <option disabled selected>Type of news</option>
                             {
                                 categories?.map(category =>
-                                    <option defaultValue={category._id}>{category.name}</option>
+                                    <option  defaultValue={category?.name}>{category?.name}</option>
 
                                 )
                             }
@@ -280,12 +160,12 @@ const AddNews = () => {
                         <input required type="file" name='img' className="file-input text-base  file-input-bordered w-full border-2 rounded mb-2" />
                     </div>
 
-                    {/* {
-                    loading ? (<Loading></Loading>) : (<Button className='mb-8' type="submit">
-                        Add product
-                    </Button>)
-                } */}
-                    <Button className='mb-8' type="submit">
+                    <div className="flex items-center justify-center">
+                        {
+                            loading && <Loader></Loader>
+                        }
+                    </div>
+                    <Button className='mb-8 bg-green-800 w-fit px-14 mx-auto hover:bg-green-600 shadow' type="submit">
                         Add News
                     </Button>
                 </form>

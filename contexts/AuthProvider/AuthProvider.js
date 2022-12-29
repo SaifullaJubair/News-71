@@ -3,7 +3,7 @@ import React, { createContext, useEffect, useState } from 'react';
 
 
 
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, signOut, updateProfile } from "firebase/auth"
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, signOut, updateProfile } from "firebase/auth";
 import app from '../../Firebase/firebase.config';
 
 export const AuthContext = createContext()
@@ -14,6 +14,7 @@ export const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
     // useState
     const [user, setUser] = useState(null);
+    const [editId, setEditID] = useState(null);
     const [loading, setLoading] = useState(true);
 
     // Provider
@@ -73,6 +74,8 @@ const AuthProvider = ({ children }) => {
         updateUserProfile,
         forgotPassword,
         redirect,
+        editId,
+        setEditID
     };
 
     return (

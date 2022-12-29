@@ -1,17 +1,10 @@
-import AddNews from "../AddNews/AddNews";
-import AllNews from "../AllNews/AllNews";
-import AllUsers from "../AllUsers/AllUsers";
-import Categories from "../Categories/Categories";
-import Statistics from "../Statistics/Statistics";
+import DashboardSideBar from "../../Shared/DashboardSideBar/DashboardSideBar";
 
 const Dashboard = () => {
     return (
-        <div>
-            <Statistics></Statistics>
-            <AllNews></AllNews>
-            <AddNews></AddNews>         
-            <Categories></Categories>
-            <AllUsers></AllUsers>
+        <div className="max-w-[1440px] w-[95%] mx-auto flex gap-6 mt-[100px]">
+            <DashboardSideBar></DashboardSideBar>
+            <h2 className="text-2xl font-bold flex-grow text-center">Welcome to Dashboard</h2>
         </div>
     );
 };
