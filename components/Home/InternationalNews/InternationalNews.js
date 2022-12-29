@@ -44,7 +44,7 @@ const InternationalNews = () => {
         }
     })
 
-    // console.log(internationals)
+    // console.log(newsnationals)
 
     return (
         <div>
@@ -54,15 +54,15 @@ const InternationalNews = () => {
                     <div className="shadow-md p-3">
                         <h2> <span className="font-semibold text-lg">{'Ukraine'}'s</span> top News</h2>
                         {
-                            ukraine.map(inter => <div className="my-3 w-full duration-300 hover:-translate-y-2">
+                            ukraine.map(news => <div className="my-3 w-full duration-300 hover:-translate-y-2">
+                                <Link href={`/news/view/${news?._id}`} className=''>
+                                    <div className="mt-3 ">
+                                        <img className="rounded flex justify-center items-center   h-52 w-full" src={news.img} alt="" />
 
-                                <div className="mt-3 ">
-                                    <img className="rounded flex justify-center items-center   h-52 w-full" src={inter.img} alt="" />
 
-                                    <Link href={'/'} className=''>
-                                        <h2 className="border-b py-4 border-gray-300 ">{inter.heading?.slice(0, 80)}...</h2>
-                                    </Link>
-                                </div>
+                                        <h2 className="border-b py-4 border-gray-300 ">{news.heading?.slice(0, 80)}...</h2>
+                                    </div>
+                                </Link>
                             </div>)
                         }
                         <Button>
@@ -73,18 +73,18 @@ const InternationalNews = () => {
                     <div className="shadow-md p-3">
                         <h2><span className="font-semibold text-lg">{'Russia'}'s</span> top News</h2>
                         {
-                            russia.map(inter => <div className="my-3 duration-300 hover:-translate-y-2">
+                            russia.map(news => <div className="my-3 duration-300 hover:-translate-y-2">
+                                <Link href={`/news/view/${news?._id}`} className=''>
+                                    <div className="mt-3 ">
 
-                                <div className="mt-3 ">
+                                        <img className="rounded flex justify-center items-center   h-52 w-full" src={news.img} alt="" />
 
-                                    <img className="rounded flex justify-center items-center   h-52 w-full" src={inter.img} alt="" />
 
-                                    <Link href={'/'} className=''>
-                                        <h2 className="border-b py-4 border-gray-300 ">{inter.heading?.slice(0, 80)}...</h2>
+                                        <h2 className="border-b py-4 border-gray-300 ">{news.heading?.slice(0, 80)}...</h2>
 
-                                    </Link>
 
-                                </div>
+                                    </div>
+                                </Link>
                             </div>)
                         }
 
@@ -96,18 +96,18 @@ const InternationalNews = () => {
                     <div className="shadow-md p-3 ">
                         <h2 ><span className="font-semibold text-lg">{'Beijing'} 's</span> top News</h2>
                         {
-                            beijing.map(inter => <div className="my-3 duration-300 hover:-translate-y-2">
+                            beijing.map(news => <div className="my-3 duration-300 hover:-translate-y-2">
+                                <Link href={`/news/view/${news?._id}`} className=''>
+                                    <div className="mt-3 ">
 
-                                <div className="mt-3 ">
+                                        <img className="rounded flex justify-center items-center   h-52 w-full" src={news.img} alt="" />
 
-                                    <img className="rounded flex justify-center items-center   h-52 w-full" src={inter.img} alt="" />
 
-                                    <Link href={'/'} className=''>
-                                        <h2 className="border-b py-4 border-gray-300 ">{inter.heading?.slice(0, 80)}...</h2>
+                                        <h2 className="border-b py-4 border-gray-300 ">{news.heading?.slice(0, 80)}...</h2>
 
-                                    </Link>
 
-                                </div>
+                                    </div>
+                                </Link>
                             </div>)
                         }
 
@@ -119,16 +119,16 @@ const InternationalNews = () => {
                     <div className="shadow-md p-3">
                         <h2><span className="font-semibold text-lg">{'Japan'}'s</span> top News</h2>
                         {
-                            japan.map(inter => <div className="my-3 duration-300 hover:-translate-y-2">
+                            japan.map(news => <div className="my-3 duration-300 hover:-translate-y-2">
+                                <Link href={`/news/view/${news?._id}`} className=''>
+                                    <div className="mt-3 ">
 
-                                <div className="mt-3 ">
+                                        <img className="rounded flex justify-center items-center   h-52 w-full" src={news.img} alt="" />
 
-                                    <img className="rounded flex justify-center items-center   h-52 w-full" src={inter.img} alt="" />
-                                    <Link href={'/'} className=''>
-                                        <h2 className="border-b py-4 border-gray-300 ">{inter.heading?.slice(0, 80)}...</h2>
-                                    </Link>
+                                        <h2 className="border-b py-4 border-gray-300 ">{news.heading?.slice(0, 80)}...</h2>
 
-                                </div>
+                                    </div>
+                                </Link>
                             </div>
                             )
                         }
