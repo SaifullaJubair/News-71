@@ -9,9 +9,9 @@ import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 const Login = () => {
     const [error, setError] = useState("");
     const [userEmail, setUserEmail] = useState("");
-    const { providerLogin, logOut, forgotPassword, } = useContext(AuthContext);
+    const { providerLogin, logOut, forgotPassword, user } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
-
+    console.log('FirebaseUser:', user)
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
             .then((result) => {
@@ -208,9 +208,9 @@ const Login = () => {
                                         >
                                             <FaFacebookF className="mr-4 text-xl " /> Facebook
                                         </Button>
-                                
 
-                                 
+
+
 
                                     </div>
                                 </div>
