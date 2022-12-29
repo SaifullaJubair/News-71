@@ -3,7 +3,6 @@ import React from 'react';
 import RightBar from '../../../components/RightBar/RightBar';
 import SinglePage from '../../../components/SinglePage/SinglePage';
 
-
 const singlePage = () => {
  
 

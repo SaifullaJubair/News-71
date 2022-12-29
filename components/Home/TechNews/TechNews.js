@@ -24,7 +24,7 @@ const TechNews = () => {
                 <div className="grid gap-5 row-gap-5 mb-8 lg:grid-cols-4 sm:grid-cols-2">
                     {
                         newes?.map(news =>
-                            <div
+                            <div className="w-[100%]"
                                 key={news?._id}>
                                 <Link
                                     href={`/news/view/${news?._id}`}
@@ -34,7 +34,7 @@ const TechNews = () => {
                                     <div className="flex flex-col h-full overflow-hidden duration-300 transform bg-white rounded shadow-sm hover:-translate-y-2">
                                         <img
                                             src={news?.img}
-                                            className="object-cover w-full h-48"
+                                            className=""
                                             alt=""
                                         />
 
