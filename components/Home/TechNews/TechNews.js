@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const TechNews = () => {
@@ -25,8 +26,8 @@ const TechNews = () => {
                         newes?.map(news =>
                             <div
                                 key={news?._id}>
-                                <a
-                                    href="/"
+                                <Link
+                                    href={`/news/view/${news?._id}`}
                                     aria-label="View Item"
                                     className=""
                                 >
@@ -48,7 +49,7 @@ const TechNews = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                </Link>
                             </div>
 
                         )

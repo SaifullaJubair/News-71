@@ -7,7 +7,7 @@ const InternationalNews = () => {
     const [beijing, setBeijing] = useState([])
     const [ukraine, setUkraine] = useState([])
     const [japan, setJapan] = useState([])
-    console.log(ukraine)
+    // console.log(ukraine)
     const { data: internationals = [], } = useQuery({
         queryKey: ['internationals'],
 
@@ -18,6 +18,7 @@ const InternationalNews = () => {
             let u = []
             let j = []
             let b = []
+            console.log(data)
             data.map(news => {
                 if (news.location === 'Russia') {
                     r.push(news)
@@ -41,7 +42,7 @@ const InternationalNews = () => {
         }
     })
 
-    console.log(internationals)
+    // console.log(internationals)
 
     return (
         <div className=" ">
@@ -50,25 +51,27 @@ const InternationalNews = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-4  ">
                     <div className="shadow-md shadow-slate-500">
                         <h2 className="text-lg font-semibold ml-3 ">{'Ukraine'}</h2>
-                        {
-                            ukraine.map(inter => <div className="my-3">
 
-                                <div className="mt-3 ">
+                        {/* ukrain  */}
+                        {
+                            ukraine.map(news => <Link href={`/news/view/${news?._id}`} className="my-3">
+
+                                <div className=" mt-3    hover:opacity-70 ">
                                     {/* <Link href={'/'}>
 
                                 <img className="rounded flex justify-center items-center w-96" src={inter.img} alt="" />
                                 <h2 className="border-b-2 border-gray-400 pb-3  text-xl font-semibold my-2 mx-1 ">{inter.heading?.slice(0,50)}...</h2>
 
                             </Link> */}
-                                    <img className="rounded flex justify-center items-center   h-60 w-96" src={inter.img} alt="" />
+                                    <img className="rounded flex justify-center items-center   h-60 w-96" src={news.img} alt="" />
 
-                                    <Link href={'/'} className=''>
-                                        <h2 className="border-b-2 pb-2 border-gray-400 text-xl font-semibold my-2  mx-1 p">{inter.heading?.slice(0, 50)}...</h2>
+                                    <Link href={`/news/view/${news?._id}`} className=''>
+                                        <h2 className="border-b-2 pb-2 border-gray-400 text-xl font-semibold my-2  mx-1 p">{news.heading?.slice(0, 50)}...</h2>
 
                                     </Link>
 
                                 </div>
-                            </div>)
+                            </Link>)
                         }
 
                         <button className="px-4 text-center py-2 bg-blue-700 rounded-md max-w-96 mx-1">More +</button>
@@ -77,19 +80,19 @@ const InternationalNews = () => {
                     <div className="shadow-md shadow-slate-500">
                         <h2 className="text-lg font-semibold ml-3 ">{'Russia'}</h2>
                         {
-                            russia.map(inter => <div className="my-3">
+                            russia.map(news => <div className="my-3">
 
-                                <div className="mt-3 ">
+                                <div className=" mt-3  hover:opacity-70 ">
                                     {/* <Link href={'/'}>
 
                                 <img className="rounded flex justify-center items-center w-96" src={inter.img} alt="" />
                                 <h2 className="border-b-2 border-gray-400 pb-3  text-xl font-semibold my-2 mx-1 ">{inter.heading?.slice(0,50)}...</h2>
 
                             </Link> */}
-                                    <img className="rounded flex justify-center items-center   h-60 w-96" src={inter.img} alt="" />
 
-                                    <Link href={'/'} className=''>
-                                        <h2 className="border-b-2 pb-2 border-gray-400 text-xl font-semibold my-2  mx-1">{inter.heading?.slice(0, 50)}...</h2>
+                                    <Link href={`/news/view/${news?._id}`} className=''>
+                                    <img className="rounded flex justify-center items-center   h-60 w-96" src={news.img} alt="" />
+                                        <h2 className="border-b-2 pb-2 border-gray-400 text-xl font-semibold my-2  mx-1">{news.heading?.slice(0, 50)}...</h2>
 
                                     </Link>
 
@@ -103,19 +106,20 @@ const InternationalNews = () => {
                     <div className="shadow-md shadow-slate-500">
                         <h2 className="text-lg font-semibold ml-3  ">{'Beijing'}</h2>
                         {
-                            beijing.map(inter => <div className="my-3">
+                            beijing.map(news => <div className="my-3">
 
-                                <div className="mt-3 ">
+                                <div className=" mt-3  hover:opacity-70 ">
                                     {/* <Link href={'/'}>
 
                                 <img className="rounded flex justify-center items-center w-96" src={inter.img} alt="" />
                                 <h2 className="border-b-2 border-gray-400 pb-3  text-xl font-semibold my-2 mx-1 ">{inter.heading?.slice(0,50)}...</h2>
 
                             </Link> */}
-                                    <img className="rounded flex justify-center items-center   h-60 w-96" src={inter.img} alt="" />
 
-                                    <Link href={'/'} className=''>
-                                        <h2 className="border-b-2 pb-2 border-gray-400 text-xl font-semibold my-2  mx-1">{inter.heading?.slice(0, 50)}...</h2>
+                                    <Link href={`/news/view/${news?._id}`}
+                                     className=''>
+                                    <img className="rounded flex justify-center items-center   h-60 w-96" src={news.img} alt="" />
+                                        <h2 className="border-b-2 pb-2 border-gray-400 text-xl font-semibold my-2  mx-1">{news.heading?.slice(0, 50)}...</h2>
 
                                     </Link>
 
@@ -129,19 +133,20 @@ const InternationalNews = () => {
                     <div className="shadow-md shadow-slate-500">
                         <h2 className="text-lg font-semibold ml-3 ">{'Japan'}</h2>
                         {
-                            japan.map(inter => <div className="my-3">
+                            japan.map(news => <div className="my-3">
 
-                                <div className="mt-3 ">
+                                <div className=" mt-3  hover:opacity-70 ">
                                     {/* <Link href={'/'}>
 
-                                <img className="rounded flex justify-center items-center w-96" src={inter.img} alt="" />
-                                <h2 className="border-b-2 border-gray-400 pb-3  text-xl font-semibold my-2 mx-1 ">{inter.heading?.slice(0,50)}...</h2>
+                                <img className="rounded flex justify-center items-center w-96" src={news.img} alt="" />
+                                <h2 className="border-b-2 border-gray-400 pb-3  text-xl font-semibold my-2 mx-1 ">{news.heading?.slice(0,50)}...</h2>
 
                             </Link> */}
-                                    <img className="rounded flex justify-center items-center   h-60 w-96" src={inter.img} alt="" />
+                                    <Link href={`/news/view/${news?._id}`
+                                } className=''>
+                                    <img className="rounded flex justify-center items-center   h-60 w-96" src={news.img} alt="" />
 
-                                    <Link href={'/'} className=''>
-                                        <h2 className="border-b-2 pb-3 border-gray-400 text-xl font-semibold my-2  mx-1">{inter.heading?.slice(0, 50)}...</h2>
+                                        <h2 className="border-b-2 pb-3 border-gray-400 text-xl font-semibold my-2  mx-1">{news.heading?.slice(0, 50)}...</h2>
 
                                     </Link>
 

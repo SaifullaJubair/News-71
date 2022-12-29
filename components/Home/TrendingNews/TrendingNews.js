@@ -2,6 +2,7 @@ import { Link } from "@mui/material";
 import { useEffect, useState } from "react";
 const TrendingNews = () => {
     const [singleNews, setSingleNews] = useState(null);
+    console.log(singleNews)
     const [nextFourNews, setNextFourNews] = useState(null);
     const [newses, setNewses] = useState(null);
     useEffect(() => {

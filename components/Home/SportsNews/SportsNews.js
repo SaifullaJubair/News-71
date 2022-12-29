@@ -65,13 +65,17 @@ const SportsNews = () => {
                             </p>
                             <div className='flex justify-evenly'>
                                 <div>
-                                    <Button
-                                        className='btn '
+                                    <Link href={`/news/view/${sport1._id}`}
+                                        className='btn btn-primary '
                                         outline={true}
                                         gradientDuoTone="cyanToBlue"
                                     >
-                                        More +
-                                    </Button>
+                                        <Button
+                                            outline={true}
+                                            gradientDuoTone="purpleToBlue"
+                                        >
+                                            Details</Button>
+                                    </Link>
                                 </div>
                                 <div>
                                     <Button
@@ -91,7 +95,7 @@ const SportsNews = () => {
                 <div className=' shadow-lg'>
                     <div className='flex flex-col justify-center items-center'>
                         {
-                            sports.map(sport => <Link href={'/'} className='rounded-lg     m-2 p-2 lg:p-0 lg:flex justify-between gap-2'>
+                            sports.map(sport => <Link  href={`/news/view/${sport._id}`} className='rounded-lg     m-2 p-2 lg:p-0 lg:flex justify-between gap-2'>
                                 <div>
                                     <img className='lg:w-11/12 h-full rounded my-2 ' src={sport.img} alt="" />
                                 </div>
@@ -103,7 +107,17 @@ const SportsNews = () => {
                                         {sport?.details?.slice(0, 50)}...
                                     </p>
                                     <div className='flex justify-evenly lg:hidden'>
-                                        <Button>More +</Button>
+                                    <Link href={`/news/view/${sport._id}`}
+                                        className='btn btn-primary '
+                                        outline={true}
+                                        gradientDuoTone="cyanToBlue"
+                                    >
+                                        <Button
+                                            outline={true}
+                                            gradientDuoTone="purpleToBlue"
+                                        >
+                                            Details</Button>
+                                    </Link>
                                         <Button>Share </Button>
                                     </div>
                                 </div>
