@@ -5,14 +5,12 @@ import EntertainmentNews from '../components/Home/EntertainmentNews/Entertainmen
 import InternationalNews from '../components/Home/InternationalNews/InternationalNews'
 import LatestNews from '../components/Home/LatestNews/LatestNews'
 import LifeStyleNews from '../components/Home/LifeStyleNews/LifeStyleNews'
-import Marquee from '../components/Home/Marquee/Marquee'
 import Marquee1 from '../components/Home/Marquee/Marquee1'
 import PoliticalNews from '../components/Home/PoliticalNews/PoliticalNews'
 import SportsNews from '../components/Home/SportsNews/SportsNews'
 import TechNews from '../components/Home/TechNews/TechNews'
 import TrendingNews from '../components/Home/TrendingNews/TrendingNews'
 import NavbarBottom from '../components/Shared/Navbar/Navbar'
-import TopBar from '../components/Shared/TopBar/TopBar'
 
 
 const inter = Inter({ subsets: ['latin'] })

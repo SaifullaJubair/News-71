@@ -16,7 +16,8 @@ const LatestNews = () => {
 
 
       <div className="h-[500px] mt-12">
-         <h1 className="font-bold text-2xl mb-6">Latest News</h1>
+         <h1 className="font-bold text-2xl mb-8">Latest News</h1>
+
          <Carousel>
             {
                newes?.map(
