@@ -21,7 +21,7 @@ const SportsNews = () => {
         queryKey: ['sports'],
 
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/news/Sports?length=6`);
+            const res = await fetch(`http://localhost:5000/news/Sports?length=4`);
             const data = await res.json();
 
             return data;

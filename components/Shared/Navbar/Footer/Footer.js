@@ -1,5 +1,9 @@
+import { useContext } from "react";
+import { AuthContext } from "../../../../Contexts/AuthProvider/AuthProvider";
 
 const Footer = () => {
+    const { user, logout } = useContext(AuthContext)
+    // console.log(user)
     return (
         <div className='max-w-[1440px] w-[95%] mx-auto mt-6'>
             <div className="pt-16 mx-auto ">

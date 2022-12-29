@@ -1,26 +1,28 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { BiCategory, BiGroup } from 'react-icons/bi';
 import { BsGraphUp, BsNewspaper } from 'react-icons/bs';
 import { CgAddR } from 'react-icons/cg';
 import { HiOutlineMenu } from 'react-icons/hi';
 import { MdOutlineAccountCircle } from 'react-icons/md';
+import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 
 const DashboardSideBar = () => {
+    const {user} = useContext(AuthContext)
     const [hide, setHide] = useState(true);
 
     const handleToggle = () => {
         setHide(!hide);
     }
     return (
-        <div className='bg-blue-700 text-white  rounded-sm w-fit ' onMouseEnter={() => setHide(false)} >
+        <div className='bg-blue-700 min-h-screen text-white  rounded-sm w-fit ' onMouseEnter={() => setHide(false)} >
             <div className={hide ? `h-full p-3 space-y-2 w-[80px] ` : `h-full p-3 space-y-2 w-[200px]  `}>
                 <div className={hide ? `flex flex-col gap-4 py-2 items-center` : `flex flex-col gap-4 py-2 ml-4`}>
                     <span onClick={() => handleToggle()} className={hide ? 'flex items-center justify-center text-center text-xl' : `flex text-lg`}><HiOutlineMenu className={`${!hide} && 'ml-20' `}></HiOutlineMenu> </span>
-                    <img src="https://source.unsplash.com/100x100/?portrait" alt="" className="w-12 h-12 rounded-full dark:bg-gray-500" />
+                    <img src={user?.photoURL} alt="" className="w-12 h-12 rounded-full dark:bg-gray-500" />
                     <div className={hide ? 'hidden hover:block' : 'block'} >
-                        <h2 className="text-lg font-semibold">Leroy Jenkins</h2>
+                        <h2 className="text-lg font-semibold">{user?.displayName}</h2>
                         <h4>Admin</h4>
                     </div>
                 </div>
