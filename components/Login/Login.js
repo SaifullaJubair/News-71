@@ -12,7 +12,7 @@ const Login = () => {
     const { providerLogin, logOut, forgotPassword, signIn, user } = useContext(AuthContext);
     console.log(user)
     const googleProvider = new GoogleAuthProvider();
-
+    console.log('FirebaseUser:', user)
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
             .then((result) => {
@@ -209,9 +209,9 @@ const Login = () => {
                                         >
                                             <FaFacebookF className="mr-4 text-xl " /> Facebook
                                         </Button>
-                                
 
-                                 
+
+
 
                                     </div>
                                 </div>
