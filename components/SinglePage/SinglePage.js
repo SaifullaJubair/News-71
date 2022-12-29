@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaAngleDown, FaComment, FaEye, FaFacebook, FaLocationArrow, FaShare, FaTwitter, FaUser, FaYoutube } from 'react-icons/fa';
 import { BiDislike, BiLike, BiSend } from "react-icons/bi";
 import { Avatar, Button, Rating, TextInput } from 'flowbite-react';
@@ -6,33 +6,49 @@ import Comment from './Comment';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Loader from '../Shared/Loader/Loader';
+import { async } from '@firebase/util';
 
 const SinglePage = () => {
    const router = useRouter()
-   const newsId = router.query.id
+   const [singleNewes, setSingleNews] = useState({})
+console.log(singleNewes)
+   const id = router.query.id
 
 
    const { data: singleNews = [], refetch } = useQuery({
       queryKey: ['singleNews'],
 
       queryFn: async () => {
-         const res = await fetch(`http://localhost:5000/singlenews/${newsId}`);
-         const data = await res.json();
 
-         return data;
+         if (id) {
+            const res = await fetch(`http://localhost:5000/singlenews/${id}`);
+
+            const data = await res.json();
+
+            setSingleNews(data)
+            return data;
+         } else {
+            refetch(1)
+         }
+
 
       }
    })
-   console.log(singleNews.details)
-   console.log(singleNews)
+
    const { heading, details, img, createdAt, email, rating
       , total_dislikes, total_likes, total_view, authorName, category_id
       , location
       , } = singleNews
 
 
+
    return (
-      <div >
+      <div>
+
+        {
+         singleNewes._id? 
+         <div >
          <h2 className='text-3xl font-semibold text-gray-700 mb-6'> {heading}</h2>
 
          <div className='flex flex-wrap gap-3 justify-between  my-3'>
@@ -133,12 +149,16 @@ const SinglePage = () => {
             </Button>
             <Link href='/' size="sm" color="gray" className='text-gray-600 my-8 mx-auto'>
                <span className='font-semibold'><Button
-                 outline={true}
-                 gradientDuoTone="purpleToBlue"
+                  outline={true}
+                  gradientDuoTone="purpleToBlue"
                >Home</Button> </span>
             </Link>
          </div>
 
+      </div>
+      :
+      <Loader></Loader>
+        }
       </div>
    );
 };
