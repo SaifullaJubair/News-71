@@ -27,8 +27,8 @@ const TechNews = () => {
                         newes?.map(news =>
                             <div className="w-[100%]"
                                 key={news?._id}>
-                                <a
-                                    href="/"
+                                <Link
+                                    href={`/news/view/${news?._id}`}
                                     aria-label="View Item"
                                     className=""
                                 >
@@ -50,7 +50,7 @@ const TechNews = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                </Link>
                             </div>
 
                         )

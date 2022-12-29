@@ -9,7 +9,7 @@ const InternationalNews = () => {
     const [beijing, setBeijing] = useState([])
     const [ukraine, setUkraine] = useState([])
     const [japan, setJapan] = useState([])
-    console.log(ukraine)
+    // console.log(ukraine)
     const { data: internationals = [], } = useQuery({
         queryKey: ['internationals'],
 
@@ -20,6 +20,7 @@ const InternationalNews = () => {
             let u = []
             let j = []
             let b = []
+            console.log(data)
             data.map(news => {
                 if (news.location === 'Russia') {
                     r.push(news)
@@ -43,7 +44,7 @@ const InternationalNews = () => {
         }
     })
 
-    console.log(internationals)
+    // console.log(internationals)
 
     return (
         <div>

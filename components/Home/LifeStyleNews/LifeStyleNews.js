@@ -73,3 +73,4 @@ const LifeStyleNews = () => {
 };
 
 export default LifeStyleNews;
+

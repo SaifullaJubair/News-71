@@ -1,45 +1,27 @@
 import { Carousel } from 'flowbite-react';
+import Link from 'next/link';
 import React from 'react';
 
-const RightBar = () => {
+const RightBar = ({ categoryNewes , rightClick }) => {
+   console.log(categoryNewes)
+   
    return (
       <div>
-         <div className="flex gap-2">
-            <div className="flex-shrink-0 w-full mb-6 h-44 sm:h-32 sm:w-32 sm:mb-0">
-               <img src="https://source.unsplash.com/100x100/?portrait?1" alt="" className="object-cover object-center w-full h-full rounded dark:bg-gray-500" />
-            </div>
-            <div>
-               <h2 className="font-semibold">Leroy Jenkins</h2>
-               <span className="text-sm text-gray-400">Date: 12 Dec 2022</span>
-               <p className='text-xs py-2'>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo ab eius nostrum dolore esse ipsum itaque maxime ....!
-               </p>
-            </div>
-         </div>
-         <div className="flex gap-2 my-4">
-            <div className="flex-shrink-0 w-full mb-6 h-44 sm:h-32 sm:w-32 sm:mb-0">
-               <img src="https://source.unsplash.com/100x100/?portrait?1" alt="" className="object-cover object-center w-full h-full rounded dark:bg-gray-500" />
-            </div>
-            <div>
-               <h2 className="font-semibold">Leroy Jenkins</h2>
-               <span className="text-sm text-gray-400">Date: 12 Dec 2022</span>
-               <p className='text-xs py-2'>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo ab eius nostrum dolore esse ipsum itaque maxime ....!
-               </p>
-            </div>
-         </div>
-         <div className="flex gap-2">
-            <div className="flex-shrink-0 w-full mb-6 h-44 sm:h-32 sm:w-32 sm:mb-0">
-               <img src="https://source.unsplash.com/100x100/?portrait?1" alt="" className="object-cover object-center w-full h-full rounded dark:bg-gray-500" />
-            </div>
-            <div>
-               <h2 className="font-semibold">Leroy Jenkins</h2>
-               <span className="text-sm text-gray-400">Date: 12 Dec 2022</span>
-               <p className='text-xs py-2'>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo ab eius nostrum dolore esse ipsum itaque maxime ....!
-               </p>
-            </div>
-         </div>
+         {
+            categoryNewes.map(category => <div  onClick={() => rightClick(category._id)}  className="flex gap-2 cursor-pointer mb-6 shadow-md">
+               <div className="flex-shrink-0 w-full mb-6 h-44 sm:h-32 sm:w-32 sm:mb-0 text-left ">
+                  <img className='h-28 rounded' src={category?.img} />
+               </div>
+               <div>
+                  <h2 className="font-semibold mt-0 pt-0">{category.heading?.slice(0, 17)}...</h2>
+                  <span className="text-xs text-gray-400">Date: {category?.createdAt}</span>
+                  <p className='text-xs py-2'>
+                     {category.details.slice(0, 45)}...
+                  </p>
+               </div>
+            </div>)
+         }
+        
 
 
 
