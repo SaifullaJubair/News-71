@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaAngleDown, FaComment, FaEye, FaFacebook, FaLocationArrow, FaShare, FaTwitter, FaUser, FaYoutube } from 'react-icons/fa';
 import { BiDislike, BiLike, BiSend } from "react-icons/bi";
 import { Avatar, Button, Rating, TextInput } from 'flowbite-react';
 import Comment from './Comment';
+import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const SinglePage = () => {
+   const { user } = useContext(AuthContext)
+   console.log(user)
    return (
       <div >
          <h2 className='text-3xl font-semibold text-gray-700 mb-6'>News heading, Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nostrum autem mole</h2>

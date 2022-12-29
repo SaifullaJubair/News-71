@@ -4,7 +4,7 @@ import '../styles/LoginPage.module.css';
 
 const LoginPage = () => {
     return (
-        <div>
+        <div className='max-w-[1440px] w-[95%] mx-auto'>
             <Login></Login>
         </div>
     );
