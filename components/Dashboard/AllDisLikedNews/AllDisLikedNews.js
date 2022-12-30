@@ -6,9 +6,11 @@ const AllDisLikedNews = () => {
     const { user } = useContext(AuthContext);
     console.log(user);
     return (
-        <div  className='max-w-[1440px] w-[95%] mx-auto flex gap-6 mt-7'>
+        <div className='max-w-[1440px] w-[95%] mx-auto flex gap-6 mt-7'>
             <DashboardSideBar></DashboardSideBar>
-            <p>All disliked </p>
+            <div>
+                <h1>ALL Dislike News</h1>
+            </div>
         </div>
     );
 };
