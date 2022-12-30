@@ -26,6 +26,7 @@ const LifeStyleNews = () => {
                 <div className="grid grid-cols-1 gap-4 mx-auto md:grid-cols-4">
                     {
                         nextFourNews?.map(news =>
+                           <Link href={`/news/view/${news?._id}`}>
                             <div class=" w-full rounded overflow-hidden duration-300 hover:-translate-y-2 shadow-lg">
                                 <img
                                     src={news?.img}
@@ -39,13 +40,13 @@ const LifeStyleNews = () => {
                                                 `${singleNews?.heading.slice(0, 40)}...` : singleNews?.heading}
                                     </div>
                                 </div>
-                            </div>
+                            </div></Link>
                         )
                     }
 
 
 
-                    <Link href='#' className="col-span-2 row-span-2 md:col-start-1 md:row-start-1 shadow-md "  >
+                    <Link href={`/news/view/${singleNews?._id}`} className="col-span-2 row-span-2 md:col-start-1 md:row-start-1 shadow-md "  >
                         <div class=" w-full rounded overflow-hidden duration-300 hover:-translate-y-2 ">
                             <img
                                 src={singleNews?.img}
@@ -73,3 +74,4 @@ const LifeStyleNews = () => {
 };
 
 export default LifeStyleNews;
+

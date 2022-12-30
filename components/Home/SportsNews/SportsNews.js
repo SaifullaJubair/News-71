@@ -21,7 +21,7 @@ const SportsNews = () => {
         queryKey: ['sports'],
 
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/news/Sports?length=6`);
+            const res = await fetch(`http://localhost:5000/news/Sports?length=4`);
             const data = await res.json();
 
             return data;
@@ -52,38 +52,47 @@ const SportsNews = () => {
             <div className='grid lg:grid-cols-3 gap-4'>
                 {/* left side  */}
                 {
-                    sports1.map(sport1 => <div className='rounded-lg   shadow-2xl my- py-1 lg:col-span-2 md:col-span-0'>
-                        <div>
-                            <img className='w-full rounded my-2 ml-2' src={sport1.img} alt="" />
-                        </div>
-                        <div className='mx-4'>
-                            <h2 className='text-xl font-bold'>
-                                {sport1.heading}
-                            </h2>
-                            <p className='text-xs'>
-                                {sport1?.details?.slice(0, 200)}...
-                            </p>
-                            <div className='flex justify-evenly'>
+                    sports1.map(sport1 =>
+                        <div className='rounded-lg  duration-300 hover:-translate-y-2  shadow-2xl my- py-1 lg:col-span-2 md:col-span-0'>
+                            <Link href={`/news/view/${sport1?._id}`} >
                                 <div>
-                                    <Button
-                                        className='btn '
-                                        outline={true}
-                                        gradientDuoTone="cyanToBlue"
-                                    >
-                                        More +
-                                    </Button>
+                                    <img className='w-full rounded my-2 ml-2' src={sport1.img} alt="" />
                                 </div>
-                                <div>
-                                    <Button
-                                        outline={true}
-                                        gradientDuoTone="cyanToBlue"
-                                    >
-                                        Share
-                                    </Button>
+                                <div className='mx-4'>
+                                    <h2 className='text-xl font-bold'>
+                                        {sport1.heading}
+                                    </h2>
+                                    <p className='text-xs'>
+                                        {sport1?.details?.slice(0, 200)}...
+                                    </p>
+                                    <div className='flex justify-evenly'>
+                                        <div>
+                                            <Link href={`/news/view/${sport1._id}`}
+                                                className='btn btn-primary '
+                                                outline={true}
+                                                gradientDuoTone="cyanToBlue"
+                                            >
+                                                <Button
+                                                    outline={true}
+                                                    gradientDuoTone="purpleToBlue"
+                                                >
+                                                    Details</Button>
+                                            </Link>
+                                        </div>
+                                        <div>
+                                            <Button
+                                                outline={true}
+                                                gradientDuoTone="cyanToBlue"
+                                            >
+                                                Share
+                                            </Button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
+
                         </div>
-                    </div>)
+                    )
                 }
 
                 {/* right side  */}
@@ -91,7 +100,7 @@ const SportsNews = () => {
                 <div className=' shadow-lg'>
                     <div className='flex flex-col justify-center items-center'>
                         {
-                            sports.map(sport => <Link href={'/'} className='rounded-lg     m-2 p-2 lg:p-0 lg:flex justify-between gap-2'>
+                            sports.map(sport => <Link href={`/news/view/${sport._id}`} className='rounded-lg     m-2 p-2 lg:p-0 lg:flex justify-between gap-2'>
                                 <div>
                                     <img className='lg:w-11/12 h-full rounded my-2 ' src={sport.img} alt="" />
                                 </div>
@@ -103,7 +112,17 @@ const SportsNews = () => {
                                         {sport?.details?.slice(0, 50)}...
                                     </p>
                                     <div className='flex justify-evenly lg:hidden'>
-                                        <Button>More +</Button>
+                                        <Link href={`/news/view/${sport._id}`}
+                                            className='btn btn-primary '
+                                            outline={true}
+                                            gradientDuoTone="cyanToBlue"
+                                        >
+                                            <Button
+                                                outline={true}
+                                                gradientDuoTone="purpleToBlue"
+                                            >
+                                                Details</Button>
+                                        </Link>
                                         <Button>Share </Button>
                                     </div>
                                 </div>

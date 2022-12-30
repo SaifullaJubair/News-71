@@ -9,7 +9,8 @@ import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 const Login = () => {
     const [error, setError] = useState("");
     const [userEmail, setUserEmail] = useState("");
-    const { providerLogin, logOut, forgotPassword, user,signIn } = useContext(AuthContext);
+    const { providerLogin, logOut, forgotPassword, signIn, user } = useContext(AuthContext);
+    console.log(user)
     const googleProvider = new GoogleAuthProvider();
     console.log('FirebaseUser:', user)
     const handleGoogleSignIn = () => {

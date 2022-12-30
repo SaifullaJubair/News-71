@@ -1,5 +1,9 @@
+import { useContext } from "react";
+
 
 const Footer = () => {
+
+  
     return (
         <div className='max-w-[1440px] w-[95%] mx-auto mt-6'>
             <div className="pt-16 mx-auto ">

@@ -9,6 +9,7 @@ import { BiBuoy } from 'react-icons/bi';
 
 const TopBar = () => {
   const { user, logout } = useContext(AuthContext)
+
   const handleLogOut = () => {
     logout()
       .then(() => { })
@@ -46,7 +47,7 @@ const TopBar = () => {
             user?.uid ?
               <>
 
-                <Navbar.Link className='text-base font-semibold' href='dashboard'> DashBoard</Navbar.Link>
+                <Navbar.Link className='text-base font-semibold' href='/dashboard'> DashBoard</Navbar.Link>
                 <Navbar.Link className='text-base font-semibold' onClick={handleLogOut}> Logout</Navbar.Link>
 
               </>

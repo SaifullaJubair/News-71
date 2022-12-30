@@ -1,10 +1,12 @@
-import { Button, Label, TextInput } from "flowbite-react";
-import { useEffect, useState } from "react";
+import { Button, Label, Textarea, TextInput } from "flowbite-react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import DashboardSideBar from "../../Shared/DashboardSideBar/DashboardSideBar";
 import Loader from "../../Shared/Loader/Loader";
 
 const AddNews = () => {
+    const { user } = useContext(AuthContext)
 
     const [categories, setCategories] = useState(null);
     const [loading, setLoading] = useState(false)
@@ -20,7 +22,7 @@ const AddNews = () => {
 
     const handleAddItem = (event) => {
         event.preventDefault()
-        setLoading(true)
+        
         const form = event.target;
         const category_id = form.categoryId.value;
         const total_likes = 0;
@@ -30,7 +32,7 @@ const AddNews = () => {
         const total_view = 0;
         const heading = form.heading.value;
         const details = form.details.value;
-        const author = 'News-71';
+        const author = user?.displayName;
         const image = form.img.files[0];
         const date = new Date();
         const formatDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
@@ -48,10 +50,11 @@ const AddNews = () => {
 
                     const addItem = {
                         heading: heading,
-                        email: 'news-71@gmail.com',
+                        email: user?.email,
                         authorName: author,
                         img: data.data.url,
-                        total_dislikes, total_likes, category_id, location, details, total_view, rating, createdAt: formatDate
+                        total_dislikes, total_likes, category_id, location, details, total_view, rating, createdAt: formatDate,
+                        authorImg: user?.photoURL
                     }
 
                     fetch('http://localhost:5000/addnews', {
@@ -63,6 +66,7 @@ const AddNews = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
+                            setLoading(false)
                             form.reset('')
                             toast("added successful", {
                                 position: toast.POSITION.TOP_CENTER
@@ -70,7 +74,7 @@ const AddNews = () => {
                         })
                 }
             })
-        setLoading(false)
+        
     }
 
 
@@ -109,11 +113,11 @@ const AddNews = () => {
 
                             />
                         </div>
-                        <TextInput
-
+                        <Textarea
+                            rows={5}
                             name="details"
                             type="text"
-                            className="text-lg font-normal"
+                            className="text-lg font-light "
                             placeholder='details'
                             required={true}
                             shadow={true}
@@ -150,7 +154,7 @@ const AddNews = () => {
                             <option disabled selected>Type of news</option>
                             {
                                 categories?.map(category =>
-                                    <option  defaultValue={category?.name}>{category?.name}</option>
+                                    <option defaultValue={category?.name}>{category?.name}</option>
 
                                 )
                             }
@@ -160,14 +164,20 @@ const AddNews = () => {
                         <input required type="file" name='img' className="file-input text-base  file-input-bordered w-full border-2 rounded mb-2" />
                     </div>
 
-                    <div className="flex items-center justify-center">
+                    {/* <div className="flex items-center justify-center">
                         {
                             loading && <Loader></Loader>
                         }
-                    </div>
-                    <Button className='mb-8 bg-green-800 w-fit px-14 mx-auto hover:bg-green-600 shadow' type="submit">
-                        Add News
-                    </Button>
+                    </div> */}
+                    {
+                        loading ? <Loader></Loader> :
+                            <Button className='mb-8 bg-green-800 w-fit px-14 mx-auto hover:bg-green-600 shadow' type="submit">
+                                Add News
+                            </Button>
+
+
+                    }
+
                 </form>
             </div>
         </div>
