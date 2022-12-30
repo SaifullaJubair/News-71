@@ -8,6 +8,7 @@ import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 const Register = () => {
 
     const { logout, updateUserProfile, providerLogin, createUser, user } = useContext(AuthContext)
+    console.log(user)
 
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false)

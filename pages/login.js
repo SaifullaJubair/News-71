@@ -5,7 +5,7 @@ import { AuthContext } from '../contexts/AuthProvider/AuthProvider.js';
 import '../styles/LoginPage.module.css';
 
 const LoginPage = () => {
-    const { logout } = useContext(AuthContext)
+   
     // console.log(user);
     return (
         <div className='max-w-[1440px] w-[95%] mx-auto'>

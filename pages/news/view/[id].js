@@ -8,7 +8,6 @@ const singlePage = () => {
          <div className='lg:col-span-3 md:col-span-2 col-span-1 mx-auto '>
             <SinglePage></SinglePage>
          </div>
-
          <div>
             <RightBar></RightBar>
          </div>
