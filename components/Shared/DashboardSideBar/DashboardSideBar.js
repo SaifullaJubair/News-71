@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { useContext, useState } from 'react';
 import { AiOutlineLogout } from 'react-icons/ai';
-import { BiCategory, BiGroup } from 'react-icons/bi';
+import { BiCategory, BiCommentDetail, BiDislike, BiGroup, BiLike } from 'react-icons/bi';
 import { BsGraphUp, BsNewspaper } from 'react-icons/bs';
 import { CgAddR } from 'react-icons/cg';
 import { HiOutlineMenu } from 'react-icons/hi';
@@ -48,13 +48,28 @@ const DashboardSideBar = () => {
                             <Link href={`/dashboard/statistics`}>
                                 <span className={hide ? 'hidden' : 'inline'} >Statistics</span></Link>
                         </li>
+                        <li>
+                            <BiLike className='inline-block ml-4 mr-6 h-7' ></BiLike>
+                            <Link href={`/dashboard/alllikednews`}>
+                                <span className={hide ? 'hidden' : 'inline'} >All liked</span></Link>
+                        </li>
+                        <li>
+                            <BiDislike className='inline-block ml-4 mr-6 h-7' ></BiDislike>
+                            <Link href={`/dashboard/alldislikednews`}>
+                                <span className={hide ? 'hidden' : 'inline'} >All Disliked</span></Link>
+                        </li>
+                        <li>
+                            <BiCommentDetail className='inline-block ml-4 mr-6 h-7' ></BiCommentDetail>
+                            <Link href={`/dashboard/allcomments`}>
+                                <span className={hide ? 'hidden' : 'inline'} >All Comments</span></Link>
+                        </li>
                     </ul>
                     <hr className='bg-white border-0' />
 
                     <ul className="pt-4 pb-2  text-lg flex flex-col gap-4">
                         <li>
                             <MdOutlineAccountCircle className='inline ml-4 mr-6 h-7'></MdOutlineAccountCircle>
-                            <span className={hide ? 'hidden' : 'inline'} >Profile</span>
+                            <Link href={`/userprofile`}><span className={hide ? 'hidden' : 'inline'} >Profile</span></Link>
                         </li>
                         <li>
                             <AiOutlineLogout className='inline ml-4 mr-6 h-7'></AiOutlineLogout>

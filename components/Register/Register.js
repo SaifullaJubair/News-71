@@ -9,6 +9,7 @@ import Loader from "../Shared/Loader/Loader";
 const Register = () => {
 
     const { logout, updateUserProfile, providerLogin, createUser, user } = useContext(AuthContext)
+    console.log(user)
 
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false)
