@@ -22,9 +22,10 @@ const AllUsers = () => {
     const handleMakeAdmin = (id) => {
         fetch(`https://localhost:5000/users/update/${id}`, {
             method: 'PUT',
-            // headers: {
-            //     authorization: `bearer ${localStorage.getItem('accessToken')}`
-            // }
+            headers: {
+                'content-type': "application/json"
+              },
+             
         })
             .then(res => res.json())
             .then(data => {
