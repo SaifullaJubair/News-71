@@ -67,7 +67,7 @@ const AllUsers = () => {
         setEditData(null)
     }
     return (
-        <div className='max-w-[1440px] w-[95%] mx-auto flex gap-6 mt-[100px]'>
+        <div className='max-w-[1440px] w-[95%] mx-auto flex gap-6 mt-7'>
             <DashboardSideBar></DashboardSideBar>
             <div className='flex-grow'>
                 <h2 className='title uppercase p-10 text-center mb-10 bg-purple-300 text-black text-2xl font-semibold'>All Users </h2>

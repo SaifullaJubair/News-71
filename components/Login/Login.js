@@ -2,8 +2,8 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import { Button, Label, TextInput } from 'flowbite-react';
 import Link from 'next/link';
 import React, { useContext, useState } from 'react';
-import { FaBeer, FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
