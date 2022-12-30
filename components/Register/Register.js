@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useContext, useState, } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import Loader from "../Shared/Loader/Loader";
 // import { FaBeer, FcGoogle } from "react-icons/fc";
 const Register = () => {
 
@@ -125,7 +126,7 @@ const Register = () => {
                                 })
                                     .then(res => res.json())
                                     .then(data => {
-
+                                        setLoading(false)
                                         console.log(data)
                                         setCreateUserEmail(email)
                                         toast("Registration successful", {
@@ -301,12 +302,15 @@ const Register = () => {
                                     </Button>
                                 )
                         } */}
+                       {
+                        loading? <Loader></Loader> :
                         <Button className=" lg:mx-auto w-full"
 
-                            disabled={!termsAccepted}
-                            type="submit">
-                            Sign Up
-                        </Button>
+                        disabled={!termsAccepted}
+                        type="submit">
+                        Sign Up
+                    </Button>
+                       }
 
                         <div className="flex justify-between  py-8">
                             <div className="flex w-full">
