@@ -14,7 +14,7 @@ const NavbarBottom = () => {
   }
 
   return (
-    <div className="sticky top-0 z-40">
+    <div className="sticky top-0 z-40 max-w-[1440px] w-[95%] mx-auto">
       <Navbar
         fluid={true}
         rounded={true}

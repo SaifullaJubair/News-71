@@ -1,6 +1,7 @@
 import { GoogleAuthProvider } from "firebase/auth";
 import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useContext, useState, } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
@@ -10,6 +11,11 @@ const Register = () => {
 
     const { logout, updateUserProfile, providerLogin, createUser, user } = useContext(AuthContext)
     console.log(user)
+
+    const router = useRouter()
+    if(user){
+        router.push('/')
+    }
 
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false)
@@ -112,7 +118,7 @@ const Register = () => {
                         console.log(result.user)
                         // console.log(result.user)
                         const currentUser = { displayName: name, photoURL: imgData.data.url }
-
+                        console.log(name)
                         updateUserProfile(currentUser)
                             .then(result => {
                                 // const users =  { name, email, password, createdAt: new Date().toISOString(), photoURL: data?.data?.display_url };
@@ -133,6 +139,8 @@ const Register = () => {
                                             position: toast.POSITION.TOP_CENTER
 
                                         })
+                                        form.reset()
+                                        router.push('/')
 
 
                                     })
@@ -157,7 +165,7 @@ const Register = () => {
 
                         // code start data store to mongodb 
                         console.log(user)
-                        const insertUser = { name: user.displayName, email: user.email, img: user.photoURL, role: 'user', createdAt: new Date().toISOString(), }
+                        const insertUser = { name: name, email: email, img: imgData.data.url, role: 'user', createdAt: new Date().toISOString(), }
 
 
                     })
@@ -302,15 +310,15 @@ const Register = () => {
                                     </Button>
                                 )
                         } */}
-                       {
-                        loading? <Loader></Loader> :
-                        <Button className=" lg:mx-auto w-full"
+                        {
+                            loading ? <Loader></Loader> :
+                                <Button className=" lg:mx-auto w-full"
 
-                        disabled={!termsAccepted}
-                        type="submit">
-                        Sign Up
-                    </Button>
-                       }
+                                    disabled={!termsAccepted}
+                                    type="submit">
+                                    Sign Up
+                                </Button>
+                        }
 
                         <div className="flex justify-between  py-8">
                             <div className="flex w-full">
