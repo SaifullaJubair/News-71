@@ -1,4 +1,5 @@
 import { Carousel } from "flowbite-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 const LatestNews = () => {
 
@@ -30,7 +31,7 @@ const LatestNews = () => {
                      }}>
 
 
-                     <p className="font-bold text-4xl px-6 mt-6 text-white" > {news?.heading}</p>
+                     <Link href={`/news/view/${news?._id}`}><p className="font-bold text-4xl px-6 mt-6 text-white" > {news?.heading}</p></Link>
 
                   </div>
                )

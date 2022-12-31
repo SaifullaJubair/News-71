@@ -10,6 +10,7 @@ import Loader from '../Shared/Loader/Loader';
 import { async } from '@firebase/util';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 
 
@@ -146,40 +147,51 @@ const SinglePage = ({ setCategoryNews, id, }) => {
          })
    }
    const handleDisLike = (newsData) => {
-      const data = {
-         newsData, email: user?.email
-      }
-      fetch('http://localhost:5000/decreaselike', {
+      if (user) {
+         const data = {
+            newsData, email: user?.email
+         }
+         fetch('http://localhost:5000/decreaselike', {
 
-         method: 'PUT',
-         headers: {
-            "content-type": "application/json"
-         },
-         body: JSON.stringify(data)
-      })
-         .then(res => res.json())
-         .then(data => {
-            if (data.modifiedCount > 0) {
-               toast("Dislike added", {
-                  position: toast.POSITION.TOP_CENTER
-               })
-               setAgainFetch(!againFetch)
-            }
-            else {
-               toast("Already Disliked", {
-                  position: toast.POSITION.TOP_CENTER
-               })
-            }
-            console.log(data)
+            method: 'PUT',
+            headers: {
+               "content-type": "application/json"
+            },
+            body: JSON.stringify(data)
          })
+            .then(res => res.json())
+            .then(data => {
+               if (data.modifiedCount > 0) {
+                  toast("Dislike added", {
+                     position: toast.POSITION.TOP_CENTER
+                  })
+                  setAgainFetch(!againFetch)
+               }
+               else {
+                  toast("Already Disliked", {
+                     position: toast.POSITION.TOP_CENTER
+                  })
+               }
+               console.log(data)
+            })
+      }
+      else {
+         toast.error('Please Login', {
+            position: toast.POSITION.TOP_CENTER
+         })
+      }
    }
 
 
 
    return (
       <div>
-
-
+         {
+            heading &&
+            <Helmet>
+               <title>News Detail: {heading}</title>
+            </Helmet>
+         }
 
          <div >
             <h2 className='text-3xl font-semibold text-gray-700 mb-6'> {heading}</h2>
@@ -245,33 +257,31 @@ const SinglePage = ({ setCategoryNews, id, }) => {
                <h1 className='text-lg text-gray-500 pb-4 flex gap-2 items-center'><span> <FaComment></FaComment></span> Post a comment</h1>
                <form
                   onSubmit={handleComment}
-                  className='flex gap-2 items-center'>
-                  <Avatar rounded={true} />
-                  <TextInput
-                     id="md"
-                     type="text"
-                     sizing="md"
-                     name='comment'
-                     className='w-full lg:w-7/12'
-                  />
+               >
+
                   {
                      user?.uid ? (
-                        !loading ? <Button size="sm" color="gray"
+                        !loading ?
+                           <div className='flex gap-2 items-center'>
+                              <Avatar rounded={true} />
+                              <TextInput
+                                 id="md"
+                                 type="text"
+                                 sizing="md"
+                                 name='comment'
+                                 className='w-full lg:w-7/12'
+                              /><Button size="sm" color="gray"
+                                 type='submit'
+                              >
 
-                           type='submit'
-
-
-                        >
-
-                           <BiSend className='mr-1'></BiSend> <span className='font-semibold'>Post</span>
-                        </Button>
+                                 <BiSend className='mr-1'></BiSend> <span className='font-semibold'>Post</span>
+                              </Button>
+                           </div>
                            :
                            <Loader></Loader>
                      )
                         :
                         <div>
-
-
                         </div>
                   }
 

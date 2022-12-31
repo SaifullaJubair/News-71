@@ -2,13 +2,15 @@ import { Carousel } from 'flowbite-react';
 import Link from 'next/link';
 import React from 'react';
 
-const RightBar = ({ categoryNewes , rightClick }) => {
+
+const RightBar = ({ categoryNewes, rightClick }) => {
    console.log(categoryNewes)
-   
+
    return (
       <div>
+
          {
-            categoryNewes.map(category => <div  onClick={() => rightClick(category._id)}  className="flex gap-2 cursor-pointer mb-6 shadow-md">
+            categoryNewes.map(category => <div onClick={() => rightClick(category._id)} className="flex gap-2 cursor-pointer mb-6 shadow-md">
                <div className="flex-shrink-0 w-full mb-6 h-44 sm:h-32 sm:w-32 sm:mb-0 text-left ">
                   <img className='h-28 rounded' src={category?.img} />
                </div>
@@ -21,7 +23,7 @@ const RightBar = ({ categoryNewes , rightClick }) => {
                </div>
             </div>)
          }
-        
+
 
 
 

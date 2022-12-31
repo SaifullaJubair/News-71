@@ -39,108 +39,108 @@ const EntertainmentNews = () => {
                         {
                             nextFourNews?.map(news =>
                                 <Card sx={{ height: '108px', py: 0 }}>
-                                   <Link href={`/news/view/${news?._id}`} >
-                                   <CardActionArea sx={{ display: 'flex', height: '108px', p: 0 }}>
-                                       
-                                       <CardContent sx={{ p: 0, ml: '16px' }}>
-                                           <Typography
-                                               gutterBottom
-                                               variant="h2"
-                                               component="h2"
-                                               sx={{ fontWeight: 600, fontSize: '18px', lineHeight: '28px' }}
-                                           >
-                                               {
-                                                   news?.heading?.length > 43 ?
-                                                       `${news?.heading.slice(0, 40)}...` : news?.heading}
-                                           </Typography>
-                                           <Typography
-                                               gutterBottom
-                                               variant="p"
-                                               component="p"
-                                               color='text.secondary'
-                                               sx={{ fontWeight: 500, display: 'inline', fontSize: '16px', lineHeight: '24px' }}
-                                               className="font-medium text-base inline-block"
-                                           >
-                                               {singleNews?.createdAt}
-                                           </Typography>
-                                       </CardContent>
-                                       <CardMedia
-                                           component="img"
-                                           image={news?.img}
-                                           sx={{ p: 0, height: '108px', width: '40%' }}
-                                           alt="img"
-                                       />
-                                   </CardActionArea>
-                                   </Link>
+                                    <Link href={`/news/view/${news?._id}`} >
+                                        <CardActionArea sx={{ display: 'flex', height: '108px', p: 0 }}>
+
+                                            <CardContent sx={{ p: 0, ml: '16px' }}>
+                                                <Typography
+                                                    gutterBottom
+                                                    variant="h2"
+                                                    component="h2"
+                                                    sx={{ fontWeight: 600, fontSize: '18px', lineHeight: '28px' }}
+                                                >
+                                                    {
+                                                        news?.heading?.length > 43 ?
+                                                            `${news?.heading.slice(0, 40)}...` : news?.heading}
+                                                </Typography>
+                                                <Typography
+                                                    gutterBottom
+                                                    variant="p"
+                                                    component="p"
+                                                    color='text.secondary'
+                                                    sx={{ fontWeight: 500, display: 'inline', fontSize: '16px', lineHeight: '24px' }}
+                                                    className="font-medium text-base inline-block"
+                                                >
+                                                    {singleNews?.createdAt}
+                                                </Typography>
+                                            </CardContent>
+                                            <CardMedia
+                                                component="img"
+                                                image={news?.img}
+                                                sx={{ p: 0, height: '108px', width: '40%' }}
+                                                alt="img"
+                                            />
+                                        </CardActionArea>
+                                    </Link>
                                 </Card>
                             )
                         }
                     </Grid>
                     {/*  second column */}
                     <Grid item xs={12} lg={4} md={6} sm={6}>
-                    <Card sx={{}}>
-                          <Link href={`/news/view/${singleNews?._id}`}>
-                          <CardActionArea>
-                                <CardMedia
-                                    sx={{height:'246px'}}
-                                    component="img"
-                                    image={singleNews?.img}
-                                />
-                                <CardContent
-                                    sx={{
-                                        px: 0, mx: 2
-                                    }}>
-                                    <Typography
-                                        sx={{ fontWeight: 500 }}
-                                        gutterBottom
-                                        variant="p"
-                                        component="div"
-
-                                    >
-                                        {singleNews?.location}
-                                    </Typography>
-                                    <Typography
-                                        sx={{ fontWeight: 700, fontSize: '24px' }}
-                                        gutterBottom
-                                        variant="h2"
-                                        component="div"
-                                    >
-
-                                        {singleNews?.heading?.length > 50 ? `${singleNews?.heading.slice(0, 47)}...` : singleNews?.heading}
-                                    </Typography>
-                                    <div>
+                        <Card sx={{}}>
+                            <Link href={`/news/view/${singleNews?._id}`}>
+                                <CardActionArea>
+                                    <CardMedia
+                                        sx={{ height: '246px' }}
+                                        component="img"
+                                        image={singleNews?.img}
+                                    />
+                                    <CardContent
+                                        sx={{
+                                            px: 0, mx: 2
+                                        }}>
                                         <Typography
-                                            sx={{ fontSize: '16px', display: 'inline', fontWeight: 500 }}
+                                            sx={{ fontWeight: 500 }}
                                             gutterBottom
                                             variant="p"
-                                            component="p"
+                                            component="div"
+
                                         >
-                                            {singleNews?.authorName}
+                                            {singleNews?.location}
                                         </Typography>
                                         <Typography
-                                            sx={{ fontSize: '16px', display: 'inline', fontWeight: 500 }}
+                                            sx={{ fontWeight: 700, fontSize: '24px' }}
+                                            gutterBottom
+                                            variant="h2"
+                                            component="div"
+                                        >
+
+                                            {singleNews?.heading?.length > 50 ? `${singleNews?.heading.slice(0, 47)}...` : singleNews?.heading}
+                                        </Typography>
+                                        <div>
+                                            <Typography
+                                                sx={{ fontSize: '16px', display: 'inline', fontWeight: 500 }}
+                                                gutterBottom
+                                                variant="p"
+                                                component="p"
+                                            >
+                                                {singleNews?.authorName}
+                                            </Typography>
+                                            <Typography
+                                                sx={{ fontSize: '16px', display: 'inline', fontWeight: 500 }}
+                                                gutterBottom
+                                                variant="p"
+                                                component="p"
+                                                color='text.secondary'
+                                            >
+                                                -  {singleNews?.createdAt}
+                                            </Typography>
+                                        </div>
+                                        <Typography
+                                            sx={{ fontWeight: 500, pt: 2 }}
                                             gutterBottom
                                             variant="p"
                                             component="p"
                                             color='text.secondary'
                                         >
-                                            -  {singleNews?.createdAt}
+                                            {
+                                                singleNews?.details?.length > 110 ? `${singleNews?.details.slice(0, 100)}...` : singleNews?.details
+                                            }
                                         </Typography>
-                                    </div>
-                                    <Typography
-                                        sx={{ fontWeight: 500, pt: 2 }}
-                                        gutterBottom
-                                        variant="p"
-                                        component="p"
-                                        color='text.secondary'
-                                    >
-                                        {
-                                            singleNews?.details?.length > 110 ? `${singleNews?.details.slice(0, 100)}...` : singleNews?.details
-                                        }
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                          </Link>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Link>
                         </Card>
                     </Grid>
                     {/* third grid */}
@@ -148,39 +148,39 @@ const EntertainmentNews = () => {
                         {
                             lastFourNews?.map(news =>
                                 <Card sx={{ height: '108px', py: 0 }}>
-                                   <Link href={`/news/view/${news?._id}`}>
-                                   <CardActionArea sx={{ display: 'flex', height: '108px', p: 0 }}>
-                                        
-                                        <CardContent sx={{ p: 0, ml: '16px' }}>
-                                            <Typography
-                                                gutterBottom
-                                                variant="h2"
-                                                component="h2"
-                                                sx={{ fontWeight: 600, fontSize: '18px', lineHeight: '28px' }}
-                                            >
-                                                {
-                                                    news?.heading?.length > 43 ?
-                                                        `${news?.heading.slice(0, 40)}...` : news?.heading}
-                                            </Typography>
-                                            <Typography
-                                                gutterBottom
-                                                variant="p"
-                                                component="p"
-                                                color='text.secondary'
-                                                sx={{ fontWeight: 500, display: 'inline', fontSize: '16px', lineHeight: '24px' }}
-                                                className="font-medium text-base inline-block"
-                                            >
-                                                {singleNews?.createdAt}
-                                            </Typography>
-                                        </CardContent>
-                                        <CardMedia
-                                            component="img"
-                                            image={news?.img}
-                                            sx={{ p: 0, height: '108px', width: '40%' }}
-                                            alt="img"
-                                        />
-                                    </CardActionArea>
-                                   </Link>
+                                    <Link href={`/news/view/${news?._id}`}>
+                                        <CardActionArea sx={{ display: 'flex', height: '108px', p: 0 }}>
+
+                                            <CardContent sx={{ p: 0, ml: '16px' }}>
+                                                <Typography
+                                                    gutterBottom
+                                                    variant="h2"
+                                                    component="h2"
+                                                    sx={{ fontWeight: 600, fontSize: '18px', lineHeight: '28px' }}
+                                                >
+                                                    {
+                                                        news?.heading?.length > 43 ?
+                                                            `${news?.heading.slice(0, 40)}...` : news?.heading}
+                                                </Typography>
+                                                <Typography
+                                                    gutterBottom
+                                                    variant="p"
+                                                    component="p"
+                                                    color='text.secondary'
+                                                    sx={{ fontWeight: 500, display: 'inline', fontSize: '16px', lineHeight: '24px' }}
+                                                    className="font-medium text-base inline-block"
+                                                >
+                                                    {singleNews?.createdAt}
+                                                </Typography>
+                                            </CardContent>
+                                            <CardMedia
+                                                component="img"
+                                                image={news?.img}
+                                                sx={{ p: 0, height: '108px', width: '40%' }}
+                                                alt="img"
+                                            />
+                                        </CardActionArea>
+                                    </Link>
                                 </Card>
                             )
                         }
