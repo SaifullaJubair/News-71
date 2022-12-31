@@ -13,7 +13,7 @@ const Register = () => {
     console.log(user)
 
     const router = useRouter()
-    if(user){
+    if (user) {
         router.push('/')
     }
 
@@ -39,24 +39,6 @@ const Register = () => {
                 }
                 console.log(currentUser);
                 setError("");
-                // // get jwt toket 
-                // fetch('https://b6-a11-service-review-server-side.vercel.app/jwt', {
-                //   method: "POST",
-                //   headers: {
-                //     'content-type': 'application/json'
-                //   },
-                //   body: JSON.stringify(currentUser)
-                // })
-                //   .then(res => res.json())
-                //   .then(data => {
-                //     console.log(data)
-                //     localStorage.setItem('token', data.token)
-                //   })
-                // //end jwt token
-
-
-
-                // navigate(from, { replace: true });
             })
             .catch((error) => console.error(error, error.message));
     };

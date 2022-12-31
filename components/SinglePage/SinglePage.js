@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { FaAngleDown, FaComment, FaEye, FaFacebook, FaLocationArrow, FaShare, FaTwitter, FaUser, FaYoutube } from 'react-icons/fa';
+import { FaAngleDown, FaComment, FaEye, FaFacebook, FaHome, FaLocationArrow, FaLock, FaShare, FaTwitter, FaUser, FaYoutube } from 'react-icons/fa';
 import { BiDislike, BiLike, BiSend } from "react-icons/bi";
 import { Avatar, Button, Rating, TextInput } from 'flowbite-react';
 import Comment from './Comment';
@@ -277,7 +277,13 @@ const SinglePage = ({ setCategoryNews, id, }) => {
 
                </form>
                {
-                  user?.uid ? <p></p> : <p className='ml-12 mt-3'>please  <Link className='text-blue-500 font-semibold text-lg ' href='/login'>Login</Link> after comment</p>
+                  user?.uid ? <p></p> :
+                     <div>
+                        <p className='mt-4 flex items-center gap-2 '>Please
+                           <Link className='text-blue-500 font-semibold text-lg' href='/login'>
+                              <span className='flex items-center gap-1'><FaLock className='text-gray-800'></FaLock> Login</span>
+                           </Link>  first to comment.</p>
+                     </div>
                }
 
             </div>
@@ -289,15 +295,16 @@ const SinglePage = ({ setCategoryNews, id, }) => {
                comments={comments}
 
             ></Comment>
-            <div className='flex'>
-               <Button size="sm" color="gray" className='text-gray-600 my-8 mx-auto'>
-                  <FaAngleDown className='mr-1'></FaAngleDown> <span className='font-semibold'>Load More </span>
+            <div className=' flex justify-start gap-2 my-8'>
+               <Button outline={true}>
+                  <FaAngleDown className='mr-1'></FaAngleDown> Load More
                </Button>
-               <Link href='/' size="sm" color="gray" className='text-gray-600 my-8 mx-auto'>
-                  <span className='font-semibold'><Button
-                     outline={true}
+               <Link href='/' className='text-gray-600 '>
+
+                  <Button outline={true}
                      gradientDuoTone="purpleToBlue"
-                  >Home</Button> </span>
+                  ><FaHome className='mr-2'></FaHome> Home</Button>
+
                </Link>
             </div>
 
