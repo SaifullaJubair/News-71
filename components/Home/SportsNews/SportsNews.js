@@ -28,7 +28,9 @@ const SportsNews = () => {
         }
     })
 
-    // console.log(sports)
+
+
+    console.log(sports)
 
     const { data: sports1 = [], } = useQuery({
         queryKey: ['sports1'],
