@@ -49,7 +49,7 @@ const handleAddItem = (event) => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data)
+                        // console.log(data)
 
                         // toast("added successful", {
                         //     position: toast.POSITION.TOP_CENTER
