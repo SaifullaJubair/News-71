@@ -35,13 +35,45 @@ const Register = () => {
                 console.log(user);
 
                 const currentUser = {
+                    displayName: user.displayName,
                     email: user.email
                 }
+                updateUserProfile(currentUser)
+                    .then(() => {
+                        saveUser(user.displayName, user.email,  user.photoURL)
+                    })
+                    .catch(error => console.error(error))
                 console.log(currentUser);
                 setError("");
             })
             .catch((error) => console.error(error, error.message));
+
     };
+
+    const saveUser = (displayName, email, photoURL) => {
+        const createdAt = new Date().toISOString();
+        const user = { name: displayName, email, role: 'user' , createdAt , img: photoURL }
+        fetch('http://localhost:5000/adduser', {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setCreateUserEmail(user.email)
+                console.log(user.email)
+                toast("Register success", {
+                    position: toast.POSITION.TOP_CENTER,
+                });
+
+
+            })
+    }
+
+
 
     const [passwordMatch, setPasswoedMatched] = useState()
 

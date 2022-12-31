@@ -120,8 +120,9 @@ const SinglePage = ({ setCategoryNews, id, }) => {
 
    const handleLike = (newsData) => {
       const data = {
-         newsData, email: user?.email
+         newsData, email: user?.email, img, heading, createdAt: new Date().toISOString(), category_id,
       }
+      console.log(data)
       fetch('http://localhost:5000/increaselike', {
 
          method: 'PUT',
@@ -130,6 +131,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
          },
          body: JSON.stringify(data)
       })
+
          .then(res => res.json())
          .then(data => {
             if (data.modifiedCount > 0) {
@@ -149,7 +151,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
    const handleDisLike = (newsData) => {
       if (user) {
          const data = {
-            newsData, email: user?.email
+            newsData, email: user?.email, img, heading, createdAt: new Date().toISOString(), category_id,
          }
          fetch('http://localhost:5000/decreaselike', {
 
@@ -258,7 +260,6 @@ const SinglePage = ({ setCategoryNews, id, }) => {
                <form
                   onSubmit={handleComment}
                >
-
                   {
                      user?.uid ? (
                         !loading ?
@@ -284,6 +285,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
                         <div>
                         </div>
                   }
+
 
                </form>
                {
@@ -321,7 +323,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
          </div>
 
 
-      </div>
+      </div >
    );
 };
 
