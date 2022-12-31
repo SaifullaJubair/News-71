@@ -12,7 +12,7 @@ import Loader from '../../Shared/Loader/Loader';
 const AllLikedNews = () => {
     const { user } = useContext(AuthContext)
     const [likes, setLiked] = useState(null)
-  
+
 
     useEffect(() => {
         fetch(`http://localhost:5000/like/${user?.email}`)
@@ -67,7 +67,7 @@ const AllLikedNews = () => {
                                         <img src={comment.newsImg} className="h-12 w-12 rounded  " alt="" />
                                     </Table.Cell>
                                     <Table.Cell>
-                                     <Link className='text-blue-400 ' href={`/news/view/${comment?.id}`}> {comment?.heading?.slice(0, 40)}...</Link>
+                                        <Link className='text-blue-400 ' href={`/news/view/${comment?.id}`}> {comment?.heading?.slice(0, 40)}...</Link>
                                     </Table.Cell>
                                     <Table.Cell>
                                         {comment.createdAt?.slice(0, 10)}

@@ -17,7 +17,7 @@ const PoliticalNews = () => {
     const [lastFourNews, setLastFourNews] = useState(null);
     const [newses, setNewses] = useState(null);
     useEffect(() => {
-        fetch("http://localhost:5000/news/Political?length=9")
+        fetch("https://server-news-71.vercel.app/news/Political?length=9")
             .then((res) => res.json())
             .then(data => {
                 console.log(data);

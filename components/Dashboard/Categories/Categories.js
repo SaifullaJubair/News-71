@@ -10,7 +10,7 @@ const Categories = () => {
     const [editData, setEditData] = useState(null)
 
     useEffect(() => {
-        fetch('http://localhost:5000/allcategories')
+        fetch('https://server-news-71.vercel.app/allcategories')
             .then(res => res.json())
             .then(data => {
                 setCategories(data)
@@ -39,7 +39,7 @@ const Categories = () => {
             _id: editData?._id,
             name: name
         }
-        fetch('http://localhost:5000/editcategory', {
+        fetch('https://server-news-71.vercel.app/editcategory', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -61,7 +61,7 @@ const Categories = () => {
         e.preventDefault()
         const name = e.target.newCategoryName.value;
         const data = { name }
-        fetch('http://localhost:5000/addcategory', {
+        fetch('https://server-news-71.vercel.app/addcategory', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -80,7 +80,7 @@ const Categories = () => {
     }
 
     const handleDelete = (data) => {
-        fetch('http://localhost:5000/deletecategory', {
+        fetch('https://server-news-71.vercel.app/deletecategory', {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',

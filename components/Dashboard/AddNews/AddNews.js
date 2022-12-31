@@ -13,7 +13,7 @@ const AddNews = () => {
 
     useEffect(() => {
 
-        fetch('http://localhost:5000/allcategories')
+        fetch('https://server-news-71.vercel.app/allcategories')
             .then(res => res.json())
             .then(data => setCategories(data))
 
@@ -22,7 +22,7 @@ const AddNews = () => {
 
     const handleAddItem = (event) => {
         event.preventDefault()
-        
+
         const form = event.target;
         const category_id = form.categoryId.value;
         const total_likes = 0;
@@ -57,7 +57,7 @@ const AddNews = () => {
                         authorImg: user?.photoURL
                     }
 
-                    fetch('http://localhost:5000/addnews', {
+                    fetch('https://server-news-71.vercel.app/addnews', {
                         method: 'POST',
                         headers: {
                             "content-type": "application/json"
@@ -74,7 +74,7 @@ const AddNews = () => {
                         })
                 }
             })
-        
+
     }
 
 
@@ -150,7 +150,7 @@ const AddNews = () => {
                                 className="font-semibold text-xl"
                             />
                         </div>
-                        <select required  name='categoryId' defaultValue='All' className="select text-black font-normal  w-full hmax-w-xs rounded my-2">
+                        <select required name='categoryId' defaultValue='All' className="select text-black font-normal  w-full hmax-w-xs rounded my-2">
                             <option disabled selected>Type of news</option>
                             {
                                 categories?.map(category =>

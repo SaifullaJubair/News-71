@@ -7,7 +7,7 @@ const LifeStyleNews = () => {
     const [nextFourNews, setNextFourNews] = useState(null);
     const [newses, setNewses] = useState(null);
     useEffect(() => {
-        fetch("http://localhost:5000/news/LifeStyle?length=5")
+        fetch("https://server-news-71.vercel.app/news/LifeStyle?length=5")
             .then((res) => res.json())
             .then(data => {
                 console.log(data);
@@ -26,21 +26,21 @@ const LifeStyleNews = () => {
                 <div className="grid grid-cols-1 gap-4 mx-auto md:grid-cols-4">
                     {
                         nextFourNews?.map(news =>
-                           <Link href={`/news/view/${news?._id}`}>
-                            <div class=" w-full rounded overflow-hidden duration-300 hover:-translate-y-2 shadow-lg">
-                                <img
-                                    src={news?.img}
-                                    className="w-full h-44"
-                                    alt=""
-                                />
-                                <div class="p-3">
-                                    <div class="font-bold text-xl mb-2">
-                                        {
-                                            singleNews?.heading?.length > 43 ?
-                                                `${singleNews?.heading.slice(0, 40)}...` : singleNews?.heading}
+                            <Link href={`/news/view/${news?._id}`}>
+                                <div class=" w-full rounded overflow-hidden duration-300 hover:-translate-y-2 shadow-lg">
+                                    <img
+                                        src={news?.img}
+                                        className="w-full h-44"
+                                        alt=""
+                                    />
+                                    <div class="p-3">
+                                        <div class="font-bold text-xl mb-2">
+                                            {
+                                                singleNews?.heading?.length > 43 ?
+                                                    `${singleNews?.heading.slice(0, 40)}...` : singleNews?.heading}
+                                        </div>
                                     </div>
-                                </div>
-                            </div></Link>
+                                </div></Link>
                         )
                     }
 

@@ -4,7 +4,7 @@ import { VscSearch } from "react-icons/vsc";
 
 const NavbarBottom = () => {
 
-  const router =useRouter()
+  const router = useRouter()
 
   const handleSearch = (e) => {
     e.preventDefault();

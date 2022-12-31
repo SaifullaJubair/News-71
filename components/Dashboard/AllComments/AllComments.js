@@ -21,7 +21,7 @@ const AllComments = () => {
     console.log(editData?._id)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/comments/${user?.email}`)
+        fetch(`https://server-news-71.vercel.app/comments/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -44,7 +44,7 @@ const AllComments = () => {
     const handleMakeAdmin = (e) => {
 
 
-        fetch(`http://localhost:5000/commentupdate/${editData?._id}`, {
+        fetch(`https://server-news-71.vercel.app/commentupdate/${editData?._id}`, {
             method: "PUT",
             headers: {
                 'content-type': "application/json"
@@ -63,7 +63,7 @@ const AllComments = () => {
     }
 
     const handleDeleteUser = user => {
-        fetch(`http://localhost:5000/comment/${user._id}`, {
+        fetch(`https://server-news-71.vercel.app/comment/${user._id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -155,20 +155,20 @@ const AllComments = () => {
                                     </Table.Cell>
                                     <Table.Cell  >
 
-                                      <div className='flex gap-3  items-center '>
-                                      <Button size="xs" onClick={() => showEditModal(comment)}>
-                                            <FaEdit className='mr-2'></FaEdit> Edit
-                                        </Button>
+                                        <div className='flex gap-3  items-center '>
+                                            <Button size="xs" onClick={() => showEditModal(comment)}>
+                                                <FaEdit className='mr-2'></FaEdit> Edit
+                                            </Button>
 
-                                        <Button size="xs" color="failure" onClick={() => showModal(comment)}>
-                                            <FaTrash className='mr-2'></FaTrash> Delete
-                                        </Button>
-                                      </div>
+                                            <Button size="xs" color="failure" onClick={() => showModal(comment)}>
+                                                <FaTrash className='mr-2'></FaTrash> Delete
+                                            </Button>
+                                        </div>
 
                                     </Table.Cell>
                                     <Table.Cell>
-                                        <Link className='text-blue-400 truncate ... ' href={`/news/view/${comment?.newsId}`}> <Button size="xs"  outline={true} >
-                                          <FaExternalLinkAlt className='mr-2' />  Go to News
+                                        <Link className='text-blue-400 truncate ... ' href={`/news/view/${comment?.newsId}`}> <Button size="xs" outline={true} >
+                                            <FaExternalLinkAlt className='mr-2' />  Go to News
                                         </Button>  </Link>
                                     </Table.Cell>
                                 </Table.Row>)

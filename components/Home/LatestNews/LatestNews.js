@@ -1,10 +1,11 @@
 import { Carousel } from "flowbite-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 const LatestNews = () => {
 
    const [newes, setNews] = useState(null);
    useEffect(() => {
-      fetch('http://localhost:5000/latestnews')
+      fetch('https://server-news-71.vercel.app/latestnews')
          .then(res => res.json())
          .then(data => {
             console.log(data);
@@ -30,7 +31,7 @@ const LatestNews = () => {
                      }}>
 
 
-                     <p className="font-bold text-4xl px-6 mt-6 text-white" > {news?.heading}</p>
+                     <Link href={`/news/view/${news?._id}`}><p className="font-bold text-4xl px-6 mt-6 text-white" > {news?.heading}</p></Link>
 
                   </div>
                )

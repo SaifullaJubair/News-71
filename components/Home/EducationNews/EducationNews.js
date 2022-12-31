@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const EducationNews = () => {
     const [newes, setNews] = useState(null);
     useEffect(() => {
-        fetch('http://localhost:5000/news/Education')
+        fetch('https://server-news-71.vercel.app/news/Education')
             .then(res => res.json())
             .then(data => {
                 console.log(data);

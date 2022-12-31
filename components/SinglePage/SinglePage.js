@@ -10,6 +10,7 @@ import Loader from '../Shared/Loader/Loader';
 import { async } from '@firebase/util';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 
 
@@ -32,7 +33,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
    useEffect(() => {
       console.log(id)
       if (id) {
-         fetch(`http://localhost:5000/singlenews/${id}`)
+         fetch(`https://server-news-71.vercel.app/singlenews/${id}`)
             .then(res => res.json())
             .then(data => {
                console.log(data)
@@ -48,7 +49,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
 
    useEffect(() => {
 
-      fetch(`http://localhost:5000/newsCategory/${categoryName}`)
+      fetch(`https://server-news-71.vercel.app/newsCategory/${categoryName}`)
          .then(res => res.json())
          .then(data => {
             setCategoryNews(data)
@@ -73,7 +74,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
       queryKey: ['comment'],
 
       queryFn: async () => {
-         const res = await fetch(`http://localhost:5000/comment/${id}`);
+         const res = await fetch(`https://server-news-71.vercel.app/comment/${id}`);
          const data = await res.json();
          console.log(data)
          return data;
@@ -94,7 +95,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
          username: user?.displayName, comment, category_id, newsId: id, img: user?.photoURL, newsImg: img
 
       }
-      fetch(`http://localhost:5000/addcomment`, {
+      fetch(`https://server-news-71.vercel.app/addcomment`, {
          method: 'POST',
          headers: {
             "content-type": "application/json"
@@ -119,10 +120,10 @@ const SinglePage = ({ setCategoryNews, id, }) => {
 
    const handleLike = (newsData) => {
       const data = {
-         newsData,  email: user?.email , img ,heading, createdAt: new Date().toISOString(), category_id,
+         newsData, email: user?.email, img, heading, createdAt: new Date().toISOString(), category_id,
       }
       console.log(data)
-      fetch('http://localhost:5000/increaselike', {
+      fetch('https://server-news-71.vercel.app/increaselike', {
 
          method: 'PUT',
          headers: {
@@ -148,40 +149,51 @@ const SinglePage = ({ setCategoryNews, id, }) => {
          })
    }
    const handleDisLike = (newsData) => {
-      const data = {
-         newsData,  email: user?.email , img ,heading, createdAt: new Date().toISOString(), category_id,
-      }
-      fetch('http://localhost:5000/decreaselike', {
+      if (user) {
+         const data = {
+            newsData, email: user?.email, img, heading, createdAt: new Date().toISOString(), category_id,
+         }
+         fetch('https://server-news-71.vercel.app/decreaselike', {
 
-         method: 'PUT',
-         headers: {
-            "content-type": "application/json"
-         },
-         body: JSON.stringify(data)
-      })
-         .then(res => res.json())
-         .then(data => {
-            if (data.modifiedCount > 0) {
-               toast("Dislike added", {
-                  position: toast.POSITION.TOP_CENTER
-               })
-               setAgainFetch(!againFetch)
-            }
-            else {
-               toast("Already Disliked", {
-                  position: toast.POSITION.TOP_CENTER
-               })
-            }
-            console.log(data)
+            method: 'PUT',
+            headers: {
+               "content-type": "application/json"
+            },
+            body: JSON.stringify(data)
          })
+            .then(res => res.json())
+            .then(data => {
+               if (data.modifiedCount > 0) {
+                  toast("Dislike added", {
+                     position: toast.POSITION.TOP_CENTER
+                  })
+                  setAgainFetch(!againFetch)
+               }
+               else {
+                  toast("Already Disliked", {
+                     position: toast.POSITION.TOP_CENTER
+                  })
+               }
+               console.log(data)
+            })
+      }
+      else {
+         toast.error('Please Login', {
+            position: toast.POSITION.TOP_CENTER
+         })
+      }
    }
 
 
 
    return (
       <div>
-
-
+         {
+            heading &&
+            <Helmet>
+               <title>News Detail: {heading}</title>
+            </Helmet>
+         }
 
          <div >
             <h2 className='text-3xl font-semibold text-gray-700 mb-6'> {heading}</h2>
@@ -247,35 +259,33 @@ const SinglePage = ({ setCategoryNews, id, }) => {
                <h1 className='text-lg text-gray-500 pb-4 flex gap-2 items-center'><span> <FaComment></FaComment></span> Post a comment</h1>
                <form
                   onSubmit={handleComment}
-                  className='flex gap-2 items-center'>
-                  <Avatar rounded={true} />
-                  <TextInput
-                     id="md"
-                     type="text"
-                     sizing="md"
-                     name='comment'
-                     className='w-full lg:w-7/12'
-                  />
+               >
                   {
                      user?.uid ? (
-                        !loading ? <Button size="sm" color="gray"
+                        !loading ?
+                           <div className='flex gap-2 items-center'>
+                              <Avatar rounded={true} />
+                              <TextInput
+                                 id="md"
+                                 type="text"
+                                 sizing="md"
+                                 name='comment'
+                                 className='w-full lg:w-7/12'
+                              /><Button size="sm" color="gray"
+                                 type='submit'
+                              >
 
-                           type='submit'
-
-
-                        >
-
-                           <BiSend className='mr-1'></BiSend> <span className='font-semibold'>Post</span>
-                        </Button>
+                                 <BiSend className='mr-1'></BiSend> <span className='font-semibold'>Post</span>
+                              </Button>
+                           </div>
                            :
                            <Loader></Loader>
                      )
                         :
                         <div>
-
-
                         </div>
                   }
+
 
                </form>
                {
@@ -313,7 +323,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
          </div>
 
 
-      </div>
+      </div >
    );
 };
 

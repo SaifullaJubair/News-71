@@ -11,7 +11,7 @@ const AllUsers = () => {
     const [deleteData, setDeleteData] = useState(null)
     const [editData, setEditData] = useState(null)
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://server-news-71.vercel.app/users')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -24,8 +24,8 @@ const AllUsers = () => {
             method: 'PUT',
             headers: {
                 'content-type': "application/json"
-              },
-             
+            },
+
         })
             .then(res => res.json())
             .then(data => {
@@ -37,7 +37,7 @@ const AllUsers = () => {
     }
 
     const handleDeleteUser = user => {
-        fetch(`http://localhost:5000/users/${user._id}`, {
+        fetch(`https://server-news-71.vercel.app/users/${user._id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

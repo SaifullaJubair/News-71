@@ -14,7 +14,7 @@ const InternationalNews = () => {
         queryKey: ['internationals'],
 
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/news/International?length=12`);
+            const res = await fetch(`https://server-news-71.vercel.app/news/International?length=12`);
             const data = await res.json();
             let r = []
             let u = []
