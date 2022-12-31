@@ -16,10 +16,10 @@ import { toast } from 'react-toastify';
 
 
 const SinglePage = ({ setCategoryNews, id, }) => {
-   const [loading , setLoading] = useState(false)
-
+   const [loading, setLoading] = useState(false)
+   const [againFetch, setAgainFetch] = useState(false)
    const { user } = useContext(AuthContext)
-    console.log(user)
+   console.log(user)
 
    const router = useRouter();
 
@@ -41,7 +41,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
             })
       }
 
-   }, [id])
+   }, [id, againFetch])
 
 
    let test = 0
@@ -63,23 +63,23 @@ const SinglePage = ({ setCategoryNews, id, }) => {
 
    const { heading, details, img, createdAt, email, rating
       , total_dislikes, total_likes, total_view, authorName, category_id
-      , location , 
+      , location,
       authorImg
-      
+
       , } = singleNewes
 
 
-      const { data: comments = [], refetch } = useQuery({
-         queryKey: ['comment'],
-   
-         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/comment/${id}`);
-            const data = await res.json();
-            console.log(data)
-            return data;
-         }
-      })
-     
+   const { data: comments = [], refetch } = useQuery({
+      queryKey: ['comment'],
+
+      queryFn: async () => {
+         const res = await fetch(`http://localhost:5000/comment/${id}`);
+         const data = await res.json();
+         console.log(data)
+         return data;
+      }
+   })
+
 
 
    const handleComment = (event) => {
@@ -91,7 +91,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
       setLoading(true)
       const AddComment = {
          email: user?.email, createdAt: new Date().toISOString(),
-         username: user?.displayName, comment, category_id, newsId: id , img: user?.photoURL
+         username: user?.displayName, comment, category_id, newsId: id, img: user?.photoURL
 
       }
       fetch(`http://localhost:5000/addcomment`, {
@@ -113,10 +113,68 @@ const SinglePage = ({ setCategoryNews, id, }) => {
             form.reset('')
          })
       console.log(AddComment)
-     
+
    }
 
- 
+
+   const handleLike = (newsData) => {
+      const data = {
+         newsData, email: user?.email
+      }
+      fetch('http://localhost:5000/increaselike', {
+
+         method: 'PUT',
+         headers: {
+            "content-type": "application/json"
+         },
+         body: JSON.stringify(data)
+      })
+         .then(res => res.json())
+         .then(data => {
+            if (data.modifiedCount > 0) {
+               toast("Like added", {
+                  position: toast.POSITION.TOP_CENTER
+               })
+               setAgainFetch(!againFetch)
+            }
+            else {
+               toast("Already Liked", {
+                  position: toast.POSITION.TOP_CENTER
+               })
+            }
+            console.log(data)
+         })
+   }
+   const handleDisLike = (newsData) => {
+      const data = {
+         newsData, email: user?.email
+      }
+      fetch('http://localhost:5000/decreaselike', {
+
+         method: 'PUT',
+         headers: {
+            "content-type": "application/json"
+         },
+         body: JSON.stringify(data)
+      })
+         .then(res => res.json())
+         .then(data => {
+            if (data.modifiedCount > 0) {
+               toast("Dislike added", {
+                  position: toast.POSITION.TOP_CENTER
+               })
+               setAgainFetch(!againFetch)
+            }
+            else {
+               toast("Already Disliked", {
+                  position: toast.POSITION.TOP_CENTER
+               })
+            }
+            console.log(data)
+         })
+   }
+
+
 
    return (
       <div>
@@ -149,7 +207,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
             <div className='my-6'>
                <hr />
             </div>
-            <img src={img} alt="" />
+            <img src={img} alt="" className='w-full rounded' />
 
             <div className='my-4'>
                <div className='flex flex-wrap  items-center'>
@@ -173,12 +231,12 @@ const SinglePage = ({ setCategoryNews, id, }) => {
             <div className=' flex items-center flex-wrap justify-between'>
                <div className='flex items-center gap-3'>
 
-                  <span className='ml-4 text-2xl text-blue-800'><BiLike></BiLike></span>
+                  <span onClick={() => handleLike(singleNewes)} className='ml-4 text-2xl text-blue-800'><BiLike></BiLike></span>
                   {total_likes}
-                  <span className='ml-4 text-2xl text-red-700'><BiDislike></BiDislike></span>
+                  <span onClick={() => handleDisLike(singleNewes)} className='ml-10 text-2xl text-red-700'><BiDislike></BiDislike></span>
                   {total_dislikes}
                </div>
-           
+
             </div>
 
 
@@ -196,39 +254,39 @@ const SinglePage = ({ setCategoryNews, id, }) => {
                      name='comment'
                      className='w-full lg:w-7/12'
                   />
-              {
-               user?.uid?   (
-                  !loading?   <Button size="sm" color="gray"
+                  {
+                     user?.uid ? (
+                        !loading ? <Button size="sm" color="gray"
 
-                  type='submit'
+                           type='submit'
 
 
-               >
+                        >
 
-                  <BiSend className='mr-1'></BiSend> <span className='font-semibold'>Post</span>
-               </Button>
-               :
-               <Loader></Loader>
-               )
-                :
-               <div>
-                 
-                  
-               </div>
-              }
-             
+                           <BiSend className='mr-1'></BiSend> <span className='font-semibold'>Post</span>
+                        </Button>
+                           :
+                           <Loader></Loader>
+                     )
+                        :
+                        <div>
+
+
+                        </div>
+                  }
+
                </form>
                {
-               user?.uid? <p></p> : <p className='ml-12 mt-3'>please  <Link className='text-blue-500 font-semibold text-lg ' href='/login'>Login</Link> after comment</p>
-              }
+                  user?.uid ? <p></p> : <p className='ml-12 mt-3'>please  <Link className='text-blue-500 font-semibold text-lg ' href='/login'>Login</Link> after comment</p>
+               }
 
             </div>
             <div className='mb-6'><hr /></div>
             {/* right side  */}
 
             <Comment
-            id={id}
-             comments ={comments}
+               id={id}
+               comments={comments}
 
             ></Comment>
             <div className='flex'>
