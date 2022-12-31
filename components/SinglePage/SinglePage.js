@@ -91,7 +91,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
       setLoading(true)
       const AddComment = {
          email: user?.email, createdAt: new Date().toISOString(),
-         username: user?.displayName, comment, category_id, newsId: id, img: user?.photoURL
+         username: user?.displayName, comment, category_id, newsId: id, img: user?.photoURL, newsImg: img
 
       }
       fetch(`http://localhost:5000/addcomment`, {

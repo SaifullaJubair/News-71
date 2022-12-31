@@ -1,15 +1,21 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import { Button, Label, TextInput } from 'flowbite-react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useContext, useState } from 'react';
 import { FaFacebookF } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
+    const { providerLogin, logOut, forgotPassword, signIn, user } = useContext(AuthContext);
+    const router = useRouter()
+    if(user){
+        router.push('/')
+    }
     const [error, setError] = useState("");
     const [userEmail, setUserEmail] = useState("");
-    const { providerLogin, logOut, forgotPassword, signIn, user } = useContext(AuthContext);
     console.log(user)
     const googleProvider = new GoogleAuthProvider();
     console.log('FirebaseUser:', user)
