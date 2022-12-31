@@ -1,8 +1,5 @@
-
-import { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Login from '../components/Login/Login.js';
-import { AuthContext } from '../contexts/AuthProvider/AuthProvider.js';
 import '../styles/LoginPage.module.css';
 
 const LoginPage = () => {
