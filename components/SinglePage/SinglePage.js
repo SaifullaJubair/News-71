@@ -33,7 +33,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
    useEffect(() => {
       console.log(id)
       if (id) {
-         fetch(`http://localhost:5000/singlenews/${id}`)
+         fetch(`https://server-news-71.vercel.app/singlenews/${id}`)
             .then(res => res.json())
             .then(data => {
                console.log(data)
@@ -49,7 +49,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
 
    useEffect(() => {
 
-      fetch(`http://localhost:5000/newsCategory/${categoryName}`)
+      fetch(`https://server-news-71.vercel.app/newsCategory/${categoryName}`)
          .then(res => res.json())
          .then(data => {
             setCategoryNews(data)
@@ -74,7 +74,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
       queryKey: ['comment'],
 
       queryFn: async () => {
-         const res = await fetch(`http://localhost:5000/comment/${id}`);
+         const res = await fetch(`https://server-news-71.vercel.app/comment/${id}`);
          const data = await res.json();
          console.log(data)
          return data;
@@ -95,7 +95,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
          username: user?.displayName, comment, category_id, newsId: id, img: user?.photoURL, newsImg: img
 
       }
-      fetch(`http://localhost:5000/addcomment`, {
+      fetch(`https://server-news-71.vercel.app/addcomment`, {
          method: 'POST',
          headers: {
             "content-type": "application/json"
@@ -123,7 +123,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
          newsData, email: user?.email, img, heading, createdAt: new Date().toISOString(), category_id,
       }
       console.log(data)
-      fetch('http://localhost:5000/increaselike', {
+      fetch('https://server-news-71.vercel.app/increaselike', {
 
          method: 'PUT',
          headers: {
@@ -153,7 +153,7 @@ const SinglePage = ({ setCategoryNews, id, }) => {
          const data = {
             newsData, email: user?.email, img, heading, createdAt: new Date().toISOString(), category_id,
          }
-         fetch('http://localhost:5000/decreaselike', {
+         fetch('https://server-news-71.vercel.app/decreaselike', {
 
             method: 'PUT',
             headers: {

@@ -20,7 +20,7 @@ const UserProfile = () => {
    const [userData, setUserData] = useState(null)
    useEffect(() => {
       if (user?.email) {
-         fetch(`http://localhost:5000/singleuser/${user?.email}`)
+         fetch(`https://server-news-71.vercel.app/singleuser/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                console.log(data)

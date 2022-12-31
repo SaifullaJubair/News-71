@@ -17,7 +17,7 @@ const CategoryNews = () => {
         if (categoryname) {
             const newName = categoryname?.charAt(0)?.toUpperCase() + categoryname?.slice(1);
             console.log(newName);
-            fetch(`http://localhost:5000/news/${newName}?length=-1`)
+            fetch(`https://server-news-71.vercel.app/news/${newName}?length=-1`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);

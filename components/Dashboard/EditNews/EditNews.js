@@ -10,7 +10,7 @@ const EditNews = ({ newsid }) => {
     const [newsData, setNewsData] = useState(null)
     const [reload, setReload] = useState(false);
     useEffect(() => {
-        fetch('http://localhost:5000/allcategories', {
+        fetch('https://server-news-71.vercel.app/allcategories', {
             method: 'GET'
         })
             .then(res => res.json())
@@ -20,7 +20,7 @@ const EditNews = ({ newsid }) => {
     useEffect(() => {
 
         if (newsid) {
-            fetch(`http://localhost:5000/getnews?id=${newsid}`, {
+            fetch(`https://server-news-71.vercel.app/getnews?id=${newsid}`, {
                 method: 'GET'
             })
                 .then(res => res.json())
@@ -58,7 +58,7 @@ const EditNews = ({ newsid }) => {
                             img: data.data.url,
                         }
 
-                        fetch(`http://localhost:5000/editnews/${newsData?._id}`, {
+                        fetch(`https://server-news-71.vercel.app/editnews/${newsData?._id}`, {
                             method: 'PUT',
                             headers: {
                                 "content-type": "application/json"
@@ -86,7 +86,7 @@ const EditNews = ({ newsid }) => {
                 img: newsData?.img,
             }
 
-            fetch(`http://localhost:5000/editnews/${newsData?._id}`, {
+            fetch(`https://server-news-71.vercel.app/editnews/${newsData?._id}`, {
                 method: 'PUT',
                 headers: {
                     "content-type": "application/json"
@@ -107,7 +107,7 @@ const EditNews = ({ newsid }) => {
 
     return (
         <div className='max-w-[1440px] w-[95%] mx-auto flex gap-6 mt-[100px]'>
-            <DashboardSideBar/>
+            <DashboardSideBar />
             <div className='flex-grow'>
                 <h2 className='title uppercase p-4 text-center mb-10 bg-purple-300 text-black text-2xl font-semibold rounded'>Edit News </h2>
                 <form className='flex flex-col gap-4 shadow p-6  mx-auto' onSubmit={handleEdit}>

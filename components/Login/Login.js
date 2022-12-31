@@ -9,10 +9,10 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const { providerLogin, logOut, forgotPassword, signIn, user , updateUserProfile, createUser, } = useContext(AuthContext);
-   
+    const { providerLogin, logOut, forgotPassword, signIn, user, updateUserProfile, createUser, } = useContext(AuthContext);
+
     const router = useRouter()
-    if(user){
+    if (user) {
         router.push('/')
     }
     const [error, setError] = useState("");
@@ -20,7 +20,7 @@ const Login = () => {
     const [createUserEmail, setCreateUserEmail] = useState('')
 
     const googleProvider = new GoogleAuthProvider();
- 
+
 
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
@@ -34,7 +34,7 @@ const Login = () => {
                 }
                 updateUserProfile(currentUser)
                     .then(() => {
-                        saveUser(user.displayName, user.email,  user.photoURL)
+                        saveUser(user.displayName, user.email, user.photoURL)
                     })
                     .catch(error => console.error(error))
                 console.log(currentUser);
@@ -46,8 +46,8 @@ const Login = () => {
 
     const saveUser = (displayName, email, photoURL) => {
         const createdAt = new Date().toISOString();
-        const user = { name: displayName, email, role: 'user' , createdAt , img: photoURL }
-        fetch('http://localhost:5000/adduser', {
+        const user = { name: displayName, email, role: 'user', createdAt, img: photoURL }
+        fetch('https://server-news-71.vercel.app/adduser', {
             method: 'POST',
             headers: {
                 "content-type": "application/json"
@@ -88,7 +88,7 @@ const Login = () => {
                 toast("login success", {
                     position: toast.POSITION.TOP_CENTER,
                 });
-            
+
             })
             .catch((e) => {
                 console.error(e);

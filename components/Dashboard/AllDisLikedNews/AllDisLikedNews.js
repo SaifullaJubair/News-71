@@ -13,7 +13,7 @@ const AllDisLikedNews = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/dislike/${user?.email}`)
+        fetch(`https://server-news-71.vercel.app/dislike/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);

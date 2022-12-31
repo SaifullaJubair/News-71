@@ -7,7 +7,7 @@ const TechNews = () => {
 
     const [newes, setNews] = useState(null);
     useEffect(() => {
-        fetch('http://localhost:5000/news/Tech?length=8')
+        fetch('https://server-news-71.vercel.app/news/Tech?length=8')
             .then(res => res.json())
             .then(data => {
                 console.log(data);

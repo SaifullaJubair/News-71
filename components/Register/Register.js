@@ -40,7 +40,7 @@ const Register = () => {
                 }
                 updateUserProfile(currentUser)
                     .then(() => {
-                        saveUser(user.displayName, user.email,  user.photoURL)
+                        saveUser(user.displayName, user.email, user.photoURL)
                     })
                     .catch(error => console.error(error))
                 console.log(currentUser);
@@ -52,8 +52,8 @@ const Register = () => {
 
     const saveUser = (displayName, email, photoURL) => {
         const createdAt = new Date().toISOString();
-        const user = { name: displayName, email, role: 'user' , createdAt , img: photoURL }
-        fetch('http://localhost:5000/adduser', {
+        const user = { name: displayName, email, role: 'user', createdAt, img: photoURL }
+        fetch('https://server-news-71.vercel.app/adduser', {
             method: 'POST',
             headers: {
                 "content-type": "application/json"
@@ -137,7 +137,7 @@ const Register = () => {
                             .then(result => {
                                 // const users =  { name, email, password, createdAt: new Date().toISOString(), photoURL: data?.data?.display_url };
                                 console.log(result)
-                                fetch('http://localhost:5000/adduser', {
+                                fetch('https://server-news-71.vercel.app/adduser', {
                                     method: 'POST',
                                     headers: {
                                         "content-type": "application/json"

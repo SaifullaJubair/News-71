@@ -5,7 +5,7 @@ const LatestNews = () => {
 
    const [newes, setNews] = useState(null);
    useEffect(() => {
-      fetch('http://localhost:5000/latestnews')
+      fetch('https://server-news-71.vercel.app/latestnews')
          .then(res => res.json())
          .then(data => {
             console.log(data);
