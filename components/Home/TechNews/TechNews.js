@@ -19,48 +19,6 @@ const TechNews = () => {
     return (
 
         <div>
-
-            {/* <div className="py-16 mx-auto ">
-                <h1 className="text-3xl mx-2 my-4">Tech News</h1>
-                <div className="grid gap-5 row-gap-5 mb-8  grid-cols-2  md:grid-3 lg:grid-cols-4">
-                    {
-                        newes?.map(news =>
-                            <div className="w-[100%]"
-                                key={news?._id}>
-                                <Link
-                                    href={`/news/view/${news?._id}`}
-                                    aria-label="View Item"
-                                    className=""
-                                >
-                                    <div className="flex flex-col h-full overflow-hidden duration-300 transform bg-white rounded shadow-sm hover:-translate-y-2">
-                                        <img
-                                            src={news?.img}
-                                            className=""
-                                            alt=""
-                                        />
-
-                                        <div className="flex-grow border border-t-0 rounded-b">
-                                            <div className="p-5">
-                                                <h6 className="mb-2 font-semibold leading-5  truncate ...">
-                                                    {news?.heading}
-                                                </h6>
-                                                <p className="text-sm text-gray-900">
-                                                    {news?.details?.length > 250 ? `${news?.details.slice(0, 250)} ...` : news?.details}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link>
-                            </div>
-
-                        )
-                    }
-                </div>
-                <div className="text-center">
-                    <Button variant="contained " className="bg-blue-500 font-semibold">Show More</Button>
-                </div>
-            </div> */}
-
             <div >
                 <h1 className="text-3xl font-semibold mx-2 my-4">Tech News</h1>
                 <div className="grid gap-5 row-gap-5 mb-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
