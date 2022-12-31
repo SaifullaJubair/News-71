@@ -11,25 +11,31 @@ import Loader from '../../Shared/Loader/Loader';
 
 const AllLikedNews = () => {
     const { user } = useContext(AuthContext)
-    console.log(user)
-    // const [likedNews, setLikedNews] = useState(null)
-    // const [refetch, setRefetch] = useState(false);
-    // const [deleteData, setDeleteData] = useState(null);
+    const [likes, setLiked] = useState(null)
+  
 
-    // const showModal = (user) => {
-    //     setDeleteData(user)
-    //     console.log(user);
-    // }
+    useEffect(() => {
+        fetch(`http://localhost:5000/like/${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setLiked(data)
 
-    // const onClose = () => {
-    //     setDeleteData(null)
-    // }
+            })
+    }, [user?.email])
 
     return (
         <div className='max-w-[1440px] w-[95%] mx-auto flex gap-6 mt-7'>
             <DashboardSideBar></DashboardSideBar>
             <div className='flex-grow'>
-                <h2 className='title uppercase p-10 text-center mb-10 bg-purple-300 text-black text-2xl font-semibold'>All Users </h2>
+                {
+                    likes ? <h2 className='title uppercase p-10 text-center mb-10 bg-purple-300 text-black text-2xl font-semibold'>All Like </h2> :
+                        <Loader></Loader>
+                }
+                {
+                    likes?.length ? <p></p> :
+                        <p className='text-2xl mt-16 text-center text-orange-500 '>You have No Like</p>
+                }
 
                 <Table striped={true}>
                     <Table.Head>
@@ -40,79 +46,43 @@ const AllLikedNews = () => {
                             Image
                         </Table.HeadCell>
                         <Table.HeadCell>
-                            Name
+                            News Heading
+                        </Table.HeadCell>
+                        <Table.HeadCell>
+                            date
+                        </Table.HeadCell>
+                        <Table.HeadCell>
+                            category
                         </Table.HeadCell>
 
-                        <Table.HeadCell>
-                            Operations
-                        </Table.HeadCell>
                     </Table.Head>
                     <Table.Body className="divide-y">
+                        {
+                            likes?.map((comment, index) =>
+                                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                                    <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                                        {index + 1}
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        <img src={comment.newsImg} className="h-12 w-12 rounded  " alt="" />
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                     <Link className='text-blue-400 ' href={`/news/view/${comment?.id}`}> {comment?.heading?.slice(0, 40)}...</Link>
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        {comment.createdAt?.slice(0, 10)}
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        {comment.category_id}
+                                    </Table.Cell>
 
-                        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                {/* {index + 1} */} #
-                            </Table.Cell>
-                            <Table.Cell>
-                                <img src={user?.photoURL} className="h-12 w-12 rounded-full ring-4 ring-blue" alt="" />
-                            </Table.Cell>
-                            <Table.Cell>
-                                {user?.displayName}
-                            </Table.Cell>
-
-                            <Table.Cell className='flex gap-3' >
-
-                                <Button size="xs" color="failure" onClick={() => showModal(user)}>
-                                    <FaTrash className='mr-2'></FaTrash> Delete
-                                </Button>
-                            </Table.Cell>
-                        </Table.Row>
-
+                                </Table.Row>)
+                        }
                     </Table.Body>
                 </Table>
             </div>
 
-            {/* <div>
-                {
-                    deleteData !== null && <div>
-                        <div>
-
-                            <Modal
-                                show={true}
-                                size="md"
-                                popup={true}
-                                onClose={onClose}
-                            >
-                                <Modal.Header />
-                                <Modal.Body>
-                                    <div className="text-center">
-                                        
-                                        <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                                            Are you sure you want to delete this <span className='font-bold'>{deleteData?.name}</span> ?
-                                        </h3>
-                                        <div className="flex justify-center gap-4">
-                                            <Button
-                                                color="failure"
-                                                onClick={() => handleDeleteUser(deleteData)}
-                                            >
-                                                Yes, I'm sure
-                                            </Button>
-                                            <Button
-                                                color="gray"
-                                                onClick={() => { setDeleteData(null) }}
-                                            >
-                                                No, cancel
-                                            </Button>
-                                        </div>
-                                    </div>
-                                </Modal.Body>
-                            </Modal>
-                        </div>
-                    </div>
-                }
-            </div> */}
-
-        </div>
+        </div >
     );
 };
 

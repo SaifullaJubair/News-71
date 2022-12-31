@@ -2,10 +2,11 @@ import { Button, Modal, Select, Table, Textarea, TextInput } from 'flowbite-reac
 import React, { useContext, useEffect, useState } from 'react';
 import DashboardSideBar from '../../Shared/DashboardSideBar/DashboardSideBar';
 import Loader from '../../Shared/Loader/Loader';
-import { FaEdit, FaMailBulk, FaTrash, FaUser } from 'react-icons/fa';
+import { FaEdit, FaExternalLinkAlt, FaLink, FaMailBulk, FaTrash, FaUser } from 'react-icons/fa';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
 import { useQuery } from '@tanstack/react-query';
+import Link from 'next/link';
 
 const AllComments = () => {
     const { user } = useContext(AuthContext)
@@ -102,11 +103,11 @@ const AllComments = () => {
             <div className='flex-grow'>
                 {
                     comments ? <h2 className='title uppercase p-10 text-center mb-10 bg-purple-300 text-black text-2xl font-semibold'>All Comment </h2> :
-                       <Loader></Loader>
+                        <Loader></Loader>
                 }
                 {
-                    comments?.length ? <p></p>:
-                      <p className='text-2xl mt-16 text-center text-orange-500 '>You have No comment</p>
+                    comments?.length ? <p></p> :
+                        <p className='text-2xl mt-16 text-center text-orange-500 '>You have No comment</p>
                 }
 
                 <Table striped={true}>
@@ -129,6 +130,9 @@ const AllComments = () => {
                         <Table.HeadCell>
                             Operations
                         </Table.HeadCell>
+                        <Table.HeadCell>
+                            News link
+                        </Table.HeadCell>
                     </Table.Head>
                     <Table.Body className="divide-y">
                         {
@@ -138,7 +142,7 @@ const AllComments = () => {
                                         {index + 1}
                                     </Table.Cell>
                                     <Table.Cell>
-                                        <img src={comment.newsImg} className="h-12 w-12 rounded-full ring-4 ring-blue" alt="" />
+                                        <img src={comment.newsImg} className="h-12 w-12 rounded ring-1 ring-blue" alt="" />
                                     </Table.Cell>
                                     <Table.Cell>
                                         {comment.comment}
@@ -149,15 +153,23 @@ const AllComments = () => {
                                     <Table.Cell>
                                         {comment.category_id}
                                     </Table.Cell>
-                                    <Table.Cell className='flex gap-3' >
+                                    <Table.Cell  >
 
-                                        <Button size="xs" onClick={() => showEditModal(comment)}>
+                                      <div className='flex gap-3  items-center '>
+                                      <Button size="xs" onClick={() => showEditModal(comment)}>
                                             <FaEdit className='mr-2'></FaEdit> Edit
                                         </Button>
 
                                         <Button size="xs" color="failure" onClick={() => showModal(comment)}>
                                             <FaTrash className='mr-2'></FaTrash> Delete
                                         </Button>
+                                      </div>
+
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        <Link className='text-blue-400 truncate ... ' href={`/news/view/${comment?.newsId}`}> <Button size="xs"  outline={true} >
+                                          <FaExternalLinkAlt className='mr-2' />  Go to News
+                                        </Button>  </Link>
                                     </Table.Cell>
                                 </Table.Row>)
                         }
@@ -186,7 +198,7 @@ const AllComments = () => {
                                             color="failure"
                                             onClick={() => handleDeleteUser(deleteData)}
                                         >
-                                           Delete
+                                            Delete
                                         </Button>
                                         <Button
                                             color="gray"

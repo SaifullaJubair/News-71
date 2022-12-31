@@ -9,45 +9,64 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const { providerLogin, logOut, forgotPassword, signIn, user } = useContext(AuthContext);
+    const { providerLogin, logOut, forgotPassword, signIn, user , updateUserProfile, createUser, } = useContext(AuthContext);
+   
     const router = useRouter()
     if(user){
         router.push('/')
     }
     const [error, setError] = useState("");
     const [userEmail, setUserEmail] = useState("");
-    console.log(user)
+    const [createUserEmail, setCreateUserEmail] = useState('')
+
     const googleProvider = new GoogleAuthProvider();
-    console.log('FirebaseUser:', user)
+ 
+
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
             .then((result) => {
                 const user = result.user;
                 console.log(user);
-                // jwt token 
-                // const currentUser = {
-                //   email: user.email
-                // }
-                // console.log(currentUser);
-                // setError("");
-                // // get jwt toket 
-                // fetch('https://b6-a11-service-review-server-side.vercel.app/jwt', {
-                //   method: "POST",
-                //   headers: {
-                //     'content-type': 'application/json'
-                //   },
-                //   body: JSON.stringify(currentUser)
-                // })
-                //   .then(res => res.json())
-                //   .then(data => {
-                //     console.log(data)
-                //     localStorage.setItem('token', data.token)
-                //     navigate(from, { replace: true });
-                //   })
-                //end jwt token
+
+                const currentUser = {
+                    displayName: user.displayName,
+                    email: user.email
+                }
+                updateUserProfile(currentUser)
+                    .then(() => {
+                        saveUser(user.displayName, user.email,  user.photoURL)
+                    })
+                    .catch(error => console.error(error))
+                console.log(currentUser);
+                setError("");
             })
-            .catch((error) => console.log(error));
+            .catch((error) => console.error(error, error.message));
+
     };
+
+    const saveUser = (displayName, email, photoURL) => {
+        const createdAt = new Date().toISOString();
+        const user = { name: displayName, email, role: 'user' , createdAt , img: photoURL }
+        fetch('http://localhost:5000/adduser', {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setCreateUserEmail(user.email)
+                console.log(user.email)
+                toast("Register success", {
+                    position: toast.POSITION.TOP_CENTER,
+                });
+
+
+            })
+    }
+
 
 
     const handleSubmit = (event) => {
@@ -69,21 +88,7 @@ const Login = () => {
                 toast("login success", {
                     position: toast.POSITION.TOP_CENTER,
                 });
-                // alert('login success')
-                // get jwt toket 
-                // fetch('https://b6-a11-service-review-server-side.vercel.app/jwt', {
-                //   method: "POST",
-                //   headers: {
-                //     'content-type': 'application/json'
-                //   },
-                //   body: JSON.stringify(currentUser)
-                // })
-                //   .then(res => res.json())
-                //   .then(data => {
-                //     console.log(data)
-                //     localStorage.setItem('token', data.token)
-                //   })
-                // navigate(from, { replace: true });
+            
             })
             .catch((e) => {
                 console.error(e);
