@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
 import ContactUs from '../components/ContactUs/ContactUs';
+import PleaseLogin from '../components/PleaseLogin/PleaseLogin';
 import Loader from '../components/Shared/Loader/Loader';
 import { AuthContext } from '../Contexts/AuthProvider/AuthProvider';
 
@@ -10,7 +11,7 @@ const contactus = () => {
         return <Loader></Loader>
     }
     if (!user?.email) {
-        return <p>Please Login</p>
+        return <PleaseLogin></PleaseLogin>
     }
     return (
         <div>

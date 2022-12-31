@@ -61,7 +61,7 @@ const TopBar = () => {
             {
               user?.photoURL ?
                 <>
-                  <img title={user?.displayName} className='h-10 rounded-full ' src={user?.photoURL} alt="User_Photo" />
+                  <img title={user?.displayName} className='h-10 w-10   rounded-full ' src={user?.photoURL} alt="User_Photo" />
                 </>
                 :
                 <span className='text-xl' ><FaUserAlt title={user?.displayName} ></FaUserAlt> </span>
