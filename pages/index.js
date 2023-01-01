@@ -10,7 +10,7 @@ import PoliticalNews from '../components/Home/PoliticalNews/PoliticalNews'
 import SportsNews from '../components/Home/SportsNews/SportsNews'
 import TechNews from '../components/Home/TechNews/TechNews'
 import TrendingNews from '../components/Home/TrendingNews/TrendingNews'
-import NavbarBottom from '../components/Shared/Navbar/Navbar'
+
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -26,7 +26,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className='max-w-[1440px] w-[95%] mx-auto'>
-       
+
         <Marquee1></Marquee1>
         <LatestNews></LatestNews>
         <TrendingNews></TrendingNews>
