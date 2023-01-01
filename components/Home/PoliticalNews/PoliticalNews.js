@@ -37,6 +37,7 @@ const PoliticalNews = () => {
                     <Grid item xs={12} lg={4} md={6} sm={6}>
                         <Card sx={{}}>
                             <Link href={`/news/view/${singleNews?._id}`} >
+
                                 <CardActionArea>
                                     <CardMedia
                                         sx={{ height: '246px' }}
