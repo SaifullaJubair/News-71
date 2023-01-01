@@ -43,20 +43,20 @@ const TopBar = () => {
             ContactUs
           </Link>
 
-          <Link className='text-base font-semibold' href={'/register'}>SignUp</Link>
-          <Link className='text-base font-semibold' href={'/login'}>Login</Link>
-          {/* {
-            user ?
-              <>
 
-                < className='text-base font-semibold' href={'/dashboard'}> DashBoard</>
+          {
+            user ?
+              <React.Fragment>
+                <Link className='text-base font-semibold' href={'/dashboard'}> DashBoard</Link>
                 <Link className='text-base font-semibold' onClick={handleLogOut}> Logout</Link>
 
-              </>
-        :
-        <>
-        </>
-          } */}
+              </React.Fragment>
+              :
+              <React.Fragment>
+                <Link className='text-base font-semibold' href={'/register'}>SignUp</Link>
+                <Link className='text-base font-semibold' href={'/login'}>Login</Link>
+              </React.Fragment>
+          }
           <Link href='/userprofile' className='md:flex justify-end items-center'>
             {
               user?.photoURL ?
