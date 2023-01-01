@@ -43,20 +43,20 @@ const TopBar = () => {
             ContactUs
           </Link>
 
+          <Link className='text-base font-semibold' href={'/register'}>SignUp</Link>
+          <Link className='text-base font-semibold' href={'/login'}>Login</Link>
           {/* {
-            user?.uid ?
+            user ?
               <>
 
-                <Link className='text-base font-semibold' href='/dashboard'> DashBoard</Link>
+                < className='text-base font-semibold' href={'/dashboard'}> DashBoard</>
                 <Link className='text-base font-semibold' onClick={handleLogOut}> Logout</Link>
 
               </>
-              :
-              <>
-                <Link className='text-base font-semibold' href='/register'>SignUp</Link>
-                <Link className='text-base font-semibold' href='/login'>Login</Link>
-              </>
-          }
+        :
+        <>
+        </>
+          } */}
           <Link href='/userprofile' className='md:flex justify-end items-center'>
             {
               user?.photoURL ?
@@ -66,7 +66,7 @@ const TopBar = () => {
                 :
                 <span className='text-xl' ><FaUserAlt title={user?.displayName} ></FaUserAlt> </span>
             }
-          </Link> */}
+          </Link>
         </Navbar.Collapse>
 
       </Navbar>
