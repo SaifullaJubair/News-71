@@ -1,4 +1,5 @@
-import { Link } from "@mui/material";
+
+import Link from "next/link";
 import { useEffect, useState } from "react";
 const TrendingNews = () => {
     const [singleNews, setSingleNews] = useState(null);

@@ -24,40 +24,40 @@ const TopBar = () => {
 
       >
 
-        <Navbar.Brand href="/">
-          <img
+        <Link href='/'>
+          < img
             src="https://i.ibb.co/3CDjvBg/received-1149020545746082-1-removebg-preview-1.png"
             className=" h-16 w-36"
             alt="News71 Logo"
           />
 
-        </Navbar.Brand>
+        </Link>
         <Navbar.Toggle />
         <Navbar.Collapse>
 
 
-          <Navbar.Link className='text-base font-semibold' href="/about">
+          <Link className='text-base font-semibold' href="/about">
             AboutUs
-          </Navbar.Link>
-          <Navbar.Link className='text-base font-semibold' href="/contactus">
+          </Link>
+          <Link className='text-base font-semibold' href="/contactus">
             ContactUs
-          </Navbar.Link>
+          </Link>
 
-          {
+          {/* {
             user?.uid ?
               <>
 
-                <Navbar.Link className='text-base font-semibold' href='/dashboard'> DashBoard</Navbar.Link>
-                <Navbar.Link className='text-base font-semibold' onClick={handleLogOut}> Logout</Navbar.Link>
+                <Link className='text-base font-semibold' href='/dashboard'> DashBoard</Link>
+                <Link className='text-base font-semibold' onClick={handleLogOut}> Logout</Link>
 
               </>
               :
               <>
-                <Navbar.Link className='text-base font-semibold' href='/register'>SignUp</Navbar.Link>
-                <Navbar.Link className='text-base font-semibold' href='/login'>Login</Navbar.Link>
+                <Link className='text-base font-semibold' href='/register'>SignUp</Link>
+                <Link className='text-base font-semibold' href='/login'>Login</Link>
               </>
           }
-          <Navbar.Link href='/userprofile' className='md:flex justify-end items-center'>
+          <Link href='/userprofile' className='md:flex justify-end items-center'>
             {
               user?.photoURL ?
                 <>
@@ -66,7 +66,7 @@ const TopBar = () => {
                 :
                 <span className='text-xl' ><FaUserAlt title={user?.displayName} ></FaUserAlt> </span>
             }
-          </Navbar.Link>
+          </Link> */}
         </Navbar.Collapse>
 
       </Navbar>
@@ -76,7 +76,7 @@ const TopBar = () => {
 
 
 
-    </div>
+    </div >
 
 
 
