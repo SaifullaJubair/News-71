@@ -15,7 +15,7 @@ const AllLikedNews = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/like/${user?.email}`)
+        fetch(`https://server-news-71.vercel.app/like/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
