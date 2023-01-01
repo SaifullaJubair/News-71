@@ -89,15 +89,7 @@ const About = () => {
                     }
 
                 </div>
-                {
-                    user?.uid ? <ContactUs></ContactUs> :
-                        <div>
-                            <p className='mt-4 flex items-center gap-2 justify-center'>Please
-                                <Link className='text-blue-500 font-semibold text-lg' href='/login'>
-                                    <span className='flex items-center gap-1'><FaLock className='text-gray-800'></FaLock> Login</span>
-                                </Link>  first to Contact With Us</p>
-                        </div>
-                }
+                <ContactUs></ContactUs>
             </div>
         </div>
     );
