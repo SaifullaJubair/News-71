@@ -1,39 +1,23 @@
+import Link from "next/link";
 import { useContext } from "react";
 
 
 const Footer = () => {
 
-  
+
     return (
         <div className='max-w-[1440px] w-[95%] mx-auto mt-6'>
             <div className="pt-16 mx-auto ">
                 <div className="grid gap-16 row-gap-10 mb-8 lg:grid-cols-6">
                     <div className="md:max-w-md lg:col-span-2">
-                        <a
-                            href="/"
-                            aria-label="Go home"
-                            title="Company"
-                            className="inline-flex items-center"
-                        >
-                            <svg
-                                className="w-8 text-deep-purple-accent-400"
-                                viewBox="0 0 24 24"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeMiterlimit="10"
-                                stroke="currentColor"
-                                fill="none"
-                            >
-                                <rect x="3" y="1" width="7" height="12" />
-                                <rect x="3" y="17" width="7" height="6" />
-                                <rect x="14" y="1" width="7" height="6" />
-                                <rect x="14" y="11" width="7" height="12" />
-                            </svg>
-                            <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                                News-71
-                            </span>
-                        </a>
+                        <Link href='/'>
+                            < img
+                                src="https://i.ibb.co/3CDjvBg/received-1149020545746082-1-removebg-preview-1.png"
+                                className=" h-12 w-32"
+                                alt="News71 Logo"
+                            />
+
+                        </Link>
                         <div className="mt-4 lg:max-w-sm">
                             <p>One of the Best News Ever</p>
                         </div>

@@ -119,34 +119,41 @@ const SinglePage = ({ setCategoryNews, id, }) => {
 
 
    const handleLike = (newsData) => {
-      const data = {
-         newsData, email: user?.email, img, heading, createdAt: new Date().toISOString(), category_id,
-      }
-      console.log(data)
-      fetch('https://server-news-71.vercel.app/increaselike', {
+      if (user) {
+         const data = {
+            newsData, email: user?.email, img, heading, createdAt: new Date().toISOString(), category_id,
+         }
+         console.log(data)
+         fetch('https://server-news-71.vercel.app/increaselike', {
 
-         method: 'PUT',
-         headers: {
-            "content-type": "application/json"
-         },
-         body: JSON.stringify(data)
-      })
-
-         .then(res => res.json())
-         .then(data => {
-            if (data.modifiedCount > 0) {
-               toast("Like added", {
-                  position: toast.POSITION.TOP_CENTER
-               })
-               setAgainFetch(!againFetch)
-            }
-            else {
-               toast("Already Liked", {
-                  position: toast.POSITION.TOP_CENTER
-               })
-            }
-            console.log(data)
+            method: 'PUT',
+            headers: {
+               "content-type": "application/json"
+            },
+            body: JSON.stringify(data)
          })
+
+            .then(res => res.json())
+            .then(data => {
+               if (data.modifiedCount > 0) {
+                  toast("Like added", {
+                     position: toast.POSITION.TOP_CENTER
+                  })
+                  setAgainFetch(!againFetch)
+               }
+               else {
+                  toast("Already Liked", {
+                     position: toast.POSITION.TOP_CENTER
+                  })
+               }
+               console.log(data)
+            })
+      }
+      else {
+         toast.error('Please Login', {
+            position: toast.POSITION.TOP_CENTER
+         })
+      }
    }
    const handleDisLike = (newsData) => {
       if (user) {
