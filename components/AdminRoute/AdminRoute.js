@@ -1,18 +1,20 @@
+import { useRouter } from "next/router";
+import { useContext } from "react"
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider"
+import useAdmin from "../hook/useAdmin";
+import Loader from "../Shared/Loader/Loader";
 
-// import useAdmin from '../../hooks/useAdmin';
-// import { AuthContext } from '../../Context/AuthProvider';
-// import Loading from '../../Shared/Loading/Loading';
 
-// const AdminRoute = ({ children }) => {
-//    const { user, loading } = useContext(AuthContext)
-//    const [isAdmin, isAdminLoading] = useAdmin(user?.email)
-//    const location = useLocation()
-//    if (loading || isAdminLoading) {
-//       return <Loading></Loading>
-//    };
-//    if (user && isAdmin) {
-//       return children;
-//    }
-//    return <Navigate to="/login" state={{ from: location }} replace></Navigate>
-// }
-// export default AdminRoute;
+const AdminRoute = ({ children }) => {
+   const { user, loading } = useContext(AuthContext)
+   const [isAdmin, isAdminLoading] = useAdmin(user?.email)
+   const router = useRouter()
+   if (loading || isAdminLoading) {
+      return <Loader></Loader>
+   }
+   if (user && isAdmin) {
+      return children;
+   }
+   return router.push('/login')
+}
+export default AdminRoute;

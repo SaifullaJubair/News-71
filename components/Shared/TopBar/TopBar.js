@@ -15,6 +15,7 @@ const TopBar = () => {
       .then(() => { })
       .catch(error => console.log(error))
   }
+
   return (
     <div className='max-w-[1440px] w-[95%] mx-auto'>
 
@@ -43,11 +44,11 @@ const TopBar = () => {
             ContactUs
           </Link>
 
+          <Link className='text-base font-semibold' href={'/dashboard'}> DashBoard</Link>
 
-          {
+          {/* {
             user ?
               <React.Fragment>
-                <Link className='text-base font-semibold' href={'/dashboard'}> DashBoard</Link>
                 <Link className='text-base font-semibold' onClick={handleLogOut}> Logout</Link>
 
               </React.Fragment>
@@ -56,13 +57,13 @@ const TopBar = () => {
                 <Link className='text-base font-semibold' href={'/register'}>SignUp</Link>
                 <Link className='text-base font-semibold' href={'/login'}>Login</Link>
               </React.Fragment>
-          }
+          } */}
           <Link href='/userprofile' className='md:flex justify-end items-center'>
             {
               user?.photoURL ?
-                <>
-                  <img title={user?.displayName} className='h-10 w-10   rounded-full ' src={user?.photoURL} alt="User_Photo" />
-                </>
+
+                <img title={user?.displayName} className='h-10 w-10   rounded-full ' src={user?.photoURL} alt="User_Photo" />
+
                 :
                 <span className='text-xl' ><FaUserAlt title={user?.displayName} ></FaUserAlt> </span>
             }

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { BiCategory, BiCommentDetail, BiDislike, BiGroup, BiLike } from 'react-icons/bi';
 import { BsGraphUp, BsNewspaper } from 'react-icons/bs';
@@ -9,27 +9,45 @@ import { MdOutlineAccountCircle } from 'react-icons/md';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 
 const DashboardSideBar = () => {
-    const {user} = useContext(AuthContext)
+    const { user, logout } = useContext(AuthContext)
     const [hide, setHide] = useState(true);
 
     const handleToggle = () => {
         setHide(!hide);
+    }
+
+    const [userData, setUserData] = useState(null)
+    useEffect(() => {
+        if (user?.email) {
+            fetch(`https://server-news-71.vercel.app/singleuser/${user?.email}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    setUserData(data)
+                })
+        }
+    }, [user])
+
+    const handleLogOut = () => {
+        logout()
+            .then(() => { })
+            .catch(error => console.log(error))
     }
     return (
         <div className='bg-blue-700 min-h-screen text-white  rounded-sm w-fit ' onMouseEnter={() => setHide(false)} >
             <div className={hide ? `h-full p-3 space-y-2 w-[80px] ` : `h-full p-3 space-y-2 w-[200px]  `}>
                 <div className={hide ? `flex flex-col gap-4 py-2 items-center` : `flex flex-col gap-4 py-2 ml-4`}>
                     <span onClick={() => handleToggle()} className={hide ? 'flex items-center justify-center text-center text-xl' : `flex text-lg`}><HiOutlineMenu className={`${!hide} && 'ml-20' `}></HiOutlineMenu> </span>
-                    <img src={user?.photoURL} alt="" className="w-12 h-12 rounded-full dark:bg-gray-500" />
+                    <img src={userData?.img} alt="" className="w-12 h-12 rounded-full dark:bg-gray-500" />
                     <div className={hide ? 'hidden hover:block' : 'block'} >
                         <h2 className="text-lg font-semibold">{user?.displayName}</h2>
-                        <h4>Admin</h4>
+                        <h4>{userData?.role}</h4>
                     </div>
                 </div>
                 <div className="divide-y divide-gray-700">
                     <ul className="pt-2 pb-4 space-y-1 text-lg flex flex-col gap-4">
                         <li className="dark:bg-gray-800 dark:text-gray-50">
-                            <CgAddR className='inline-block ml-4 mr-6 h-7 text-white' ></CgAddR><Link href={`/dashboard/addnews`}><span className={hide ? 'hidden' : 'inline'} >AddNews</span></Link>
+                            <CgAddR className='inline-block ml-4 mr-6 h-7 text-white' ></CgAddR><Link href={`/dashboard/addnews`}><span className={hide ? 'hidden' : 'inline'} > AddNews</span></Link>
                         </li>
                         <li>
                             <BsNewspaper className='inline-block ml-4 mr-6 h-7' ></BsNewspaper>
@@ -73,7 +91,7 @@ const DashboardSideBar = () => {
                         </li>
                         <li>
                             <AiOutlineLogout className='inline ml-4 mr-6 h-7'></AiOutlineLogout>
-                            <span className={hide ? 'hidden' : 'inline'} >Logout</span>
+                            <span className={hide ? 'hidden' : 'inline'} onClick={handleLogOut} >Logout</span>
                         </li>
                     </ul>
 

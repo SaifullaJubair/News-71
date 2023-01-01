@@ -67,6 +67,9 @@ const AllUsers = () => {
     const onEditClose = () => {
         setEditData(null)
     }
+
+
+
     return (
         <div className='max-w-[1440px] w-[95%] mx-auto flex gap-6 mt-7'>
             <DashboardSideBar></DashboardSideBar>
