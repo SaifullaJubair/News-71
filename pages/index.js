@@ -10,6 +10,7 @@ import PoliticalNews from '../components/Home/PoliticalNews/PoliticalNews'
 import SportsNews from '../components/Home/SportsNews/SportsNews'
 import TechNews from '../components/Home/TechNews/TechNews'
 import TrendingNews from '../components/Home/TrendingNews/TrendingNews'
+import ContactForm from '../components/ContactForm/ContactForm'
 
 
 
@@ -37,6 +38,7 @@ export default function Home() {
         <LifeStyleNews></LifeStyleNews>
         <EducationNews></EducationNews>
         <InternationalNews></InternationalNews>
+        <ContactForm></ContactForm>
       </main>
     </>
   )
