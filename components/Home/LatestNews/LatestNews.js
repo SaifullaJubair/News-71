@@ -17,7 +17,7 @@ const LatestNews = () => {
 
 
       <div className="h-[500px] mt-12">
-         <h1 className="font-bold text-2xl mb-8">Latest News</h1>
+         <h1 className="text-3xl font-bold mb-8">Latest News</h1>
 
          <Carousel>
             {

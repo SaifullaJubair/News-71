@@ -20,7 +20,7 @@ const TechNews = () => {
 
         <div>
             <div >
-                <h1 className="text-3xl font-semibold mx-2 my-4">Tech News</h1>
+                <h1 className="text-3xl font-bold mx-2 my-10">Tech News</h1>
                 <div className="grid gap-5 row-gap-5 mb-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
                     {newes?.map(news =>
 

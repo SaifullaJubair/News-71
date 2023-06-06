@@ -14,8 +14,8 @@ const EducationNews = () => {
 
 
     return (
-        <div className=" py-16 mx-auto">
-            <h1 className="text-3xl my-6 font-semibold">Education News</h1>
+        <div className=" mt-8 mb-4 mx-auto">
+            <h1 className="text-3xl my-6 font-bold">Education News</h1>
             <div className="grid gap-6 row-gap-5 mb-8 lg:grid-cols-4 sm:row-gap-6 sm:grid-cols-2">
                 {
                     newes?.map(news =>

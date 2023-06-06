@@ -30,7 +30,7 @@ const EntertainmentNews = () => {
 
     return (
         <div className="py-10">
-            <Typography className="font-bold text-lg mb-10">Entertainment NEWS</Typography>
+            <Typography className="font-bold text-3xl mb-10">Entertainment NEWS</Typography>
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={3}>
                     {/* first grid  */}

@@ -48,7 +48,7 @@ const InternationalNews = () => {
 
     return (
         <div>
-            <h2 className="text-3xl font-semibold mb-5"> International News</h2>
+            <h2 className="text-3xl font-bold mb-5"> International News</h2>
             <div className="flex justify-center">
                 <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-5  ">
                     <div className="shadow-md p-3">

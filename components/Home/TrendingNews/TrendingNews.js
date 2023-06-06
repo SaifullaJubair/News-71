@@ -17,7 +17,7 @@ const TrendingNews = () => {
     }, []);
     return (
         <div className="mt-28">
-            <h1 className="font-bold text-2xl my-8">Trending News</h1>
+            <h1 className="font-bold text-3xl my-8">Trending News</h1>
             <div className="grid grid-cols-1 w-full  md:grid-cols-2 lg:grid-cols-4 gap-4">
 
                 <div className="  md:col-span-2 duration-300 hover:-translate-y-2 ">

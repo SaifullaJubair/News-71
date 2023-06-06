@@ -7,7 +7,7 @@ const LifeStyleNews = () => {
     const [nextFourNews, setNextFourNews] = useState(null);
     const [newses, setNewses] = useState(null);
     useEffect(() => {
-        fetch("https://server-news-71.vercel.app/news/LifeStyle?length=5")
+        fetch("https://server-news-71.vercel.app/news/Lifestyle?length=5")
             .then((res) => res.json())
             .then(data => {
                 console.log(data);
@@ -18,9 +18,9 @@ const LifeStyleNews = () => {
     }, []);
 
     return (
-        <div className="my-10 font-Times ">
+        <div className="mt-16 mb-10 font-Times ">
             <div className=" mx-auto ">
-                <h1 className="text-3xl font-bold">LifeStyle</h1>
+                <h1 className="text-3xl font-bold my-6">LifeStyle</h1>
             </div>
             <section className="py-6 dark:bg-gray-800 dark:text-gray-50">
                 <div className="grid grid-cols-1 gap-4 mx-auto md:grid-cols-4">
