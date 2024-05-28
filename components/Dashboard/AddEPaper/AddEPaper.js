@@ -7,17 +7,20 @@ import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 const AddEPaper = () => {
   const [loading, setLoading] = useState(false);
   const { user } = useContext(AuthContext);
-  const [alias, setAlias] = useState(null);
+  const [categories, setCategories] = useState(null);
+  const [refetch, setRefetch] = useState(false);
   useEffect(() => {
-    fetch("http://localhost:5000/allalias")
+    fetch("http://localhost:5000/all-alias")
       .then((res) => res.json())
-      .then((data) => setCategories(setAlias));
-  }, []);
+      .then((data) => {
+        setCategories(data);
+      });
+  }, [refetch]);
   const handleAddItem = (event) => {
     event.preventDefault();
 
     const form = event.target;
-    const alias_id = form.categoryId.value;
+    const alias = form.categoryId.value;
     const heading = form.heading.value;
     const details = form?.details?.value;
     // const alias = form.alias.value;
@@ -41,28 +44,28 @@ const AddEPaper = () => {
         if (data.success) {
           const addItem = {
             heading: heading,
+            alias,
             authorName: author,
             img: data.data.url,
             details,
             createdAt: formatDate,
           };
-          console.log(data);
 
-          //   fetch("http://localhost:5000/add-e-paper", {
-          //     method: "POST",
-          //     headers: {
-          //       "content-type": "application/json",
-          //     },
-          //     body: JSON.stringify(addItem),
-          //   })
-          //     .then((res) => res.json())
-          //     .then((data) => {
-          //       setLoading(false);
-          //       form.reset("");
-          //       toast("added successful", {
-          //         position: toast.POSITION.TOP_CENTER,
-          //       });
-          //     });
+          fetch("http://localhost:5000/add-e-paper", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(addItem),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              setLoading(false);
+              form.reset("");
+              toast("added successful", {
+                position: toast.POSITION.TOP_CENTER,
+              });
+            });
         }
       });
   };
@@ -111,7 +114,6 @@ const AddEPaper = () => {
               type="text"
               className="text-lg font-light "
               placeholder="details"
-              required={true}
               shadow={true}
             />
           </div>
@@ -152,7 +154,7 @@ const AddEPaper = () => {
               <option disabled selected>
                 Type Alias
               </option>
-              {alias?.map((category) => (
+              {categories?.map((category) => (
                 <option defaultValue={category?.name}>{category?.name}</option>
               ))}
             </select>
@@ -171,7 +173,13 @@ const AddEPaper = () => {
                             loading && <Loader></Loader>
                         }
                     </div> */}
-          {loading ? (
+          <Button
+            className="mb-8 bg-green-800 w-fit px-14 mx-auto hover:bg-green-600 shadow"
+            type="submit"
+          >
+            Add News
+          </Button>
+          {/* {loading ? (
             <Loader></Loader>
           ) : (
             <Button
@@ -180,7 +188,7 @@ const AddEPaper = () => {
             >
               Add News
             </Button>
-          )}
+          )} */}
         </form>
       </div>
     </div>

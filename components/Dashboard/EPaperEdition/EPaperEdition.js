@@ -10,7 +10,7 @@ const EPaperEdition = () => {
   const [editData, setEditData] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allalias")
+    fetch("http://localhost:5000/all-alias")
       .then((res) => res.json())
       .then((data) => {
         setCategories(data);
