@@ -1,34 +1,26 @@
+import DashboardSideBar from "../../Shared/DashboardSideBar/DashboardSideBar";
+import Loader from "../../Shared/Loader/Loader";
 import { Button, Label, Textarea, TextInput } from "flowbite-react";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
-import DashboardSideBar from "../../Shared/DashboardSideBar/DashboardSideBar";
-import Loader from "../../Shared/Loader/Loader";
-
-const AddNews = () => {
-  const { user } = useContext(AuthContext);
-
-  const [categories, setCategories] = useState(null);
+const AddEPaper = () => {
   const [loading, setLoading] = useState(false);
-
+  const { user } = useContext(AuthContext);
+  const [alias, setAlias] = useState(null);
   useEffect(() => {
-    fetch("http://localhost:5000/allcategories")
+    fetch("http://localhost:5000/allalias")
       .then((res) => res.json())
-      .then((data) => setCategories(data));
+      .then((data) => setCategories(setAlias));
   }, []);
-
   const handleAddItem = (event) => {
     event.preventDefault();
 
     const form = event.target;
-    const category_id = form.categoryId.value;
-    const total_likes = 0;
-    const total_dislikes = 0;
-    const location = form.location.value;
-    const rating = 0;
-    const total_view = 0;
+    const alias_id = form.categoryId.value;
     const heading = form.heading.value;
-    const details = form.details.value;
+    const details = form?.details?.value;
+    // const alias = form.alias.value;
     const author = user?.displayName;
     const image = form.img.files[0];
     const date = new Date();
@@ -49,51 +41,44 @@ const AddNews = () => {
         if (data.success) {
           const addItem = {
             heading: heading,
-            email: user?.email,
             authorName: author,
             img: data.data.url,
-            total_dislikes,
-            total_likes,
-            category_id,
-            location,
             details,
-            total_view,
-            rating,
             createdAt: formatDate,
-            authorImg: user?.photoURL,
           };
+          console.log(data);
 
-          fetch("http://localhost:5000/addnews", {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(addItem),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              setLoading(false);
-              form.reset("");
-              toast("added successful", {
-                position: toast.POSITION.TOP_CENTER,
-              });
-            });
+          //   fetch("http://localhost:5000/add-e-paper", {
+          //     method: "POST",
+          //     headers: {
+          //       "content-type": "application/json",
+          //     },
+          //     body: JSON.stringify(addItem),
+          //   })
+          //     .then((res) => res.json())
+          //     .then((data) => {
+          //       setLoading(false);
+          //       form.reset("");
+          //       toast("added successful", {
+          //         position: toast.POSITION.TOP_CENTER,
+          //       });
+          //     });
         }
       });
   };
-
   return (
     <div className="pt-10 max-w-[1440px] w-[95%] mx-auto flex gap-6">
       <div>
-        <DashboardSideBar></DashboardSideBar>
+        <DashboardSideBar />
       </div>
 
       <div className=" rounded-sm text-3xl font-bold  text-left flex-grow shadow text-black">
-        <h1 className="text-center py-4">Add a article very carefully</h1>
+        <h1 className="text-center py-4">Add a E-paper today</h1>
         <form
           onSubmit={handleAddItem}
           className="flex mx-4 m-auto flex-col gap-4  p-8 rounded"
         >
+          {/*E-paper Heading */}
           <div>
             <div className="mb-2 block">
               <Label
@@ -111,6 +96,7 @@ const AddNews = () => {
               shadow={true}
             />
           </div>
+          {/* E-Paper details */}
           <div>
             <div className="mb-2 block">
               <Label
@@ -129,24 +115,26 @@ const AddNews = () => {
               shadow={true}
             />
           </div>
-          <div>
+          {/* Alias: Date */}
+          {/* <div>
             <div className="mb-2 block">
               <Label
-                htmlFor="location"
-                value="News location"
+                htmlFor="alias"
+                value="News alias"
                 className="font-semibold text-xl"
               />
             </div>
             <TextInput
-              id=" location"
+              id=" alias"
               type="text"
-              name="location"
-              placeholder="news location "
+              name="alias"
+              placeholder="news alias "
               required={true}
               shadow={true}
               className="text-lg font-normal"
             />
-          </div>
+          </div> */}
+
           <div>
             <div className="mb-2 block">
               <Label
@@ -162,9 +150,9 @@ const AddNews = () => {
               className="select text-black font-normal  w-full hmax-w-xs rounded my-2"
             >
               <option disabled selected>
-                Type of news
+                Type Alias
               </option>
-              {categories?.map((category) => (
+              {alias?.map((category) => (
                 <option defaultValue={category?.name}>{category?.name}</option>
               ))}
             </select>
@@ -199,4 +187,4 @@ const AddNews = () => {
   );
 };
 
-export default AddNews;
+export default AddEPaper;
