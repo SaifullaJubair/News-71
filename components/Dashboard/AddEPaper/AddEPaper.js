@@ -22,6 +22,7 @@ const AddEPaper = () => {
     const form = event.target;
     const alias = form.categoryId.value;
     const heading = form.heading.value;
+    const serial = form.serial.value;
     const details = form?.details?.value;
     // const alias = form.alias.value;
     const author = user?.displayName;
@@ -48,6 +49,7 @@ const AddEPaper = () => {
             authorName: author,
             img: data.data.url,
             details,
+            serial,
             createdAt: formatDate,
           };
 
@@ -117,31 +119,31 @@ const AddEPaper = () => {
               shadow={true}
             />
           </div>
-          {/* Alias: Date */}
-          {/* <div>
+          {/* Serial no */}
+          <div>
             <div className="mb-2 block">
               <Label
-                htmlFor="alias"
-                value="News alias"
+                htmlFor="serial"
+                value="Serial No"
                 className="font-semibold text-xl"
               />
             </div>
             <TextInput
-              id=" alias"
-              type="text"
-              name="alias"
-              placeholder="news alias "
+              id=" serial"
+              type="number"
+              name="serial"
+              placeholder="Serial No "
               required={true}
               shadow={true}
               className="text-lg font-normal"
             />
-          </div> */}
+          </div>
 
           <div>
             <div className="mb-2 block">
               <Label
                 htmlFor=""
-                value="Select Category"
+                value="Select E-Paper edition"
                 className="font-semibold text-xl"
               />
             </div>
@@ -155,7 +157,7 @@ const AddEPaper = () => {
                 Type Alias
               </option>
               {categories?.map((category) => (
-                <option defaultValue={category?.name}>{category?.name}</option>
+                <option value={category?._id}>{category?.name}</option>
               ))}
             </select>
           </div>
@@ -173,13 +175,8 @@ const AddEPaper = () => {
                             loading && <Loader></Loader>
                         }
                     </div> */}
-          <Button
-            className="mb-8 bg-green-800 w-fit px-14 mx-auto hover:bg-green-600 shadow"
-            type="submit"
-          >
-            Add News
-          </Button>
-          {/* {loading ? (
+
+          {loading ? (
             <Loader></Loader>
           ) : (
             <Button
@@ -188,7 +185,7 @@ const AddEPaper = () => {
             >
               Add News
             </Button>
-          )} */}
+          )}
         </form>
       </div>
     </div>

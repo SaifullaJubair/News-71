@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import DashboardSideBar from "../../Shared/DashboardSideBar/DashboardSideBar";
+import Link from "next/link";
 const EPaperEdition = () => {
   const [categories, setCategories] = useState(null);
   const [refetch, setRefetch] = useState(false);
@@ -145,7 +146,14 @@ const EPaperEdition = () => {
                   {index + 1}
                 </Table.Cell>
 
-                <Table.Cell className="font-bold">{category?.name}</Table.Cell>
+                <Table.Cell className="font-bold">
+                  <Link
+                    href={`/dashboard/edition/${category?._id}`}
+                    className="hover:text-blue-500"
+                  >
+                    {category?.name}
+                  </Link>
+                </Table.Cell>
 
                 <Table.Cell className="flex gap-3">
                   <Button size="xs" onClick={() => showEditModal(category)}>
