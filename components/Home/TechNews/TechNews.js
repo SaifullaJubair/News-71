@@ -17,7 +17,9 @@ const TechNews = () => {
   return (
     <div>
       <div>
-        <h1 className="text-3xl font-bold mx-2 my-10">Tech News</h1>
+        <h1 className="text-3xl font-bold mx-2 my-10 sticky top-12 z-50 bg-green-50 p-3">
+          Tech News
+        </h1>
         <div className="grid gap-5 row-gap-5 mb-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
           {newes?.map((news) => (
             <div className="rounded-lg shadow-md dark:bg-gray-800 overflow-hidden  dark:border-gray-700 hover:-translate-y-2 duration-300">

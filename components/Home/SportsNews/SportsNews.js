@@ -44,7 +44,9 @@ const SportsNews = () => {
   const theme = useTheme();
   return (
     <div className=" rounded flex flex-col justify-center ">
-      <h2 className="  text-black font-bold text-3xl my-10">Sports News</h2>
+      <h2 className="  text-black font-bold text-3xl my-10 sticky top-12 z-50 bg-green-50 p-3">
+        Sports News
+      </h2>
 
       <div className="grid lg:grid-cols-3 gap-4">
         {/* left side  */}

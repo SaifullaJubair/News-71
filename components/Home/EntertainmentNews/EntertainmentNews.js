@@ -29,7 +29,7 @@ const EntertainmentNews = () => {
 
   return (
     <div className="py-10">
-      <Typography className="font-bold text-3xl mb-10">
+      <Typography className="font-bold text-3xl mb-10 sticky top-12 z-50 bg-green-50 p-3">
         Entertainment NEWS
       </Typography>
       <Box sx={{ flexGrow: 1 }}>

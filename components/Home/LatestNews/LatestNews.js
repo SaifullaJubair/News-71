@@ -7,14 +7,16 @@ const LatestNews = () => {
     fetch("http://localhost:5000/latestnews")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setNews(data);
       });
   }, []);
 
   return (
     <div className="h-[500px] mt-12">
-      <h1 className="text-3xl font-bold mb-8">Latest News</h1>
+      <h1 className="text-3xl font-bold mb-8 bg-green-50 p-3 sticky top-12 z-50">
+        Latest News
+      </h1>
 
       <Carousel>
         {newes?.map((news) => (

@@ -13,7 +13,9 @@ const EducationNews = () => {
 
   return (
     <div className=" mt-8 mb-4 mx-auto">
-      <h1 className="text-3xl my-6 font-bold">Education News</h1>
+      <h1 className="text-3xl my-6 font-bold sticky top-12 z-50  bg-green-50 p-3">
+        Education News
+      </h1>
       <div className="grid gap-6 row-gap-5 mb-8 lg:grid-cols-4 sm:row-gap-6 sm:grid-cols-2">
         {newes?.map((news) => (
           <Link href={`/news/view/${news._id}`}>

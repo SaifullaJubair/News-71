@@ -103,7 +103,7 @@ const EPaperByCategory = ({ editionid }) => {
         </div>
         <div className="w-[78%]">
           <div className="grid grid-cols-12 gap-4">
-            <div className="col-span-12 border">
+            <div className="col-span-7 border border-orange-500">
               <h1 className="text-3xl font-bold text-center">
                 This is Selected img
               </h1>
@@ -112,7 +112,7 @@ const EPaperByCategory = ({ editionid }) => {
                   <img
                     src={selectedEPaper.img}
                     alt=""
-                    className="w-[700px] h-[1050px]"
+                    // className="w-[700px] h-[1050px]"
                   />
                 )}
                 {selectedArea &&
@@ -120,7 +120,7 @@ const EPaperByCategory = ({ editionid }) => {
                     <div
                       onClick={() => setSelectedAreasImage(area)}
                       key={area.id}
-                      className="absolute border hover:border-blue-500 cursor-pointer"
+                      className="absolute border border-transparent hover:border-blue-500  cursor-pointer"
                       style={{
                         left: `${area.left}px`,
                         top: `${area.top}px`,
@@ -132,13 +132,13 @@ const EPaperByCategory = ({ editionid }) => {
               </div>
             </div>
             {/* final section selected aria */}
-            <div className="col-span-7 border">
+            <div className="col-span-5 border">
               <h1 className="text-3xl font-bold text-center">
                 This is Image selection area image
               </h1>
               {selectedAreasImage && selectedEPaper && (
                 <div
-                  className="relative "
+                  className=" "
                   style={{
                     width: `${selectedAreasImage.width}px`,
                     height: `${selectedAreasImage.height}px`,
@@ -148,7 +148,7 @@ const EPaperByCategory = ({ editionid }) => {
                     src={selectedEPaper.img}
                     alt=""
                     style={{
-                      position: "absolute",
+                      position: "",
                       left: `-${selectedAreasImage.left}px`,
                       top: `-${selectedAreasImage.top}px`,
                     }}

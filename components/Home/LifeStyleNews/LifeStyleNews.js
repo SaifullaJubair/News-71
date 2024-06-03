@@ -19,7 +19,9 @@ const LifeStyleNews = () => {
   return (
     <div className="mt-16 mb-10 font-Times ">
       <div className=" mx-auto ">
-        <h1 className="text-3xl font-bold my-6">LifeStyle</h1>
+        <h1 className="text-3xl font-bold my-6 sticky top-12 z-50 bg-green-50 p-3">
+          LifeStyle
+        </h1>
       </div>
       <section className="py-6 dark:bg-gray-800 dark:text-gray-50">
         <div className="grid grid-cols-1 gap-4 mx-auto md:grid-cols-4">
